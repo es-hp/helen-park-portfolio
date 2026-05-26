@@ -1,0 +1,37 @@
+/* =========================
+      THEME VARIABLES
+========================= */
+
+:root,
+[data-theme="light"] {
+  /* ===== Color Palette ===== */
+
+  /* Neutral Palette */
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* Primary Palette */
+  --color-primary: #ffe0cc;
+
+  /* Secondary Palette */
+  /* Functional Color Palette */
+
+  /* ===== Color Mapping ===== */
+  --color-bg: var(--color-white);
+  --color-text: var(--color-black);
+}
+
+/* ===== Dark Theme ===== */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    /* Dark theme: General */
+    --color-bg: var(--color-black);
+    --color-text: var(--color-white);
+  }
+}
+
+[data-theme="dark"] {
+  /* Dark theme: General */
+  --color-bg: var(--color-black);
+  --color-text: var(--color-white);
+}

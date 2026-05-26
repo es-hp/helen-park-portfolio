@@ -1,0 +1,8 @@
+/* PROFILE PHOTO */
+
+.profilePhoto {
+  width: clamp(9rem, 6.353rem + 11.765vw, 12rem);
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  object-fit: cover;
+}
