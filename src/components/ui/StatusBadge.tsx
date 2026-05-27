@@ -5,12 +5,12 @@ import styles from "./UI.module.css";
 
 type Status = "available" | "networking" | "freelance" | "employed";
 
-type statusMap = {
+type StatusMap = {
   label: string;
   color: string;
 };
 
-const statusMap: Record<Status, statusMap> = {
+const statusMap: Record<Status, StatusMap> = {
   available: {
     label: "Available for Work",
     color: "bg-green-500",
@@ -30,7 +30,7 @@ const statusMap: Record<Status, statusMap> = {
 };
 
 export function StatusBadge() {
-  const [status, setStatus] = useState<Status>("available");
+  const [status] = useState<Status>("available");
 
   const currentStatus = statusMap[status];
 

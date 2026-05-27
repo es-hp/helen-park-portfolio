@@ -6,6 +6,7 @@ export function ProfilePhoto() {
       src="/images/2026_profile-photo_Helen.webp"
       alt="Profile"
       className={styles.profilePhoto}
+      data-pin-nopin="true"
     />
   );
 }

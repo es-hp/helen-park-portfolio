@@ -13,7 +13,9 @@ export function NavLink({ navItem }: NavLinkProps) {
   const navContent = (
     <div className={styles.navGroup}>
       <span className={clsx(styles.bracket, styles.left)}>{"<"}</span>
-      {navItem.label}
+      <div className="overflow-hidden flex justify-center items-center">
+        {navItem.label}
+      </div>
       <span className={clsx(styles.bracket, styles.right)}>{">"}</span>
     </div>
   );
