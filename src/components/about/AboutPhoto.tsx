@@ -1,11 +1,11 @@
 import styles from "./About.module.css";
 
-export function ProfilePhoto() {
+export function AboutPhoto() {
   return (
     <img
       src="/images/2026_profile-photo_Helen.webp"
-      alt="Profile"
-      className={styles.profilePhoto}
+      alt="About Photo"
+      className={styles.aboutPhoto}
       data-pin-nopin="true"
     />
   );

@@ -1,3 +1,9 @@
+.mainNav li {
+  text-align: center;
+  align-self: center;
+  overflow: hidden;
+}
+
 .navGroup {
   position: relative;
   display: flex;

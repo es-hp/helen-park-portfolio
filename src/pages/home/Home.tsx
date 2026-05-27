@@ -3,8 +3,8 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Nav } from "@/components/layout/PrimaryNav/Nav";
 import { StatusBadge } from "@/components/ui/StatusBadge";
-import { ProfilePhoto } from "@/components/about/ProfilePhoto";
-import { profilePhotoRevealVar, revealTransition } from "@/motion/reveal";
+import { AboutPhoto } from "@/components/about/AboutPhoto";
+import { aboutPhotoRevealVar, revealTransition } from "./motionHome";
 import styles from "./Home.module.css";
 
 export default function Home() {
@@ -19,7 +19,7 @@ export default function Home() {
       <AnimatePresence initial={false}>
         {isAboutOpen && (
           <motion.div
-            variants={profilePhotoRevealVar}
+            variants={aboutPhotoRevealVar}
             custom={true}
             initial="hide"
             animate="show"
@@ -27,7 +27,7 @@ export default function Home() {
             transition={revealTransition}
             className="overflow-hidden"
           >
-            <ProfilePhoto />
+            <AboutPhoto />
           </motion.div>
         )}
       </AnimatePresence>

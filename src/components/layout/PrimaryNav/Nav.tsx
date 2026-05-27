@@ -1,19 +1,25 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { NavLink } from "./NavLink";
-import { vertRevealContainerVar, revealTransition } from "@/motion/reveal";
+import {
+  navContainerVariants,
+  linksVariants,
+  resumeLinkVariants,
+  backLinkVariants,
+} from "@/components/layout/PrimaryNav/motionNav";
+import styles from "./Nav.module.css";
 
 type NavRoute = {
   type: "route";
   label: string;
   to: string;
-  show: boolean;
+  variants?: Variants;
 };
 
 type NavAction = {
   type: "action";
   label: string;
   onClick: () => void;
-  show: boolean;
+  variants?: Variants;
 };
 
 export type NavItem = NavRoute | NavAction;
@@ -30,64 +36,56 @@ export function Nav({ isAboutOpen, showAbout, hideAbout }: NavProps) {
       type: "action",
       label: "about",
       onClick: showAbout,
-      show: !isAboutOpen,
+      variants: linksVariants,
     },
     skills: {
       type: "route",
       label: "skills",
       to: "/skills",
-      show: !isAboutOpen,
+      variants: linksVariants,
     },
     projects: {
       type: "route",
       label: "projects",
       to: "/projects",
-      show: !isAboutOpen,
+      variants: linksVariants,
     },
     contact: {
       type: "route",
       label: "contact",
       to: "/contact",
-      show: !isAboutOpen,
+      variants: linksVariants,
     },
-    resume: { type: "route", label: "resume", to: "/resume", show: true },
+    resume: {
+      type: "route",
+      label: "resume",
+      to: "/resume",
+      variants: resumeLinkVariants,
+    },
     back: {
       type: "action",
       label: "back",
       onClick: hideAbout,
-      show: isAboutOpen,
+      variants: backLinkVariants,
     },
   };
 
-  const visibleKeys = Object.entries(links)
-    .filter(([, item]) => item.show)
-    .map(([key]) => key);
-
   return (
-    <nav>
-      <ul className="flex flex-col justify-start border border-b-blue-800">
-        <AnimatePresence>
-          {Object.entries(links).map(([key, item]) => {
-            const visibleIndex = visibleKeys.indexOf(key);
-            const needsBotMargin =
-              item.show && visibleIndex !== visibleKeys.length - 1;
-            return (
-              <motion.li
-                key={key}
-                variants={vertRevealContainerVar}
-                custom={needsBotMargin}
-                initial="hide"
-                animate={item.show ? "show" : "hide"}
-                exit="hide"
-                transition={revealTransition}
-                className="text-center self-center"
-              >
-                <NavLink navItem={item} />
-              </motion.li>
-            );
-          })}
-        </AnimatePresence>
-      </ul>
+    <nav className={styles.mainNav}>
+      <motion.ul
+        variants={navContainerVariants}
+        initial="onHome"
+        animate={isAboutOpen ? "onAbout" : "onHome"}
+        className="flex flex-col justify-start border border-b-blue-800"
+      >
+        {Object.entries(links).map(([key, item]) => {
+          return (
+            <motion.li key={key} variants={item.variants}>
+              <NavLink navItem={item} />
+            </motion.li>
+          );
+        })}
+      </motion.ul>
     </nav>
   );
 }
