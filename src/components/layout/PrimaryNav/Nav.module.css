@@ -5,12 +5,10 @@
 }
 
 .navGroup {
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
-  border: 1px solid green;
 }
 
 .navLink,
@@ -22,32 +20,5 @@
   letter-spacing: 0.05em;
   text-align: center;
   text-transform: uppercase;
-
   color: var(--color-black);
-
-  transition: color 200ms ease;
-}
-
-.bracket {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 200ms ease;
-}
-
-.bracket.left {
-  right: 108%;
-}
-
-.bracket.right {
-  left: 108%;
-}
-
-.navGroup:hover {
-  color: grey;
-}
-
-.navGroup:hover .bracket {
-  opacity: 1;
-  pointer-events: auto;
 }

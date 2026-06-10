@@ -1,25 +1,27 @@
-import { type Variants } from "framer-motion";
+import { type Variants } from 'framer-motion';
 
-export const NAV_BOT_MARGIN_REM = "1rem";
+export const NAV_BOT_MARGIN_REM = '1rem';
 
-const NAV_STAGGER_DURATION = 1;
+const HEIGHT_DURATION = 0.25;
 
-const NAV_ANIMATION_DURATION = 2;
+const SLIDE_DURATION = HEIGHT_DURATION / 2;
 
-const NAV_OPACITY_DURATION = 0.1;
+const MARGIN_DURATION = HEIGHT_DURATION * 2;
 
-const NAV_HEIGHT_DURATION = 4;
+export const STAGGER_DURATION = (HEIGHT_DURATION + SLIDE_DURATION) / 2;
+
+const OPACITY_DURATION = HEIGHT_DURATION;
 
 export const navContainerVariants: Variants = {
   onHome: {
     transition: {
-      staggerChildren: NAV_STAGGER_DURATION,
+      staggerChildren: STAGGER_DURATION,
       staggerDirection: -1,
     },
   },
   onAbout: {
     transition: {
-      staggerChildren: NAV_STAGGER_DURATION,
+      staggerChildren: STAGGER_DURATION,
       staggerDirection: 1,
     },
   },
@@ -28,49 +30,43 @@ export const navContainerVariants: Variants = {
 export const linksVariants: Variants = {
   onHome: {
     opacity: 1,
-    height: "auto",
+    height: 'auto',
     marginBottom: NAV_BOT_MARGIN_REM,
-    pointerEvents: "auto",
+    pointerEvents: 'auto',
     transition: {
-      opacity: { duration: NAV_OPACITY_DURATION, ease: "easeIn" },
-      height: { duration: NAV_HEIGHT_DURATION, ease: "easeIn" },
-      marginBottom: { duration: NAV_ANIMATION_DURATION, ease: "easeIn" },
+      ease: 'easeInOut',
+      opacity: { duration: OPACITY_DURATION },
+      height: { duration: HEIGHT_DURATION },
+      marginBottom: { duration: MARGIN_DURATION },
     },
   },
   onAbout: {
     opacity: 0,
     height: 0,
     marginBottom: 0,
-    pointerEvents: "none",
+    pointerEvents: 'none',
     transition: {
-      opacity: { duration: NAV_OPACITY_DURATION, ease: "easeIn" },
-      height: { duration: NAV_HEIGHT_DURATION, ease: "easeIn" },
-      marginBottom: { duration: NAV_ANIMATION_DURATION, ease: "easeIn" },
+      ease: 'easeInOut',
+      opacity: { duration: OPACITY_DURATION },
+      height: { duration: HEIGHT_DURATION },
+      marginBottom: { duration: MARGIN_DURATION },
     },
   },
 };
 
-export const resumeLinkVariants: Variants = {
+export const resumeLinksVariants: Variants = {
   onHome: {
-    opacity: 1,
-    height: "auto",
     marginBottom: 0,
-    pointerEvents: "auto",
     transition: {
-      opacity: { duration: NAV_OPACITY_DURATION, ease: "easeIn" },
-      height: { duration: NAV_HEIGHT_DURATION, ease: "easeIn" },
-      marginBottom: { duration: NAV_ANIMATION_DURATION, ease: "easeIn" },
+      duration: MARGIN_DURATION,
+      ease: 'easeInOut',
     },
   },
   onAbout: {
-    opacity: 1,
-    height: "auto",
     marginBottom: NAV_BOT_MARGIN_REM,
-    pointerEvents: "auto",
     transition: {
-      opacity: { duration: NAV_OPACITY_DURATION, ease: "easeIn" },
-      height: { duration: NAV_HEIGHT_DURATION, ease: "easeIn" },
-      marginBottom: { duration: NAV_ANIMATION_DURATION, ease: "easeIn" },
+      duration: MARGIN_DURATION,
+      ease: 'easeInOut',
     },
   },
 };
@@ -79,23 +75,43 @@ export const backLinkVariants: Variants = {
   onHome: {
     opacity: 0,
     height: 0,
-    marginBottom: 0,
-    pointerEvents: "none",
+    pointerEvents: 'none',
     transition: {
-      opacity: { duration: NAV_OPACITY_DURATION, ease: "easeIn" },
-      height: { duration: NAV_HEIGHT_DURATION, ease: "easeIn" },
-      marginBottom: { duration: NAV_ANIMATION_DURATION, ease: "easeIn" },
+      ease: 'easeInOut',
+      opacity: { duration: OPACITY_DURATION },
+      height: { duration: HEIGHT_DURATION },
     },
   },
   onAbout: {
     opacity: 1,
-    height: "auto",
-    marginBottom: 0,
-    pointerEvents: "auto",
+    height: 'auto',
+    pointerEvents: 'auto',
     transition: {
-      opacity: { duration: NAV_OPACITY_DURATION, ease: "easeIn" },
-      height: { duration: NAV_HEIGHT_DURATION, ease: "easeIn" },
-      marginBottom: { duration: NAV_ANIMATION_DURATION, ease: "easeIn" },
+      ease: 'easeInOut',
+      opacity: { duration: OPACITY_DURATION },
+      height: { duration: HEIGHT_DURATION },
     },
+  },
+};
+
+export const slideDownOutVariants: Variants = {
+  onHome: {
+    y: '0%',
+    transition: { duration: SLIDE_DURATION, ease: 'easeInOut' },
+  },
+  onAbout: {
+    y: '100%',
+    transition: { duration: SLIDE_DURATION, ease: 'easeInOut' },
+  },
+};
+
+export const slideDownInVariants: Variants = {
+  onHome: {
+    y: '-100%',
+    transition: { duration: SLIDE_DURATION, ease: 'easeInOut' },
+  },
+  onAbout: {
+    y: '0%',
+    transition: { duration: SLIDE_DURATION, ease: 'easeInOut' },
   },
 };

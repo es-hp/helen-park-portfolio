@@ -1,35 +1,52 @@
-import styles from "./Nav.module.css";
-import clsx from "clsx";
-import { Link } from "react-router-dom";
-import type { NavItem } from "./Nav";
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+
+import { motion, type Variants } from 'framer-motion';
+
+import LinkHoverBrackets from '@/components/ui/LinkHoverBrackets';
+
+import { slideDownInVariants, slideDownOutVariants } from './motionNav';
+import type { NavItem } from './Nav';
+import styles from './Nav.module.css';
 
 type NavLinkProps = {
   navItem: NavItem;
-  className?: string;
 };
 
-export function NavLink({ navItem, className }: NavLinkProps) {
-  const navLinkClass = clsx(styles.navLink, className);
+export function NavLink({ navItem }: NavLinkProps) {
+  const variantsMap: Record<string, Variants | undefined> = {
+    onHome: slideDownOutVariants,
+    always: undefined,
+    onAbout: slideDownInVariants,
+  };
+  const variants: Variants | undefined = variantsMap[navItem.showLink];
 
-  const navContent = (
-    <div className={styles.navGroup}>
-      <span className={clsx(styles.bracket, styles.left)}>{"<"}</span>
-      <div className="flex justify-center items-center">{navItem.label}</div>
-      <span className={clsx(styles.bracket, styles.right)}>{">"}</span>
-    </div>
-  );
+  const [hovered, setHovered] = useState<boolean>(false);
 
-  if (navItem.type === "route") {
-    return (
-      <Link to={navItem.to} className={navLinkClass}>
-        {navContent}
+  const content =
+    navItem.type === 'route' ? (
+      <Link
+        to={navItem.to}
+        className={styles.navLink}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+      >
+        {navItem.label}
       </Link>
+    ) : (
+      <button
+        onClick={() => navItem.onClick()}
+        className={styles.navLink}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+      >
+        {navItem.label}
+      </button>
     );
-  }
 
   return (
-    <button onClick={() => navItem.onClick()} className={navLinkClass}>
-      {navContent}
-    </button>
+    <motion.div variants={variants} className={styles.navGroup}>
+      <LinkHoverBrackets hovered={hovered}>{content}</LinkHoverBrackets>
+    </motion.div>
   );
 }

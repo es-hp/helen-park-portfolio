@@ -1,19 +1,24 @@
-export const aboutPhotoRevealVar = {
-  hide: {
+import { type Variants } from 'framer-motion';
+
+export const aboutPhotoVariants: Variants = {
+  onHome: {
     opacity: 0,
     height: 0,
     marginBottom: 0,
-    pointerEvents: "none",
+    pointerEvents: 'none',
+    transition: {
+      duration: 1,
+      ease: 'easeOut',
+    },
   },
-  show: {
+  onAbout: {
     opacity: 1,
-    height: "auto",
+    height: 'auto',
     marginBottom: 16,
-    pointerEvents: "auto",
+    pointerEvents: 'auto',
+    transition: {
+      duration: 1,
+      ease: 'easeIn',
+    },
   },
-} as const;
-
-export const revealTransition = {
-  duration: 1,
-  ease: "easeInOut",
-} as const;
+};

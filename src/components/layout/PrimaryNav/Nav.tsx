@@ -1,91 +1,105 @@
-import { motion, type Variants } from "framer-motion";
-import { NavLink } from "./NavLink";
+import { motion, type Variants } from 'framer-motion';
+
 import {
-  navContainerVariants,
-  linksVariants,
-  resumeLinkVariants,
   backLinkVariants,
-} from "@/components/layout/PrimaryNav/motionNav";
-import styles from "./Nav.module.css";
+  linksVariants,
+  navContainerVariants,
+  resumeLinksVariants,
+} from '@/components/layout/PrimaryNav/motionNav';
+
+import styles from './Nav.module.css';
+import { NavLink } from './NavLink';
 
 type NavRoute = {
-  type: "route";
+  type: 'route';
   label: string;
   to: string;
-  variants?: Variants;
+  showLink: 'onHome' | 'always' | 'onAbout';
 };
 
 type NavAction = {
-  type: "action";
+  type: 'action';
   label: string;
   onClick: () => void;
-  variants?: Variants;
+  showLink: 'onHome' | 'always' | 'onAbout';
 };
 
 export type NavItem = NavRoute | NavAction;
 
 type NavProps = {
-  isAboutOpen: boolean;
+  animateState: 'onHome' | 'onAbout';
   showAbout: () => void;
   hideAbout: () => void;
 };
 
-export function Nav({ isAboutOpen, showAbout, hideAbout }: NavProps) {
+export function Nav({ animateState, showAbout, hideAbout }: NavProps) {
+  const variantsMap: Record<string, Variants | undefined> = {
+    onHome: linksVariants,
+    always: resumeLinksVariants,
+    onAbout: backLinkVariants,
+  };
+
   const links: Record<string, NavItem> = {
     about: {
-      type: "action",
-      label: "about",
-      onClick: showAbout,
-      variants: linksVariants,
+      type: 'action',
+      label: 'about',
+      onClick: () => showAbout(),
+      showLink: 'onHome',
     },
     skills: {
-      type: "route",
-      label: "skills",
-      to: "/skills",
-      variants: linksVariants,
+      type: 'route',
+      label: 'skills',
+      to: '/skills',
+      showLink: 'onHome',
     },
     projects: {
-      type: "route",
-      label: "projects",
-      to: "/projects",
-      variants: linksVariants,
+      type: 'route',
+      label: 'projects',
+      to: '/projects',
+      showLink: 'onHome',
     },
     contact: {
-      type: "route",
-      label: "contact",
-      to: "/contact",
-      variants: linksVariants,
+      type: 'route',
+      label: 'contact',
+      to: '/contact',
+      showLink: 'onHome',
     },
     resume: {
-      type: "route",
-      label: "resume",
-      to: "/resume",
-      variants: resumeLinkVariants,
+      type: 'route',
+      label: 'resume',
+      to: '/resume',
+      showLink: 'always',
     },
     back: {
-      type: "action",
-      label: "back",
-      onClick: hideAbout,
-      variants: backLinkVariants,
+      type: 'action',
+      label: 'back',
+      onClick: () => hideAbout(),
+      showLink: 'onAbout',
     },
   };
 
   return (
-    <nav className={styles.mainNav}>
+    <motion.nav
+      variants={{
+        onHome: {},
+        onAbout: {},
+      }}
+      className={styles.mainNav}
+    >
       <motion.ul
         variants={navContainerVariants}
+        animate={animateState}
         initial="onHome"
-        animate={isAboutOpen ? "onAbout" : "onHome"}
-        className="flex flex-col justify-start border border-b-blue-800"
+        className="flex flex-col justify-start"
       >
         {Object.entries(links).map(([key, item]) => {
           return (
-            <motion.li key={key} variants={item.variants}>
+            <motion.li key={key} variants={variantsMap[item.showLink]}>
               <NavLink navItem={item} />
             </motion.li>
           );
         })}
       </motion.ul>
-    </nav>
+    </motion.nav>
   );
 }
