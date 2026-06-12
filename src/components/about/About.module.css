@@ -1,7 +1,7 @@
 /* PROFILE PHOTO */
 
 .aboutPhoto {
-  width: clamp(9rem, 6.353rem + 11.765vw, 12rem);
+  width: clamp(10rem, 18vh + 1rem, 12rem);
   aspect-ratio: 1/1;
   border-radius: 50%;
   object-fit: cover;

@@ -1,24 +1,26 @@
 import { type Variants } from 'framer-motion';
 
-export const aboutPhotoVariants: Variants = {
+import { EASE } from '@/motion/motion';
+
+export const aboutVariants: Variants = {
   onHome: {
     opacity: 0,
     height: 0,
-    marginBottom: 0,
     pointerEvents: 'none',
+    marginBottom: 0,
     transition: {
       duration: 1,
-      ease: 'easeOut',
+      ease: EASE,
     },
   },
-  onAbout: {
+  onAbout: (marginBottom: number) => ({
     opacity: 1,
     height: 'auto',
-    marginBottom: 16,
     pointerEvents: 'auto',
+    marginBottom,
     transition: {
       duration: 1,
-      ease: 'easeIn',
+      ease: EASE,
     },
-  },
+  }),
 };
