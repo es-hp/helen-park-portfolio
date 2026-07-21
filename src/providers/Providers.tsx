@@ -1,7 +1,7 @@
-import { BrowserRouter } from "react-router-dom";
-import { ThemeProvider } from "./theme/ThemeProvider";
+import type { ReactNode } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
-import type { ReactNode } from "react";
+import { ThemeProvider } from './theme/ThemeProvider';
 
 export type ProviderProps = {
   children: ReactNode;

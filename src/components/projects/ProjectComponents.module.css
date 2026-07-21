@@ -1,0 +1,53 @@
+/* PROJECTS HEADER */
+
+.projHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  border: 1px solid red;
+}
+
+.projHeader h1 {
+  font-size: var(--text-2xl);
+}
+
+/* PROJECTS CAROUSEL */
+
+.carouselViewport {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid green;
+}
+
+.carouselContainer {
+  display: flex;
+  height: 100%;
+  touch-action: pan-y pinch-zoom;
+}
+
+.carouselControls {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  border: 3px solid blue;
+
+  z-index: 10;
+}
+
+/* PROJECT SLIDE */
+
+.projSlide {
+  flex: 0 0 100%;
+  min-width: 0;
+  color: teal;
+  border: 1px solid cyan;
+}
