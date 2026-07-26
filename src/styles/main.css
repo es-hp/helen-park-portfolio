@@ -2,9 +2,9 @@
       IMPORTS
 ========================= */
 
-@import "tailwindcss";
-@import "./colors.css";
-@import "./fonts.css";
+@import 'tailwindcss';
+@import './colors.css' layer(base);
+@import './fonts.css' layer(base);
 
 /* =========================
       DESIGN TOKENS
@@ -22,95 +22,59 @@
       RESET / NORMALIZE
 ========================= */
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  scrollbar-color: var(--color-scrollbar);
-}
+@layer base {
+  *,
+  *::before,
+  *::after {
+    scrollbar-color: var(--color-scrollbar);
+  }
 
-html {
-  min-height: 100vh;
-}
-
-/* Normalize Typography */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-a {
-  margin: 0;
-  padding: 0;
-}
-
-/* Normalize Forms Typography */
-input,
-button,
-textarea,
-select {
-  font: inherit;
-  color: inherit;
-}
-
-/* Normalize Lists */
-ul,
-ol,
-li {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-/* Normalize Media */
-img,
-picture,
-video,
-canvas,
-svg {
-  display: block;
-  max-width: 100%;
+  html {
+    min-height: 100vh;
+  }
 }
 
 /* =========================
       BASE STYLES
 ========================= */
 
-body {
-  display: flex;
+@layer base {
+  body {
+    display: flex;
 
-  min-width: 320px;
-  min-height: 100vh;
-  margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+    margin: 0;
 
-  font-family: var(--font-body);
-  font-size: var(--text-base);
-  font-weight: 400;
-  font-style: normal;
-  line-height: 1.5;
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.5;
 
-  color: var(--color-text);
-  background-color: var(--color-bg);
+    color: var(--color-text);
+    background-color: var(--color-bg);
 
-  font-synthesis: none;
-  -webkit-font-smoothing: antialiased;
-}
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+  }
 
-#root {
-  width: 100%;
-  min-height: 100vh;
+  #root {
+    width: 100%;
+    min-height: 100vh;
+  }
 }
 
 /* =========================
       ACCESSIBILITY
 ========================= */
 
-/* Keyboard focus only */
-:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
+@layer base {
+  /* Keyboard focus only */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
 }
 
 /* Respect reduced motion */
@@ -126,12 +90,15 @@ body {
 /* =========================
       APP
 ========================= */
-.main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 
-  width: 100%;
-  height: 100%;
+@layer components {
+  .main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+  }
 }
