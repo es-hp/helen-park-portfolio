@@ -10,7 +10,7 @@ export function Projects() {
 
   return (
     <main className={styles.projectsPage}>
-      <header>
+      <header className="shrink-0 h-20">
         <ProjectsHeader />
       </header>
       <section className={styles.carousel} aria-label="Projects">

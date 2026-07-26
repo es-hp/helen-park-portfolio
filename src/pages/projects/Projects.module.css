@@ -4,11 +4,6 @@
   height: 100%;
 }
 
-.projectsPage header {
-  flex-shrink: 0;
-  height: 5rem;
-}
-
 .carousel {
   position: relative;
   flex: 1;

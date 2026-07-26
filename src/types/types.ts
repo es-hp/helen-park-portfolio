@@ -12,8 +12,9 @@ interface ProjectImage {
 
 export interface Project {
   id: string;
+  icon: string;
   title: string;
-  info: string;
+  description: string[];
   link: string;
   repo: string;
   stack: Skill[];
