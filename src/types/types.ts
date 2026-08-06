@@ -1,7 +1,7 @@
 /* PROJECT TYPES */
 
-interface Skill {
-  skill: string;
+export interface TechStack {
+  name: string;
   icon: string;
 }
 
@@ -17,6 +17,6 @@ export interface Project {
   description: string[];
   link: string;
   repo: string;
-  stack: Skill[];
+  stack: TechStack[];
   images: ProjectImage[];
 }

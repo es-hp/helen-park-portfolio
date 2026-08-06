@@ -29,7 +29,7 @@ const bracketTransition: Transition = {
   },
 };
 
-export default function LinkHoverBrackets({
+export function LinkHoverBrackets({
   children,
   hovered,
 }: LinkHoverBracketsProps) {

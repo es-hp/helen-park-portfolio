@@ -3,19 +3,63 @@ import type { Project } from '@/types/types';
 
 export const projects: Project[] = [
   {
-    id: 'string',
+    id: '1',
     icon: greyBox,
     title: 'Mission Trip Planner',
     description: [
-      'A mock web app for planning short-term mission trips that would be used by churches and missions organizations. Built to showcase use of just the basics: plain HTML, CSS, and JavaScript (no frameworks). It lets users organize trip details, manage participants, and track activities.',
-      'next paragraph',
+      'A mock web app for planning short-term mission trips that would be used by churches and missions organizations. Built to showcase use of just the basics: plain HTML, CSS, and JavaScript (no frameworks).',
+      'It lets users organize trip details, manage participants, and track activities.',
     ],
-    link: 'string',
+    link: 'http://lechu-go.s3-website.us-east-2.amazonaws.com/',
     repo: 'https://github.com/es-hp/mission-trip-planner',
     stack: [
       {
-        skill: 'string',
-        icon: 'string',
+        name: 'html',
+        icon: 'html5',
+      },
+      {
+        name: 'css',
+        icon: 'css3',
+      },
+      {
+        name: 'javascript',
+        icon: 'js',
+      },
+      {
+        name: 'html',
+        icon: 'html5',
+      },
+      {
+        name: 'css',
+        icon: 'css3',
+      },
+      {
+        name: 'javascript',
+        icon: 'js',
+      },
+      {
+        name: 'html',
+        icon: 'html5',
+      },
+      {
+        name: 'css',
+        icon: 'css3',
+      },
+      {
+        name: 'javascript',
+        icon: 'js',
+      },
+      {
+        name: 'html',
+        icon: 'html5',
+      },
+      {
+        name: 'css',
+        icon: 'css3',
+      },
+      {
+        name: 'javascript',
+        icon: 'js',
       },
     ],
     images: [
@@ -26,7 +70,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: 'string',
+    id: '2',
     icon: greyBox,
     title: 'Project 2',
     description: ['string'],
@@ -34,8 +78,16 @@ export const projects: Project[] = [
     repo: 'string',
     stack: [
       {
-        skill: 'string',
-        icon: 'string',
+        name: 'html',
+        icon: 'html5',
+      },
+      {
+        name: 'css',
+        icon: 'css3',
+      },
+      {
+        name: 'javascript',
+        icon: 'js',
       },
     ],
     images: [
@@ -46,7 +98,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: 'string',
+    id: '3',
     icon: greyBox,
     title: 'Project 3',
     description: ['string'],
@@ -54,8 +106,16 @@ export const projects: Project[] = [
     repo: 'string',
     stack: [
       {
-        skill: 'string',
-        icon: 'string',
+        name: 'html',
+        icon: 'html5',
+      },
+      {
+        name: 'css',
+        icon: 'css3',
+      },
+      {
+        name: 'javascript',
+        icon: 'js',
       },
     ],
     images: [

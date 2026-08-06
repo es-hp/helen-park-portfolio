@@ -17,7 +17,7 @@ type ProjectCarouselProps = {
   activeProject?: string;
 };
 
-export function ProjectsCarousel(activeProject: ProjectCarouselProps) {
+export function ProjectsCarousel({ activeProject }: ProjectCarouselProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
 
   const navigate = useNavigate();
@@ -68,7 +68,7 @@ export function ProjectsCarousel(activeProject: ProjectCarouselProps) {
       <div className={styles.carouselViewport} ref={emblaRef}>
         <div className={styles.carouselContainer}>
           {projects.map((project) => (
-            <ProjectSlide project={project} />
+            <ProjectSlide project={project} key={project.id} />
           ))}
         </div>
       </div>
