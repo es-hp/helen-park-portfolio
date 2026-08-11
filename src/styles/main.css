@@ -87,19 +87,3 @@
     scroll-behavior: auto !important;
   }
 }
-
-/* =========================
-      APP
-========================= */
-
-@layer components {
-  .main {
-    display: flex;
-    flex-direction: column;
-    /* justify-content: center;
-    align-items: center; */
-
-    width: 100%;
-    height: 100%;
-  }
-}

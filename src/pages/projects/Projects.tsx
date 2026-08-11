@@ -3,17 +3,15 @@ import { useParams } from 'react-router-dom';
 import { ProjectsCarousel } from '@/components/projects/ProjectsCarousel';
 import { ProjectsHeader } from '@/components/projects/ProjectsHeader';
 
-import styles from './Projects.module.css';
-
 export function Projects() {
   const { projectId } = useParams();
 
   return (
-    <main className={styles.projectsPage}>
+    <main className="flex flex-col h-full w-full overflow-hidden">
       <header className="shrink-0 h-20">
         <ProjectsHeader />
       </header>
-      <section className={styles.carousel} aria-label="Projects">
+      <section className="relative flex-1 min-h-0" aria-label="Projects">
         <ProjectsCarousel activeProject={projectId} />
       </section>
     </main>

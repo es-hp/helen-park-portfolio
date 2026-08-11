@@ -9,6 +9,8 @@ export const projects: Project[] = [
     description: [
       'A mock web app for planning short-term mission trips that would be used by churches and missions organizations. Built to showcase use of just the basics: plain HTML, CSS, and JavaScript (no frameworks).',
       'It lets users organize trip details, manage participants, and track activities.',
+      'A mock web app for planning short-term mission trips that would be used by churches and missions organizations. Built to showcase use of just the basics: plain HTML, CSS, and JavaScript (no frameworks).',
+      'It lets users organize trip details, manage participants, and track activities.',
     ],
     link: 'http://lechu-go.s3-website.us-east-2.amazonaws.com/',
     repo: 'https://github.com/es-hp/mission-trip-planner',

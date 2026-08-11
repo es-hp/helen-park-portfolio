@@ -7,7 +7,7 @@ type ProjectBtnProps = {
 
 export const PrevProjectBtn = ({ onClick, disabled }: ProjectBtnProps) => {
   return (
-    <PrevButton onClick={onClick} disabled={disabled}>
+    <PrevButton onClick={onClick} disabled={disabled} className="ml-4">
       {'<'}
     </PrevButton>
   );
@@ -15,7 +15,7 @@ export const PrevProjectBtn = ({ onClick, disabled }: ProjectBtnProps) => {
 
 export const NextProjectBtn = ({ onClick, disabled }: ProjectBtnProps) => {
   return (
-    <NextButton onClick={onClick} disabled={disabled}>
+    <NextButton onClick={onClick} disabled={disabled} className="mr-4">
       {'>'}
     </NextButton>
   );

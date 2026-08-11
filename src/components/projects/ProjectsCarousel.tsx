@@ -35,9 +35,10 @@ export function ProjectsCarousel({ activeProject }: ProjectCarouselProps) {
 
     const index = projects.findIndex((project) => project.id === activeProject);
 
-    if (index !== -1) {
-      emblaApi.scrollTo(index);
-    }
+    if (index === -1) return;
+    if (emblaApi.selectedScrollSnap() === index) return;
+
+    emblaApi.scrollTo(index);
   }, [emblaApi, activeProject]);
 
   // When user swipes, URL updates
@@ -46,26 +47,24 @@ export function ProjectsCarousel({ activeProject }: ProjectCarouselProps) {
 
     const updateRoute = () => {
       const index = emblaApi.selectedScrollSnap();
-
       const project = projects[index];
-
-      if (!project) return;
-
-      if (project.id !== activeProject) {
-        void navigate(`/projects/${project.id}`);
-      }
+      if (!project || project.id === activeProject) return;
+      void navigate(`/projects/${project.id}`, { replace: true });
     };
 
-    emblaApi.on('select', updateRoute);
+    emblaApi.on('settle', updateRoute);
 
     return () => {
-      emblaApi.off('select', updateRoute);
+      emblaApi.off('settle', updateRoute);
     };
   }, [emblaApi, navigate, activeProject]);
 
   return (
     <>
-      <div className={styles.carouselViewport} ref={emblaRef}>
+      <div
+        className="carousel-viewport w-full h-full overflow-hidden"
+        ref={emblaRef}
+      >
         <div className={styles.carouselContainer}>
           {projects.map((project) => (
             <ProjectSlide project={project} key={project.id} />

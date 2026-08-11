@@ -1,8 +1,8 @@
-import { useContext, type Context } from "react";
+import { type Context, useContext } from 'react';
 
 export function useCustomContext<T>(
   context: Context<T | undefined>,
-  hookName: string,
+  hookName: string
 ): T {
   const value = useContext(context);
 
