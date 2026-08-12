@@ -1,6 +1,8 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import clsx from 'clsx';
+import { type EmblaCarouselType } from 'embla-carousel';
 import useEmblaCarousel from 'embla-carousel-react';
 
 import { usePrevNextButtons } from '@/components/carousel/usePrevNextButtons';
@@ -19,6 +21,7 @@ type ProjectCarouselProps = {
 
 export function ProjectsCarousel({ activeProject }: ProjectCarouselProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+  const [loadedSlides, setLoadedSlides] = useState<number[]>([]);
 
   const navigate = useNavigate();
 
@@ -59,15 +62,45 @@ export function ProjectsCarousel({ activeProject }: ProjectCarouselProps) {
     };
   }, [emblaApi, navigate, activeProject]);
 
+  // Lazy Loading Slides
+  const markSlidesAsLoaded = useCallback((emblaApi: EmblaCarouselType) => {
+    console.log('Slides in view:', emblaApi.slidesInView());
+
+    setLoadedSlides((loadedSlides) => [
+      ...new Set([...loadedSlides, ...emblaApi.slidesInView()]),
+    ]);
+  }, []);
+
+  useEffect(() => {
+    console.log('Loaded slides:', loadedSlides);
+  });
+
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    emblaApi.on('slidesInView', markSlidesAsLoaded);
+    emblaApi.on('reInit', markSlidesAsLoaded);
+
+    return () => {
+      emblaApi.off('slidesInView', markSlidesAsLoaded);
+      emblaApi.off('reInit', markSlidesAsLoaded);
+    };
+  }, [emblaApi, markSlidesAsLoaded]);
+
   return (
     <>
       <div
         className="carousel-viewport w-full h-full overflow-hidden"
         ref={emblaRef}
       >
-        <div className={styles.carouselContainer}>
-          {projects.map((project) => (
-            <ProjectSlide project={project} key={project.id} />
+        <div className={clsx(styles.carouselContainer, 'flex h-full')}>
+          {projects.map((project, index) => (
+            <ProjectSlide
+              project={project}
+              key={project.id}
+              index={index}
+              isLoaded={loadedSlides.includes(index)}
+            />
           ))}
         </div>
       </div>

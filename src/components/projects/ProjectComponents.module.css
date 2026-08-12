@@ -15,8 +15,6 @@
 /* PROJECTS CAROUSEL */
 
 .carouselContainer {
-  display: flex;
-  height: 100%;
   touch-action: pan-y pinch-zoom;
 }
 
