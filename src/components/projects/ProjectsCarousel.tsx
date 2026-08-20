@@ -1,6 +1,8 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import clsx from 'clsx';
+import { type EmblaCarouselType } from 'embla-carousel';
 import useEmblaCarousel from 'embla-carousel-react';
 
 import { usePrevNextButtons } from '@/components/carousel/usePrevNextButtons';
@@ -9,16 +11,21 @@ import {
   PrevProjectBtn,
 } from '@/components/projects/ProjectsCarouselArrows';
 import { ProjectSlide } from '@/components/projects/ProjectSlide';
-import { projects } from '@/content/project-data';
+import { type Project } from '@/types/types';
 
 import styles from './ProjectComponents.module.css';
 
 type ProjectCarouselProps = {
+  projects: Project[];
   activeProject?: string;
 };
 
-export function ProjectsCarousel({ activeProject }: ProjectCarouselProps) {
+export function ProjectsCarousel({
+  projects,
+  activeProject,
+}: ProjectCarouselProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+  const [loadedSlides, setLoadedSlides] = useState<number[]>([]);
 
   const navigate = useNavigate();
 
@@ -39,7 +46,7 @@ export function ProjectsCarousel({ activeProject }: ProjectCarouselProps) {
     if (emblaApi.selectedScrollSnap() === index) return;
 
     emblaApi.scrollTo(index);
-  }, [emblaApi, activeProject]);
+  }, [emblaApi, projects, activeProject]);
 
   // When user swipes, URL updates
   useEffect(() => {
@@ -57,7 +64,28 @@ export function ProjectsCarousel({ activeProject }: ProjectCarouselProps) {
     return () => {
       emblaApi.off('settle', updateRoute);
     };
-  }, [emblaApi, navigate, activeProject]);
+  }, [emblaApi, navigate, projects, activeProject]);
+
+  // Lazy Loading Slides
+  const markSlidesAsLoaded = useCallback((emblaApi: EmblaCarouselType) => {
+    setLoadedSlides((loadedSlides) => [
+      ...new Set([...loadedSlides, ...emblaApi.slidesInView()]),
+    ]);
+  }, []);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    emblaApi.on('init', markSlidesAsLoaded);
+    emblaApi.on('slidesInView', markSlidesAsLoaded);
+    emblaApi.on('reInit', markSlidesAsLoaded);
+
+    return () => {
+      emblaApi.off('init', markSlidesAsLoaded);
+      emblaApi.off('slidesInView', markSlidesAsLoaded);
+      emblaApi.off('reInit', markSlidesAsLoaded);
+    };
+  }, [emblaApi, markSlidesAsLoaded]);
 
   return (
     <>
@@ -65,9 +93,14 @@ export function ProjectsCarousel({ activeProject }: ProjectCarouselProps) {
         className="carousel-viewport w-full h-full overflow-hidden"
         ref={emblaRef}
       >
-        <div className={styles.carouselContainer}>
-          {projects.map((project) => (
-            <ProjectSlide project={project} key={project.id} />
+        <div className={clsx(styles.carouselContainer, 'flex h-full')}>
+          {projects.map((project, index) => (
+            <ProjectSlide
+              project={project}
+              key={project.id}
+              index={index}
+              isLoaded={loadedSlides.includes(index)}
+            />
           ))}
         </div>
       </div>

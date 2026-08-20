@@ -1,19 +1,28 @@
-import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-import { ProjectsCarousel } from '@/components/projects/ProjectsCarousel';
-import { ProjectsHeader } from '@/components/projects/ProjectsHeader';
+import { useProjects } from '@/hooks/useProjects';
 
 export function Projects() {
-  const { projectId } = useParams();
+  const { data: projects, isPending, isError } = useProjects();
 
   return (
-    <main className="flex flex-col h-full w-full overflow-hidden">
-      <header className="shrink-0 h-20">
-        <ProjectsHeader />
-      </header>
-      <section className="relative flex-1 min-h-0" aria-label="Projects">
-        <ProjectsCarousel activeProject={projectId} />
-      </section>
-    </main>
+    <section>
+      <div>
+        <h1>Projects</h1>
+        <div className="flex flex-col gap-4 justify-center">
+          {isPending ? (
+            <div>Loading...</div>
+          ) : isError ? (
+            <div>Error loading projects.</div>
+          ) : (
+            projects.map((project, index) => (
+              <Link to={`/projects/${project.id}`} key={index}>
+                {project.title}
+              </Link>
+            ))
+          )}
+        </div>
+      </div>
+    </section>
   );
 }
