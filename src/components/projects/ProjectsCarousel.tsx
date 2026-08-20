@@ -68,24 +68,20 @@ export function ProjectsCarousel({
 
   // Lazy Loading Slides
   const markSlidesAsLoaded = useCallback((emblaApi: EmblaCarouselType) => {
-    console.log('Slides in view:', emblaApi.slidesInView());
-
     setLoadedSlides((loadedSlides) => [
       ...new Set([...loadedSlides, ...emblaApi.slidesInView()]),
     ]);
   }, []);
 
   useEffect(() => {
-    console.log('Loaded slides:', loadedSlides);
-  }, [loadedSlides]);
-
-  useEffect(() => {
     if (!emblaApi) return;
 
+    emblaApi.on('init', markSlidesAsLoaded);
     emblaApi.on('slidesInView', markSlidesAsLoaded);
     emblaApi.on('reInit', markSlidesAsLoaded);
 
     return () => {
+      emblaApi.off('init', markSlidesAsLoaded);
       emblaApi.off('slidesInView', markSlidesAsLoaded);
       emblaApi.off('reInit', markSlidesAsLoaded);
     };
