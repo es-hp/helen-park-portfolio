@@ -11,15 +11,19 @@ import {
   PrevProjectBtn,
 } from '@/components/projects/ProjectsCarouselArrows';
 import { ProjectSlide } from '@/components/projects/ProjectSlide';
-import { projects } from '@/content/project-data';
+import { type Project } from '@/types/types';
 
 import styles from './ProjectComponents.module.css';
 
 type ProjectCarouselProps = {
+  projects: Project[];
   activeProject?: string;
 };
 
-export function ProjectsCarousel({ activeProject }: ProjectCarouselProps) {
+export function ProjectsCarousel({
+  projects,
+  activeProject,
+}: ProjectCarouselProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [loadedSlides, setLoadedSlides] = useState<number[]>([]);
 
@@ -42,7 +46,7 @@ export function ProjectsCarousel({ activeProject }: ProjectCarouselProps) {
     if (emblaApi.selectedScrollSnap() === index) return;
 
     emblaApi.scrollTo(index);
-  }, [emblaApi, activeProject]);
+  }, [emblaApi, projects, activeProject]);
 
   // When user swipes, URL updates
   useEffect(() => {
@@ -60,7 +64,7 @@ export function ProjectsCarousel({ activeProject }: ProjectCarouselProps) {
     return () => {
       emblaApi.off('settle', updateRoute);
     };
-  }, [emblaApi, navigate, activeProject]);
+  }, [emblaApi, navigate, projects, activeProject]);
 
   // Lazy Loading Slides
   const markSlidesAsLoaded = useCallback((emblaApi: EmblaCarouselType) => {
@@ -73,7 +77,7 @@ export function ProjectsCarousel({ activeProject }: ProjectCarouselProps) {
 
   useEffect(() => {
     console.log('Loaded slides:', loadedSlides);
-  });
+  }, [loadedSlides]);
 
   useEffect(() => {
     if (!emblaApi) return;
