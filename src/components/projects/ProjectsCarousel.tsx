@@ -24,8 +24,17 @@ export function ProjectsCarousel({
   projects,
   activeProject,
 }: ProjectCarouselProps) {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
-  const [loadedSlides, setLoadedSlides] = useState<number[]>([]);
+  const index = projects.findIndex((project) => project.id === activeProject);
+
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+    watchDrag: () => {
+      return window.matchMedia('(any-pointer: coarse)').matches;
+    },
+    startIndex: index,
+  });
+
+  const [loadedSlides, setLoadedSlides] = useState<number[]>([index]);
 
   const navigate = useNavigate();
 
@@ -36,25 +45,12 @@ export function ProjectsCarousel({
     onNextButtonClick,
   } = usePrevNextButtons(emblaApi);
 
-  // When entering route directly, move to active slide
-  useEffect(() => {
-    if (!emblaApi || !activeProject) return;
-
-    const index = projects.findIndex((project) => project.id === activeProject);
-
-    if (index === -1) return;
-    if (emblaApi.selectedScrollSnap() === index) return;
-
-    emblaApi.scrollTo(index);
-  }, [emblaApi, projects, activeProject]);
-
   // When user swipes, URL updates
   useEffect(() => {
     if (!emblaApi) return;
 
     const updateRoute = () => {
-      const index = emblaApi.selectedScrollSnap();
-      const project = projects[index];
+      const project = projects[emblaApi.selectedScrollSnap()];
       if (!project || project.id === activeProject) return;
       void navigate(`/projects/${project.id}`, { replace: true });
     };
@@ -76,12 +72,10 @@ export function ProjectsCarousel({
   useEffect(() => {
     if (!emblaApi) return;
 
-    emblaApi.on('init', markSlidesAsLoaded);
     emblaApi.on('slidesInView', markSlidesAsLoaded);
     emblaApi.on('reInit', markSlidesAsLoaded);
 
     return () => {
-      emblaApi.off('init', markSlidesAsLoaded);
       emblaApi.off('slidesInView', markSlidesAsLoaded);
       emblaApi.off('reInit', markSlidesAsLoaded);
     };

@@ -1,6 +1,6 @@
 [
   {
-    "id": "1",
+    "id": "a",
     "icon": "/images/square-xxl.png",
     "title": "Mission Trip Planner 222",
     "description": [
@@ -69,7 +69,7 @@
     ]
   },
   {
-    "id": "2",
+    "id": "b",
     "icon": "/images/square-xxl.png",
     "title": "Project 2",
     "description": ["string"],
@@ -97,7 +97,7 @@
     ]
   },
   {
-    "id": "3",
+    "id": "c",
     "icon": "/images/square-xxl.png",
     "title": "Project 3",
     "description": ["string"],
