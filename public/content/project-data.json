@@ -63,8 +63,28 @@
     ],
     "images": [
       {
-        "src": "string",
-        "alt": "string"
+        "src": "/projects/mission-trip-planner/Lechu-Go_Login.png",
+        "alt": "Lechu Go's login page"
+      },
+      {
+        "src": "/projects/mission-trip-planner/Lechu-Go_Overview-EventsToCalendar.png",
+        "alt": "Lechu Go's events page"
+      },
+      {
+        "src": "/projects/mission-trip-planner/Lechu-Go_Profile-CreateNewPost.png",
+        "alt": "Lechu Go's create new post"
+      },
+      {
+        "src": "/projects/mission-trip-planner/Lechu-Go_Schedule.png",
+        "alt": "Lechu Go's schedule page"
+      },
+      {
+        "src": "/projects/mission-trip-planner/Lechu-Go_Sidebar.png",
+        "alt": "Lechu Go's sidebar"
+      },
+      {
+        "src": "/projects/mission-trip-planner/Lechu-Go_Team.png",
+        "alt": "Lechu Go's team page"
       }
     ]
   },
