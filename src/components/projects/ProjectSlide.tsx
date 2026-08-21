@@ -4,6 +4,7 @@ import type { Project } from '@/types/types';
 
 import { StackIcons } from '../ui/StackIcons';
 import { TitleDivider } from '../ui/TitleDivider';
+import { ImageCarousel } from './ImageCarousel';
 
 type ProjectSlideProps = {
   project: Project;
@@ -24,7 +25,9 @@ export function ProjectSlide(props: ProjectSlideProps) {
         <div className="proj-loaded-content flex flex-col md:flex-row w-full min-h-full">
           <div
             className={clsx('proj-img-panel', projPanelBase, 'bg-amber-300')}
-          ></div>
+          >
+            <ImageCarousel projectImages={project.images} />
+          </div>
           <div className={clsx('proj-info-panel', projPanelBase, 'flex-col')}>
             <div className="text-container flex-1 min-w-0 flex flex-col justify-start gap-6">
               <header className="flex gap-4 items-center">

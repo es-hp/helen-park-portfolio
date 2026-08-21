@@ -1,19 +1,10 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import clsx from 'clsx';
-import { type EmblaCarouselType } from 'embla-carousel';
-import useEmblaCarousel from 'embla-carousel-react';
-
-import { usePrevNextButtons } from '@/components/carousel/usePrevNextButtons';
-import {
-  NextProjectBtn,
-  PrevProjectBtn,
-} from '@/components/projects/ProjectsCarouselArrows';
 import { ProjectSlide } from '@/components/projects/ProjectSlide';
 import { type Project } from '@/types/types';
 
-import styles from './ProjectComponents.module.css';
+import { Carousel } from '../carousel/Carousel';
 
 type ProjectCarouselProps = {
   projects: Project[];
@@ -26,88 +17,52 @@ export function ProjectsCarousel({
 }: ProjectCarouselProps) {
   const index = projects.findIndex((project) => project.id === activeProject);
 
-  const [emblaRef, emblaApi] = useEmblaCarousel({
+  const [loadedSlides, setLoadedSlides] = useState<number[]>([index]);
+
+  const options = {
     loop: true,
     watchDrag: () => {
       return window.matchMedia('(any-pointer: coarse)').matches;
     },
     startIndex: index,
-  });
-
-  const [loadedSlides, setLoadedSlides] = useState<number[]>([index]);
+  };
 
   const navigate = useNavigate();
 
-  const {
-    prevBtnDisabled,
-    nextBtnDisabled,
-    onPrevButtonClick,
-    onNextButtonClick,
-  } = usePrevNextButtons(emblaApi);
-
   // When user swipes, URL updates
-  useEffect(() => {
-    if (!emblaApi) return;
-
-    const updateRoute = () => {
-      const project = projects[emblaApi.selectedScrollSnap()];
+  const updateRoute = useCallback(
+    (index: number) => {
+      const project = projects[index];
       if (!project || project.id === activeProject) return;
       void navigate(`/projects/${project.id}`, { replace: true });
-    };
-
-    emblaApi.on('settle', updateRoute);
-
-    return () => {
-      emblaApi.off('settle', updateRoute);
-    };
-  }, [emblaApi, navigate, projects, activeProject]);
+    },
+    [activeProject, navigate, projects]
+  );
 
   // Lazy Loading Slides
-  const markSlidesAsLoaded = useCallback((emblaApi: EmblaCarouselType) => {
+  const markSlidesAsLoaded = useCallback((indexes: number[]) => {
     setLoadedSlides((loadedSlides) => [
-      ...new Set([...loadedSlides, ...emblaApi.slidesInView()]),
+      ...new Set([...loadedSlides, ...indexes]),
     ]);
   }, []);
 
-  useEffect(() => {
-    if (!emblaApi) return;
-
-    emblaApi.on('slidesInView', markSlidesAsLoaded);
-    emblaApi.on('reInit', markSlidesAsLoaded);
-
-    return () => {
-      emblaApi.off('slidesInView', markSlidesAsLoaded);
-      emblaApi.off('reInit', markSlidesAsLoaded);
-    };
-  }, [emblaApi, markSlidesAsLoaded]);
+  const slides = projects.map((project, i) => (
+    <ProjectSlide
+      project={project}
+      key={project.id}
+      index={i}
+      isLoaded={loadedSlides.includes(i)}
+    />
+  ));
 
   return (
     <>
-      <div
-        className="carousel-viewport w-full h-full overflow-hidden"
-        ref={emblaRef}
-      >
-        <div className={clsx(styles.carouselContainer, 'flex h-full')}>
-          {projects.map((project, index) => (
-            <ProjectSlide
-              project={project}
-              key={project.id}
-              index={index}
-              isLoaded={loadedSlides.includes(index)}
-            />
-          ))}
-        </div>
-      </div>
-      <div className={styles.carouselControls}>
-        <PrevProjectBtn
-          onClick={onPrevButtonClick}
-          disabled={prevBtnDisabled}
-        />
-        <NextProjectBtn
-          onClick={onNextButtonClick}
-          disabled={nextBtnDisabled}
-        />
-      </div>
+      <Carousel
+        options={options}
+        carouselContent={slides}
+        onSlideSettled={updateRoute}
+        onSlidesInView={markSlidesAsLoaded}
+      />
     </>
   );
 }

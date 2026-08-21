@@ -5,7 +5,7 @@ export interface TechStack {
   icon: string;
 }
 
-interface ProjectImage {
+export interface ProjectImage {
   src: string;
   alt: string;
 }

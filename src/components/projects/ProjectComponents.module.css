@@ -11,23 +11,3 @@
 .carouselHeader h1 {
   font-size: var(--text-2xl);
 }
-
-/* PROJECTS CAROUSEL */
-
-.carouselContainer {
-  touch-action: pan-y pinch-zoom;
-}
-
-.carouselControls {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  width: 100%;
-
-  z-index: 10;
-}
