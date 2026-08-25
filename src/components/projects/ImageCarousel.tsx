@@ -17,11 +17,6 @@ export function ImageCarousel({ projectImages }: ImageCarouselProps) {
 
   const mainOptions: EmblaOptionsType = { loop: true };
 
-  const thumbsOptions: EmblaOptionsType = {
-    containScroll: 'keepSnaps',
-    dragFree: true,
-  };
-
   const onThumbClick = useCallback((index: number) => {
     setSelectedIndex(index);
   }, []);
@@ -39,19 +34,6 @@ export function ImageCarousel({ projectImages }: ImageCarouselProps) {
     />
   ));
 
-  const thumbContent = projectImages.map((image, index) => (
-    <img
-      key={index}
-      src={image.src}
-      alt={image.alt}
-      onClick={() => onThumbClick(index)}
-      className={clsx(
-        styles.thumbImageSlide,
-        index === selectedIndex && styles.selectedImage
-      )}
-    />
-  ));
-
   return (
     <div className="flex flex-col gap-8">
       <Carousel
@@ -62,13 +44,20 @@ export function ImageCarousel({ projectImages }: ImageCarouselProps) {
         selectedIndex={selectedIndex}
         showControls={true}
       />
-      <Carousel
-        carouselContent={thumbContent}
-        options={thumbsOptions}
-        emblaWrapperClass={styles.thumbEmblaWrapper}
-        selectedIndex={selectedIndex}
-        showControls={false}
-      />
+      <div className={styles.thumbWrapper}>
+        {projectImages.map((image, index) => (
+          <img
+            key={index}
+            src={image.src}
+            alt={image.alt}
+            onClick={() => onThumbClick(index)}
+            className={clsx(
+              styles.thumbImageSlide,
+              index === selectedIndex && styles.selectedImage
+            )}
+          />
+        ))}
+      </div>
     </div>
   );
 }

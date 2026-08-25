@@ -32,12 +32,15 @@
 
 /* Thumbnail Images Embla Carousel */
 
-.thumbEmblaWrapper {
-  --slide-size: 22%;
+.thumbWrapper {
   --slide-spacing: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8.625rem, 1fr));
+  gap: var(--slide-spacing);
 }
 
 .thumbImageSlide {
+  width: 100%;
   aspect-ratio: 16/ 9;
 }
 
