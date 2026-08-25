@@ -13,24 +13,34 @@ type CarouselButtonProps = {
 };
 
 type CarouselProps = {
-  options?: EmblaOptionsType;
   carouselContent: ReactNode;
-  prevButton?: CarouselButtonProps;
-  nextButton?: CarouselButtonProps;
+  options?: EmblaOptionsType;
+  emblaWrapperClass?: string;
+  viewportClass?: string;
+  containerClass?: string;
+  selectedIndex?: number;
   onSlideChange?: (index: number) => void;
   onSlideSettled?: (index: number) => void;
   onSlidesInView?: (indexes: number[]) => void;
+  showControls?: boolean;
+  prevButton?: CarouselButtonProps;
+  nextButton?: CarouselButtonProps;
 };
 
 export function Carousel(props: CarouselProps) {
   const {
-    options,
     carouselContent,
-    prevButton,
-    nextButton,
+    options,
+    emblaWrapperClass,
+    viewportClass,
+    containerClass,
+    selectedIndex,
     onSlideChange,
     onSlideSettled,
     onSlidesInView,
+    showControls = true,
+    prevButton,
+    nextButton,
   } = props;
 
   const [emblaRef, emblaApi] = useEmblaCarousel(options);
@@ -52,6 +62,13 @@ export function Carousel(props: CarouselProps) {
 
     handleSlidesInView();
 
+    if (
+      selectedIndex !== undefined &&
+      emblaApi.selectedScrollSnap() !== selectedIndex
+    ) {
+      emblaApi.scrollTo(selectedIndex);
+    }
+
     emblaApi.on('select', handleSelect);
     emblaApi.on('settle', handleSettle);
     emblaApi.on('slidesInView', handleSlidesInView);
@@ -63,26 +80,28 @@ export function Carousel(props: CarouselProps) {
       emblaApi.off('slidesInView', handleSlidesInView);
       emblaApi.off('reInit', handleSlidesInView);
     };
-  }, [emblaApi, onSlideSettled, onSlideChange, onSlidesInView]);
+  }, [emblaApi, selectedIndex, onSlideSettled, onSlideChange, onSlidesInView]);
 
   return (
-    <>
+    <div className={clsx(emblaWrapperClass ?? styles.emblaWrapper)}>
       <div
-        className="carousel-viewport w-full h-full overflow-hidden"
+        className={clsx(styles.carouselViewport, viewportClass)}
         ref={emblaRef}
       >
-        <div className={clsx(styles.carouselContainer, 'flex h-full')}>
+        <div className={clsx(styles.carouselContainer, containerClass)}>
           {carouselContent}
         </div>
       </div>
-      <div className={styles.carouselControls}>
-        <PrevButton onClick={() => emblaApi?.scrollPrev()}>
-          {prevButton?.children ?? '<'}
-        </PrevButton>
-        <NextButton onClick={() => emblaApi?.scrollNext()}>
-          {nextButton?.children ?? '>'}
-        </NextButton>
-      </div>
-    </>
+      {showControls && (
+        <div className={styles.carouselControls}>
+          <PrevButton onClick={() => emblaApi?.scrollPrev()}>
+            {prevButton?.children ?? '<'}
+          </PrevButton>
+          <NextButton onClick={() => emblaApi?.scrollNext()}>
+            {nextButton?.children ?? '>'}
+          </NextButton>
+        </div>
+      )}
+    </div>
   );
 }

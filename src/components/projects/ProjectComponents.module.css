@@ -1,4 +1,6 @@
-/* PROJECTS CAROUSEL HEADER */
+/* =========================
+      PROJECTS HEADER
+========================= */
 
 .carouselHeader {
   display: flex;
@@ -10,4 +12,34 @@
 
 .carouselHeader h1 {
   font-size: var(--text-2xl);
+}
+
+/* =========================
+      IMAGE CAROUSEL
+========================= */
+
+/* Main Image Embla Carousel */
+
+.mainImageWrapper {
+  --slide-size: 100%;
+  --slide-spacing: 1rem;
+}
+
+.mainImageSlide {
+  aspect-ratio: 16 / 9;
+}
+
+/* Thumbnail Images Embla Carousel */
+
+.thumbEmblaWrapper {
+  --slide-size: 22%;
+  --slide-spacing: 1rem;
+}
+
+.thumbImageSlide {
+  aspect-ratio: 16/ 9;
+}
+
+.selectedImage {
+  border: 1px solid red;
 }

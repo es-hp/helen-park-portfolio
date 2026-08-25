@@ -58,8 +58,10 @@ export function ProjectsCarousel({
   return (
     <>
       <Carousel
-        options={options}
         carouselContent={slides}
+        options={options}
+        viewportClass="h-full"
+        containerClass="flex h-full"
         onSlideSettled={updateRoute}
         onSlidesInView={markSlidesAsLoaded}
       />

@@ -1,5 +1,24 @@
+.emblaWrapper {
+  --slide-size: 100%;
+}
+
+.carouselViewport {
+  width: 100%;
+  overflow: hidden;
+}
+
 .carouselContainer {
+  display: flex;
+  margin-left: calc(var(--slide-spacing, 0) * -1);
   touch-action: pan-y pinch-zoom;
+  border: 1px solid cyan;
+}
+
+/* Slides */
+.carouselContainer > * {
+  flex: 0 0 var(--slide-size, 100%);
+  min-width: 0;
+  padding-left: var(--slide-spacing, 0);
 }
 
 .carouselControls {
