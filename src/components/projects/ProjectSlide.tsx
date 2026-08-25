@@ -20,12 +20,10 @@ export function ProjectSlide(props: ProjectSlideProps) {
   );
 
   return (
-    <article className="proj-slide flex-[0_0_100%] overflow-y-auto">
+    <article className="proj-slide overflow-y-auto">
       {isLoaded && (
         <div className="proj-loaded-content flex flex-col md:flex-row w-full min-h-full">
-          <div
-            className={clsx('proj-img-panel', projPanelBase, 'bg-amber-300')}
-          >
+          <div className={clsx('proj-img-panel', projPanelBase, 'pr-0')}>
             <ImageCarousel projectImages={project.images} />
           </div>
           <div className={clsx('proj-info-panel', projPanelBase, 'flex-col')}>

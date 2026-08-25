@@ -23,6 +23,7 @@
 .mainImageWrapper {
   --slide-size: 100%;
   --slide-spacing: 1rem;
+  position: relative;
 }
 
 .mainImageSlide {

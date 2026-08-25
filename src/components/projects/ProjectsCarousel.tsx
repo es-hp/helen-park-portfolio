@@ -61,7 +61,7 @@ export function ProjectsCarousel({
         carouselContent={slides}
         options={options}
         viewportClass="h-full"
-        containerClass="flex h-full"
+        containerClass="h-full"
         onSlideSettled={updateRoute}
         onSlidesInView={markSlidesAsLoaded}
       />

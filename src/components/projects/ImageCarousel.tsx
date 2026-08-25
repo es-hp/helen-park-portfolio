@@ -15,7 +15,7 @@ type ImageCarouselProps = {
 export function ImageCarousel({ projectImages }: ImageCarouselProps) {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-  const mainOptions: EmblaOptionsType = {};
+  const mainOptions: EmblaOptionsType = { loop: true };
 
   const thumbsOptions: EmblaOptionsType = {
     containScroll: 'keepSnaps',
@@ -60,7 +60,7 @@ export function ImageCarousel({ projectImages }: ImageCarouselProps) {
         emblaWrapperClass={styles.mainImageWrapper}
         onSlideSettled={onSelect}
         selectedIndex={selectedIndex}
-        showControls={false}
+        showControls={true}
       />
       <Carousel
         carouselContent={thumbContent}
