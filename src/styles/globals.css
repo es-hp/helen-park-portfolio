@@ -8,19 +8,6 @@
 @import './theme.css' layer(base);
 
 /* =========================
-      DESIGN TOKENS
-========================= */
-
-:root {
-  /* Breakpoints */
-  --bp-sm: 640px;
-  --bp-md: 768px;
-  --bp-lg: 1024px;
-  --bp-xl: 1280px;
-  --bp-2xl: 1536px;
-}
-
-/* =========================
       RESET / NORMALIZE
 ========================= */
 
@@ -63,6 +50,21 @@
     font-synthesis: none;
     -webkit-font-smoothing: antialiased;
   }
+}
+
+/* =========================
+      DESIGN TOKENS
+========================= */
+
+:root {
+  /* Breakpoints */
+  --bp-sm: 640px;
+  --bp-md: 768px;
+  --bp-lg: 1024px;
+  --bp-xl: 1280px;
+  --bp-2xl: 1536px;
+
+  --height-header: 5rem;
 }
 
 /* =========================
