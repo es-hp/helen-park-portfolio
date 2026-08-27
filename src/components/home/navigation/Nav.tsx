@@ -5,7 +5,7 @@ import {
   linksVariants,
   navContainerVariants,
   resumeLinksVariants,
-} from '@/components/layout/PrimaryNav/motionNav';
+} from '@/components/home/navigation/motionNav';
 
 import styles from './Nav.module.css';
 import { NavLink } from './NavLink';

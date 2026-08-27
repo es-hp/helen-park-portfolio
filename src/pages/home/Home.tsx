@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { motion, useAnimate } from 'framer-motion';
 
 import { AboutPhoto } from '@/components/about/AboutPhoto';
-import { Nav } from '@/components/layout/PrimaryNav/Nav';
+import { Nav } from '@/components/home/navigation/Nav';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { about } from '@/content/about';
 import { EASE } from '@/motion/motion';

@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { motion, type Variants } from 'framer-motion';
 
-import { LinkHoverBrackets } from '@/components/ui/LinkHoverBrackets';
-
+import { LinkHoverBrackets } from './LinkHoverBrackets';
 import { slideDownInVariants, slideDownOutVariants } from './motionNav';
 import type { NavItem } from './Nav';
 import styles from './Nav.module.css';

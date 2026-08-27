@@ -8,7 +8,7 @@ import {
   type Variants,
 } from 'framer-motion';
 
-import styles from '../layout/PrimaryNav/Nav.module.css';
+import styles from './Nav.module.css';
 
 type LinkHoverBracketsProps = {
   children: ReactNode;
