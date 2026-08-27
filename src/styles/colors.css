@@ -2,8 +2,7 @@
       THEME VARIABLES
 ========================= */
 
-:root,
-[data-theme="light"] {
+:root {
   /* ===== Color Palette ===== */
 
   /* Neutral Palette */
@@ -15,23 +14,4 @@
 
   /* Secondary Palette */
   /* Functional Color Palette */
-
-  /* ===== Color Mapping ===== */
-  --color-bg: var(--color-white);
-  --color-text: var(--color-black);
-}
-
-/* ===== Dark Theme ===== */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    /* Dark theme: General */
-    --color-bg: var(--color-black);
-    --color-text: var(--color-white);
-  }
-}
-
-[data-theme="dark"] {
-  /* Dark theme: General */
-  --color-bg: var(--color-black);
-  --color-text: var(--color-white);
 }

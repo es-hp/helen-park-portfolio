@@ -1,0 +1,25 @@
+/* =========================
+      LIGHT THEME TOKENS
+========================= */
+
+:root,
+[data-theme='light'] {
+  --color-bg: var(--color-white);
+  --color-text: var(--color-black);
+}
+
+/* =========================
+      DARK THEME TOKENS
+========================= */
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --color-bg: var(--color-black);
+    --color-text: var(--color-white);
+  }
+}
+
+[data-theme='dark'] {
+  --color-bg: var(--color-black);
+  --color-text: var(--color-white);
+}
