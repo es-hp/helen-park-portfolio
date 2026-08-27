@@ -86,23 +86,3 @@
     scroll-behavior: auto !important;
   }
 }
-
-/* =========================
-      APP LAYOUT STYLES
-========================= */
-
-.app-layout {
-  --app-layout-padding: 1rem;
-
-  display: flex;
-  flex-direction: column;
-  padding: var(--app-layout-padding);
-  overflow-x: clip;
-  /* border: 2px dotted red; */
-}
-
-@media (min-width: 640px) {
-  .app-layout {
-    --app-layout-padding: 2rem;
-  }
-}

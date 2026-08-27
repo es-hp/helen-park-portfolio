@@ -1,0 +1,27 @@
+.appLayout {
+  --app-layout-padding: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow-x: clip;
+  /* border: 2px dotted red; */
+}
+
+.appLayout--h-padding {
+  padding-inline: var(--app-layout-padding);
+}
+
+.appLayout--top-padding {
+  padding-top: var(--app-layout-padding);
+}
+
+.appLayout--bot-padding {
+  padding-bottom: var(--app-layout-padding);
+}
+
+@media (min-width: 640px) {
+  .appLayout {
+    --app-layout-padding: 2rem;
+  }
+}
