@@ -4,13 +4,13 @@
 
 .carouselViewport {
   width: 100%;
-  overflow: hidden;
+  overflow-x: clip;
 }
 
 .carouselContainer {
   display: flex;
-  margin-left: calc(var(--slide-spacing, 0) * -1);
   touch-action: pan-y pinch-zoom;
+  margin-left: calc(var(--slide-spacing, 0) * -1);
 }
 
 /* Slides */

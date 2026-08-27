@@ -1,5 +1,4 @@
 .ProjGallerySection {
   flex: 1 1 0%;
-  margin-inline: calc(-1 * var(--app-layout-padding));
   /* border: 2px dashed pink; */
 }

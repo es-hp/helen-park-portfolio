@@ -5,7 +5,6 @@ import type { Project } from '@/types/types';
 import { StackIcons } from '../ui/StackIcons';
 import { TitleDivider } from '../ui/TitleDivider';
 import { ImageCarousel } from './ImageCarousel';
-import styles from './ProjectComponents.module.css';
 
 type ProjectSlideProps = {
   project: Project;
@@ -16,34 +15,31 @@ type ProjectSlideProps = {
 export function ProjectSlide(props: ProjectSlideProps) {
   const { project, isLoaded } = props;
 
-  const projPanelBase = clsx('flex md:flex-1 self-start gap-10 min-w-0');
+  const projPanelBase = clsx('flex flex-col md:flex-1 gap-10 min-w-0');
 
   return (
-    <article className="proj-slide border border-blue-500">
+    <article className="proj-slide">
       {isLoaded && (
-        <div
-          className={clsx(
-            styles.ProjLoadedContent,
-            'flex flex-col md:flex-row w-full overflow-x-hidden border border-amber-400'
-          )}
-        >
+        <div className="proj-loaded-content flex flex-col md:flex-row p-(--app-layout-padding) gap-(--app-layout-padding) overflow-x-clip">
           {/* Left/Top Panel */}
           <div
             className={clsx(
-              styles.projImgPanel,
+              'proj-img-panel',
               projPanelBase,
-              'flex flex-col gap-10 md:sticky md:top-0 border border-orange-500'
+              'border border-purple-300'
             )}
           >
-            <ImageCarousel projectImages={project.images} />
+            <div className="img-carousel-wrapper flex flex-col gap-10 md:sticky md:top-(--height-header) overflow-x-hidden border border-green-400">
+              <ImageCarousel projectImages={project.images} />
+            </div>
           </div>
 
           {/* Right/Bottom Panel */}
           <div
             className={clsx(
-              styles.projInfoPanel,
+              'proj-info-panel',
               projPanelBase,
-              'flex-col justify-between border border-green-500'
+              'justify-between'
             )}
           >
             <div className="text-container min-w-0 flex flex-col gap-6">
