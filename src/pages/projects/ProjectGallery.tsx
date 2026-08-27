@@ -1,8 +1,10 @@
 import { useParams } from 'react-router-dom';
 
-import { ProjectsCarousel } from '@/components/projects/ProjectsCarousel';
-import { ProjectsHeader } from '@/components/projects/ProjectsHeader';
+import { ProjectCarousel } from '@/components/projects/ProjectCarousel';
+import { ProjectGalleryHeader } from '@/components/projects/ProjectGalleryHeader';
 import { useProjects } from '@/hooks/useProjects';
+
+import styles from './ProjectGallery.module.css';
 
 export function ProjectGallery() {
   const { projectId } = useParams();
@@ -10,17 +12,21 @@ export function ProjectGallery() {
   const { data: projects, isPending, isError } = useProjects();
 
   return (
-    <main className="flex flex-col h-full w-full overflow-hidden">
-      <header className="shrink-0 h-20">
-        <ProjectsHeader />
-      </header>
-      <section className="relative flex-1 min-h-0" aria-label="Projects">
+    <main
+      id="project-gallery"
+      className="flex flex-col w-full border-2 border-grey-300"
+    >
+      <ProjectGalleryHeader />
+      <section
+        className={styles.ProjGallerySection}
+        aria-label="Project carousel"
+      >
         {isPending ? (
           <div>Loading...</div>
         ) : isError ? (
           <div>Error loading projects.</div>
         ) : (
-          <ProjectsCarousel projects={projects} activeProject={projectId} />
+          <ProjectCarousel projects={projects} activeProject={projectId} />
         )}
       </section>
     </main>

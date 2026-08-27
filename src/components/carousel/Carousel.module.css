@@ -22,14 +22,13 @@
 
 .carouselControls {
   position: absolute;
-  top: 50%;
+  top: var(--controls-top, 50%);
+  inset-inline: var(--controls-inset, 0);
   transform: translateY(-50%);
 
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  width: 100%;
 
   z-index: 10;
 }

@@ -5,6 +5,7 @@ import type { Project } from '@/types/types';
 import { StackIcons } from '../ui/StackIcons';
 import { TitleDivider } from '../ui/TitleDivider';
 import { ImageCarousel } from './ImageCarousel';
+import styles from './ProjectComponents.module.css';
 
 type ProjectSlideProps = {
   project: Project;
@@ -15,19 +16,37 @@ type ProjectSlideProps = {
 export function ProjectSlide(props: ProjectSlideProps) {
   const { project, isLoaded } = props;
 
-  const projPanelBase = clsx(
-    'flex md:flex-1 gap-10 min-w-0 min-h-full p-10 overflow-x-hidden'
-  );
+  const projPanelBase = clsx('flex md:flex-1 self-start gap-10 min-w-0');
 
   return (
-    <article className="proj-slide overflow-y-auto">
+    <article className="proj-slide border border-blue-500">
       {isLoaded && (
-        <div className="proj-loaded-content flex flex-col md:flex-row w-full min-h-full">
-          <div className={clsx('proj-img-panel', projPanelBase, 'pr-0')}>
+        <div
+          className={clsx(
+            styles.ProjLoadedContent,
+            'flex flex-col md:flex-row w-full overflow-x-hidden border border-amber-400'
+          )}
+        >
+          {/* Left/Top Panel */}
+          <div
+            className={clsx(
+              styles.projImgPanel,
+              projPanelBase,
+              'flex flex-col gap-10 md:sticky md:top-0 border border-orange-500'
+            )}
+          >
             <ImageCarousel projectImages={project.images} />
           </div>
-          <div className={clsx('proj-info-panel', projPanelBase, 'flex-col')}>
-            <div className="text-container flex-1 min-w-0 flex flex-col justify-start gap-6">
+
+          {/* Right/Bottom Panel */}
+          <div
+            className={clsx(
+              styles.projInfoPanel,
+              projPanelBase,
+              'flex-col justify-between border border-green-500'
+            )}
+          >
+            <div className="text-container min-w-0 flex flex-col gap-6">
               <header className="flex gap-4 items-center">
                 <img src={project.icon} className="w-14 h-14" />
                 <h2 className="h2-project">{project.title}</h2>
@@ -46,7 +65,7 @@ export function ProjectSlide(props: ProjectSlideProps) {
                 Github Repo
               </a>
             </div>
-            <div className="project-stack flex-1 min-w-0 flex flex-col gap-4 items-center">
+            <div className="project-stack min-w-0 flex flex-col gap-4 items-center">
               <TitleDivider botMargin={0}>Stack</TitleDivider>
               <StackIcons techStackItems={project.stack} />
             </div>

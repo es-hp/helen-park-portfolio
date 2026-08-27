@@ -35,7 +35,7 @@ export function ImageCarousel({ projectImages }: ImageCarouselProps) {
   ));
 
   return (
-    <div className="flex flex-col gap-8">
+    <>
       <Carousel
         carouselContent={mainContent}
         options={mainOptions}
@@ -44,7 +44,7 @@ export function ImageCarousel({ projectImages }: ImageCarouselProps) {
         selectedIndex={selectedIndex}
         showControls={true}
       />
-      <div className={styles.thumbWrapper}>
+      <div className={clsx(styles.thumbWrapper)}>
         {projectImages.map((image, index) => (
           <img
             key={index}
@@ -58,6 +58,6 @@ export function ImageCarousel({ projectImages }: ImageCarouselProps) {
           />
         ))}
       </div>
-    </div>
+    </>
   );
 }

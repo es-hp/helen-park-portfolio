@@ -9,7 +9,8 @@ import styles from './Carousel.module.css';
 import { NextButton, PrevButton } from './CarouselArrowButtons';
 
 type CarouselButtonProps = {
-  children?: ReactNode;
+  el: ReactNode;
+  ariaLabel?: string;
 };
 
 type CarouselProps = {
@@ -23,6 +24,7 @@ type CarouselProps = {
   onSlideSettled?: (index: number) => void;
   onSlidesInView?: (indexes: number[]) => void;
   showControls?: boolean;
+  controlStyles?: string;
   prevButton?: CarouselButtonProps;
   nextButton?: CarouselButtonProps;
 };
@@ -39,6 +41,7 @@ export function Carousel(props: CarouselProps) {
     onSlideSettled,
     onSlidesInView,
     showControls = true,
+    controlStyles,
     prevButton,
     nextButton,
   } = props;
@@ -83,7 +86,7 @@ export function Carousel(props: CarouselProps) {
   }, [emblaApi, selectedIndex, onSlideSettled, onSlideChange, onSlidesInView]);
 
   return (
-    <div className={clsx(emblaWrapperClass ?? styles.emblaWrapper)}>
+    <div className={clsx(styles.emblaWrapper, emblaWrapperClass)}>
       <div
         className={clsx(styles.carouselViewport, viewportClass)}
         ref={emblaRef}
@@ -93,12 +96,18 @@ export function Carousel(props: CarouselProps) {
         </div>
       </div>
       {showControls && (
-        <div className={styles.carouselControls}>
-          <PrevButton onClick={() => emblaApi?.scrollPrev()}>
-            {prevButton?.children ?? '<'}
+        <div className={clsx(styles.carouselControls, controlStyles)}>
+          <PrevButton
+            onClick={() => emblaApi?.scrollPrev()}
+            aria-label={prevButton?.ariaLabel ?? 'Previous'}
+          >
+            {prevButton?.el ?? '<'}
           </PrevButton>
-          <NextButton onClick={() => emblaApi?.scrollNext()}>
-            {nextButton?.children ?? '>'}
+          <NextButton
+            onClick={() => emblaApi?.scrollNext()}
+            aria-label={nextButton?.ariaLabel ?? 'Next'}
+          >
+            {nextButton?.el ?? '>'}
           </NextButton>
         </div>
       )}

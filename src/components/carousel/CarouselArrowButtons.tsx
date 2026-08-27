@@ -2,9 +2,9 @@ import { type ComponentPropsWithRef } from 'react';
 
 import clsx from 'clsx';
 
-type PropType = ComponentPropsWithRef<'button'>;
+type ButtonProps = ComponentPropsWithRef<'button'>;
 
-export const PrevButton = (props: PropType) => {
+export const PrevButton = (props: ButtonProps) => {
   const { children, disabled, ...restProps } = props;
 
   return (
@@ -22,7 +22,7 @@ export const PrevButton = (props: PropType) => {
   );
 };
 
-export const NextButton = (props: PropType) => {
+export const NextButton = (props: ButtonProps) => {
   const { children, disabled, ...restProps } = props;
 
   return (

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { BackButton } from '../ui/BackButton';
 import styles from './ProjectComponents.module.css';
 
-export function ProjectsHeader() {
+export function ProjectGalleryHeader() {
   return (
     <div className={styles.carouselHeader}>
       <BackButton />
