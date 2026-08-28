@@ -18,18 +18,13 @@ export function ProjectSlide(props: ProjectSlideProps) {
   const projPanelBase = clsx('flex flex-col md:flex-1 gap-10 min-w-0');
 
   return (
+    // More styles for this slide article at Carousel.module.css
     <article className="proj-slide">
       {isLoaded && (
         <div className="proj-loaded-content flex flex-col md:flex-row p-(--app-layout-padding) gap-(--app-layout-padding) overflow-x-clip">
           {/* Left/Top Panel */}
-          <div
-            className={clsx(
-              'proj-img-panel',
-              projPanelBase,
-              'border border-purple-300'
-            )}
-          >
-            <div className="img-carousel-wrapper flex flex-col gap-10 md:sticky md:top-(--height-header) overflow-x-hidden border border-green-400">
+          <div className={clsx('proj-img-panel', projPanelBase)}>
+            <div className="img-carousel-wrapper flex flex-col gap-10 md:sticky md:top-(--height-header) overflow-x-clip">
               <ImageCarousel projectImages={project.images} />
             </div>
           </div>

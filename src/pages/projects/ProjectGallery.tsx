@@ -12,10 +12,7 @@ export function ProjectGallery() {
   const { data: projects, isPending, isError } = useProjects();
 
   return (
-    <main
-      id="project-gallery"
-      className="flex flex-col w-full border-2 border-grey-300"
-    >
+    <main id="project-gallery" className="flex flex-col w-full">
       <ProjectGalleryHeader />
       <section
         className={styles.ProjGallerySection}

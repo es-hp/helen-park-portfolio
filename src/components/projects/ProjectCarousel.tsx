@@ -26,6 +26,7 @@ export function ProjectCarousel({
       return window.matchMedia('(any-pointer: coarse)').matches;
     },
     startIndex: index,
+    watchResize: false,
   };
 
   const navigate = useNavigate();
@@ -60,9 +61,10 @@ export function ProjectCarousel({
     <Carousel
       carouselContent={slides}
       options={options}
-      emblaWrapperClass="h-full"
-      viewportClass="h-full"
-      containerClass="h-full"
+      setAutoHeight={true}
+      emblaWrapperClass=""
+      viewportClass="overflow-y-clip"
+      containerClass="items-start"
       onSlideSettled={updateRoute}
       onSlidesInView={markSlidesAsLoaded}
       controlStyles="[--controls-inset:var(--app-layout-padding)]"

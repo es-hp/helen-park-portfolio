@@ -3,6 +3,7 @@ import { type ReactNode } from 'react';
 
 import clsx from 'clsx';
 import { type EmblaOptionsType } from 'embla-carousel';
+import AutoHeight from 'embla-carousel-auto-height';
 import useEmblaCarousel from 'embla-carousel-react';
 
 import styles from './Carousel.module.css';
@@ -16,6 +17,7 @@ type CarouselButtonProps = {
 type CarouselProps = {
   carouselContent: ReactNode;
   options?: EmblaOptionsType;
+  setAutoHeight?: boolean;
   emblaWrapperClass?: string;
   viewportClass?: string;
   containerClass?: string;
@@ -33,6 +35,7 @@ export function Carousel(props: CarouselProps) {
   const {
     carouselContent,
     options,
+    setAutoHeight = false,
     emblaWrapperClass,
     viewportClass,
     containerClass,
@@ -46,7 +49,10 @@ export function Carousel(props: CarouselProps) {
     nextButton,
   } = props;
 
-  const [emblaRef, emblaApi] = useEmblaCarousel(options);
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    options,
+    setAutoHeight ? [AutoHeight()] : []
+  );
 
   useEffect(() => {
     if (!emblaApi) return;
