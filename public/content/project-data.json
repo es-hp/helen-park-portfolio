@@ -106,7 +106,12 @@
     "id": "b",
     "icon": "/images/square-xxl.png",
     "title": "Project 2",
-    "description": ["string"],
+    "description": [
+      "A mock web app for planning short-term mission trips that would be used by churches and missions organizations. Built to showcase use of just the basics: plain HTML, CSS, and JavaScript (no frameworks).",
+      "It lets users organize trip details, manage participants, and track activities.",
+      "It lets users organize trip details, manage participants, and track activities.",
+      "A mock web app for planning short-term mission trips that would be used by churches and missions organizations. Built to showcase use of just the basics: plain HTML, CSS, and JavaScript (no frameworks)."
+    ],
     "link": "string",
     "repo": "string",
     "stack": [
@@ -125,8 +130,28 @@
     ],
     "images": [
       {
-        "src": "string",
-        "alt": "string"
+        "src": "/projects/mission-trip-planner/Lechu-Go_Login.png",
+        "alt": "Lechu Go's login page"
+      },
+      {
+        "src": "/projects/mission-trip-planner/Lechu-Go_Overview-EventsToCalendar.png",
+        "alt": "Lechu Go's events page"
+      },
+      {
+        "src": "/projects/mission-trip-planner/Lechu-Go_Profile-CreateNewPost.png",
+        "alt": "Lechu Go's create new post"
+      },
+      {
+        "src": "/projects/mission-trip-planner/Lechu-Go_Schedule.png",
+        "alt": "Lechu Go's schedule page"
+      },
+      {
+        "src": "/projects/mission-trip-planner/Lechu-Go_Sidebar.png",
+        "alt": "Lechu Go's sidebar"
+      },
+      {
+        "src": "/projects/mission-trip-planner/Lechu-Go_Team.png",
+        "alt": "Lechu Go's team page"
       }
     ]
   },
@@ -134,7 +159,10 @@
     "id": "c",
     "icon": "/images/square-xxl.png",
     "title": "Project 3",
-    "description": ["string"],
+    "description": [
+      "A mock web app for planning short-term mission trips that would be used by churches and missions organizations. Built to showcase use of just the basics: plain HTML, CSS, and JavaScript (no frameworks).",
+      "It lets users organize trip details, manage participants, and track activities."
+    ],
     "link": "string",
     "repo": "string",
     "stack": [
@@ -153,8 +181,28 @@
     ],
     "images": [
       {
-        "src": "string",
-        "alt": "string"
+        "src": "/projects/mission-trip-planner/Lechu-Go_Login.png",
+        "alt": "Lechu Go's login page"
+      },
+      {
+        "src": "/projects/mission-trip-planner/Lechu-Go_Overview-EventsToCalendar.png",
+        "alt": "Lechu Go's events page"
+      },
+      {
+        "src": "/projects/mission-trip-planner/Lechu-Go_Profile-CreateNewPost.png",
+        "alt": "Lechu Go's create new post"
+      },
+      {
+        "src": "/projects/mission-trip-planner/Lechu-Go_Schedule.png",
+        "alt": "Lechu Go's schedule page"
+      },
+      {
+        "src": "/projects/mission-trip-planner/Lechu-Go_Sidebar.png",
+        "alt": "Lechu Go's sidebar"
+      },
+      {
+        "src": "/projects/mission-trip-planner/Lechu-Go_Team.png",
+        "alt": "Lechu Go's team page"
       }
     ]
   }
