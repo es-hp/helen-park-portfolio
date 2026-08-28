@@ -4,8 +4,6 @@ import { ProjectCarousel } from '@/components/projects/ProjectCarousel';
 import { ProjectGalleryHeader } from '@/components/projects/ProjectGalleryHeader';
 import { useProjects } from '@/hooks/useProjects';
 
-import styles from './ProjectGallery.module.css';
-
 export function ProjectGallery() {
   const { projectId } = useParams();
 
@@ -15,7 +13,7 @@ export function ProjectGallery() {
     <main id="project-gallery" className="flex flex-col w-full">
       <ProjectGalleryHeader />
       <section
-        className={styles.ProjGallerySection}
+        className="project-gallery-section flex-1"
         aria-label="Project carousel"
       >
         {isPending ? (

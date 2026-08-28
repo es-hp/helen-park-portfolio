@@ -3,8 +3,15 @@
 
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+
+  min-height: 100vh;
+  min-height: 100dvh;
+
   padding: 0;
   overflow-x: clip;
+
+  border: 1px solid green;
 }
 
 .appLayout--h-padding {
@@ -23,4 +30,8 @@
   .appLayout {
     --app-layout-padding: 2rem;
   }
+}
+
+.appLayout > :first-child {
+  flex: 1;
 }
