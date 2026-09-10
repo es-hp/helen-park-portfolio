@@ -3,7 +3,7 @@ import { useCallback, useState } from 'react';
 import clsx from 'clsx';
 import { type EmblaOptionsType } from 'embla-carousel';
 
-import { type ProjectImage } from '@/types/types';
+import { type ProjectImage } from '@/types';
 
 import { Carousel } from '../carousel/Carousel';
 import styles from './ProjectComponents.module.css';

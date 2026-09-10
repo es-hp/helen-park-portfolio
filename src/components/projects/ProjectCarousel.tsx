@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { ProjectSlide } from '@/components/projects/ProjectSlide';
-import { type Project } from '@/types/types';
+import { type Project } from '@/types';
 
 import { Carousel } from '../carousel/Carousel';
 import { NextProjectBtn, PrevProjectBtn } from './ProjectCarouselArrows';

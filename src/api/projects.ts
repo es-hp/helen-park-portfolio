@@ -1,4 +1,4 @@
-import { type Project } from '@/types/types';
+import { type Project } from '@/types';
 
 export async function getProjects(): Promise<Project[]> {
   const response = await fetch('/content/project-data.json');
