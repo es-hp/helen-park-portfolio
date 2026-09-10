@@ -13,18 +13,20 @@ export function ProjectGallery() {
   return (
     <main id="project-gallery" className="flex flex-col w-full">
       <ProjectGalleryHeader />
-      <section
-        className="project-gallery-section flex-1"
-        aria-label="Project carousel"
-      >
-        {isPending ? (
+      {isPending ? (
+        <div className="flex-1 flex-c-centered bg-gray-950/5">
           <Spinner />
-        ) : isError ? (
-          <div>Error loading projects.</div>
-        ) : (
+        </div>
+      ) : isError ? (
+        <div className="flex-1 flex-c-centered">Error loading projects.</div>
+      ) : (
+        <section
+          className="project-gallery-section flex-1"
+          aria-label="Project carousel"
+        >
           <ProjectCarousel projects={projects} activeProject={projectId} />
-        )}
-      </section>
+        </section>
+      )}
     </main>
   );
 }

@@ -1,9 +1,10 @@
 import clsx from 'clsx';
 
-import type { Project } from '@/types/types';
+import { Spinner } from '@/components/ui/LoadingSpinner';
+import { StackIcons } from '@/components/ui/StackIcons';
+import { TitleDivider } from '@/components/ui/TitleDivider';
+import type { Project } from '@/types';
 
-import { StackIcons } from '../ui/StackIcons';
-import { TitleDivider } from '../ui/TitleDivider';
 import { ImageCarousel } from './ImageCarousel';
 
 type ProjectSlideProps = {
@@ -19,8 +20,15 @@ export function ProjectSlide(props: ProjectSlideProps) {
 
   return (
     // More styles for this slide article at Carousel.module.css
-    <article className="proj-slide">
-      {isLoaded && (
+    <article
+      className={clsx(
+        'proj-slide border border-red-500',
+        !isLoaded && 'flex-c-centered h-full'
+      )}
+    >
+      {!isLoaded ? (
+        <Spinner />
+      ) : (
         <div className="proj-loaded-content flex flex-col md:flex-row p-(--app-layout-padding) gap-(--app-layout-padding) overflow-x-clip">
           {/* Left/Top Panel */}
           <div className={clsx('proj-img-panel', projPanelBase)}>
