@@ -16,7 +16,7 @@
 
   padding-inline: var(--app-layout-padding);
 
-  background-color: var(--color-bg);
+  background-color: var(--background);
 
   z-index: 100;
 }
