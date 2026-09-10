@@ -4,7 +4,7 @@ import { Dot } from 'lucide-react';
 import StackIcon from 'tech-stack-icons';
 
 import { type TechStack } from '@/types/types';
-import { useElementWidth } from '@/utils/utils';
+import { useElementWidth } from '@/utils';
 
 interface StackIconsProps {
   techStackItems: TechStack[];

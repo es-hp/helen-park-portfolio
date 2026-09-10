@@ -7,7 +7,7 @@ import { Nav } from '@/components/home/navigation/Nav';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { about } from '@/content/about';
 import { EASE } from '@/motion/motion';
-import { clamp } from '@/utils/utils';
+import { clamp } from '@/utils';
 
 import styles from './Home.module.css';
 import { aboutVariants } from './motionHome';

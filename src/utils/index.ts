@@ -25,3 +25,20 @@ export const useElementWidth = <T extends HTMLElement>(): {
 
   return { ref, width };
 };
+
+/** Takes rem string value and converts it to px value as string.
+ * Requires the DOM. Use only in useEffect or browser-only function.
+ */
+export const remToPx = (value: string): string | null => {
+  const rem = Number.parseFloat(value);
+
+  const rootFontSize = Number.parseFloat(
+    getComputedStyle(document.documentElement).fontSize
+  );
+
+  if (!Number.isFinite(rem) || !Number.isFinite(rootFontSize)) {
+    return null;
+  }
+
+  return `${rem * rootFontSize}px`;
+};
