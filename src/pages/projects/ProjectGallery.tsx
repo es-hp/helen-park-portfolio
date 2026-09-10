@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 
 import { ProjectCarousel } from '@/components/projects/ProjectCarousel';
 import { ProjectGalleryHeader } from '@/components/projects/ProjectGalleryHeader';
+import { Spinner } from '@/components/ui/LoadingSpinner';
 import { useProjects } from '@/hooks/useProjects';
 
 export function ProjectGallery() {
@@ -17,7 +18,7 @@ export function ProjectGallery() {
         aria-label="Project carousel"
       >
         {isPending ? (
-          <div>Loading...</div>
+          <Spinner />
         ) : isError ? (
           <div>Error loading projects.</div>
         ) : (
