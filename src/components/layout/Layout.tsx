@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import clsx from 'clsx';
@@ -9,7 +10,15 @@ import {
   useScroll,
   type Variants,
 } from 'framer-motion';
+import {
+  AnimatePresence,
+  motion,
+  useMotionValueEvent,
+  useScroll,
+  type Variants,
+} from 'framer-motion';
 
+import { Footer, FOOTER_HEIGHT_REM } from './Footer';
 import { Footer, FOOTER_HEIGHT_REM } from './Footer';
 import styles from './Layout.module.css';
 
@@ -32,7 +41,7 @@ const footerVariants: Variants = {
     opacity: 1,
     transition: {
       duration: 0.5,
-      ease: [0.75, 1, 0.25, 1],
+      ease: [0.75, 1.1, 0.95, 1],
     },
   },
   hidden: {
