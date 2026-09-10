@@ -118,7 +118,6 @@ export function AppLayout(props: AppLayoutProps) {
   return (
     <div
       className={clsx(
-        'app-layout',
         styles.appLayout,
         hasHorizPadding && styles['appLayout--h-padding'],
         hasTopPadding && styles['appLayout--top-padding'],
