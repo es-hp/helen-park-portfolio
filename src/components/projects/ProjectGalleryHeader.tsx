@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 
-import { BackButton } from '../ui/BackButton';
+import { BackButton } from '@/components/ui/BackButton';
+
 import styles from './ProjectComponents.module.css';
 
 export function ProjectGalleryHeader() {
