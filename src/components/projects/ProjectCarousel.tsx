@@ -10,14 +10,14 @@ import { NextProjectBtn, PrevProjectBtn } from './ProjectCarouselArrows';
 
 type ProjectCarouselProps = {
   projects: Project[];
-  activeProject?: string;
+  activeProjectId?: string;
 };
 
 export function ProjectCarousel({
   projects,
-  activeProject,
+  activeProjectId,
 }: ProjectCarouselProps) {
-  const index = projects.findIndex((project) => project.id === activeProject);
+  const index = projects.findIndex((project) => project.id === activeProjectId);
 
   const options = {
     loop: true,
@@ -32,10 +32,10 @@ export function ProjectCarousel({
   const updateRoute = useCallback(
     (index: number) => {
       const project = projects[index];
-      if (!project || project.id === activeProject) return;
+      if (!project) return;
       window.history.replaceState(window.history.state, '', project.id);
     },
-    [activeProject, projects]
+    [projects]
   );
 
   const { headerRef, footerRef } = useAppLayoutRefs();
@@ -59,7 +59,6 @@ export function ProjectCarousel({
       carouselContent={slides}
       options={options}
       setAutoHeight={true}
-      emblaWrapperClass=""
       viewportClass="overflow-y-clip"
       onSlideChange={updateRoute}
       controlStyles="[--controls-inset:var(--app-layout-padding)]"

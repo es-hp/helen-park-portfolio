@@ -24,7 +24,7 @@ export function ProjectGallery() {
           className="project-gallery-section flex flex-col flex-1 min-h-0"
           aria-label="Project carousel"
         >
-          <ProjectCarousel projects={projects} activeProject={projectId} />
+          <ProjectCarousel projects={projects} activeProjectId={projectId} />
         </section>
       )}
     </main>
