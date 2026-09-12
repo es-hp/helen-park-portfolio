@@ -1,16 +1,25 @@
-import { BrowserRouter } from "react-router-dom";
-import { ThemeProvider } from "./theme/ThemeProvider";
+import type { ReactNode } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
-import type { ReactNode } from "react";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+import { AppLayoutRefsProvider } from './AppLayoutRefsProvider';
+import { ThemeProvider } from './theme/ThemeProvider';
 
 export type ProviderProps = {
   children: ReactNode;
 };
 
+const queryClient = new QueryClient();
+
 export function Providers({ children }: ProviderProps) {
   return (
-    <BrowserRouter>
-      <ThemeProvider>{children}</ThemeProvider>
-    </BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <ThemeProvider>
+          <AppLayoutRefsProvider>{children}</AppLayoutRefsProvider>
+        </ThemeProvider>
+      </BrowserRouter>
+    </QueryClientProvider>
   );
 }

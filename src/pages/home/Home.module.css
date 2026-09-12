@@ -1,20 +1,10 @@
-.main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  width: 100%;
-  height: 100%;
-}
-
-.homeSection {
+.homePage {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
 }
 
-.homeSection > *:not(:last-child) {
+.homePage > *:not(:last-child) {
   margin-bottom: clamp(2rem, 6.57vh, 4rem);
 }

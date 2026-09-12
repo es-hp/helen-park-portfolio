@@ -88,7 +88,7 @@ h2 {
   font-weight: 700;
 }
 
-h3 {
+h3, .h2-project {
   font-family: var(--font-mono);
   font-size: var(--text-2xl);
   font-weight: 700;

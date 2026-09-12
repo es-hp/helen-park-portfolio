@@ -1,0 +1,35 @@
+.appLayout {
+  --app-layout-padding: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  padding: 0;
+  overflow-x: clip;
+}
+
+.appLayout--h-padding {
+  padding-inline: var(--app-layout-padding);
+}
+
+.appLayout--top-padding {
+  padding-top: var(--app-layout-padding);
+}
+
+.appLayout--bot-padding {
+  padding-bottom: var(--app-layout-padding);
+}
+
+@media (min-width: 640px) {
+  .appLayout {
+    --app-layout-padding: 2rem;
+  }
+}
+
+.appLayout > :first-child {
+  flex: 1;
+}

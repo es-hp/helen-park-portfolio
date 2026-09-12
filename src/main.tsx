@@ -2,10 +2,9 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
 import App from '@/App';
+import { Providers } from '@/providers/Providers';
 
-import { Providers } from './providers/Providers';
-
-import '@/styles/main.css';
+import '@/styles/globals.css';
 
 const rootElement = document.getElementById('root');
 

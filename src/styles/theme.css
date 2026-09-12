@@ -1,0 +1,33 @@
+/* =========================
+      LIGHT THEME TOKENS
+========================= */
+
+:root,
+[data-theme='light'] {
+  --background: var(--color-white);
+  --foreground: var(--color-black);
+
+  --scrollbar-thumb: rgba(0, 0, 0, 0.3);
+  --scrollbar-thumb-hover: rgba(0, 0, 0, 0.5);
+}
+
+/* =========================
+      DARK THEME TOKENS
+========================= */
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --background: var(--color-black);
+    --foreground: var(--color-white);
+  }
+}
+
+[data-theme='dark'] {
+  --background: var(--color-black);
+  --foreground: var(--color-white);
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}

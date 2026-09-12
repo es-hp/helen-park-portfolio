@@ -1,0 +1,132 @@
+/* =========================
+      IMPORTS
+========================= */
+
+@import 'tailwindcss';
+@import './colors.css' layer(base);
+@import './fonts.css' layer(base);
+@import './theme.css' layer(base);
+
+/* =========================
+      RESET / NORMALIZE
+========================= */
+
+@layer base {
+  :root {
+    height: 100%;
+  }
+
+  body,
+  #root {
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+  }
+}
+
+/* =========================
+      BASE STYLES
+========================= */
+
+@layer base {
+  body {
+    min-width: 320px;
+    margin: 0;
+
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.5;
+
+    color: var(--color-text);
+    background-color: var(--color-bg);
+
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Scrollbar UI */
+  :root {
+    /* Firefox */
+    scrollbar-gutter: stable;
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) transparent;
+  }
+
+  /* WebKit (Chrome, Safari, Edge) */
+  ::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb);
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--scrollbar-thumb-hover);
+  }
+}
+
+/* =========================
+      DESIGN TOKENS
+========================= */
+
+:root {
+  /* Breakpoints */
+  --bp-sm: 640px;
+  --bp-md: 768px;
+  --bp-lg: 1024px;
+  --bp-xl: 1280px;
+  --bp-2xl: 1536px;
+
+  --height-header: 5rem;
+}
+
+/* =========================
+      UTILITIES
+========================= */
+
+@utility flex-c-centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@utility flex-r-centered {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================
+      ACCESSIBILITY
+========================= */
+
+@layer base {
+  /* Keyboard focus only */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

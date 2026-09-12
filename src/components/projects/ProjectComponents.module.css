@@ -1,0 +1,60 @@
+/* =========================
+      PROJECT GALLERY HEADER
+========================= */
+
+.carouselHeader {
+  position: sticky;
+  inset: 0 0 auto;
+
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  height: var(--height-header);
+
+  padding-inline: var(--app-layout-padding);
+
+  background-color: var(--background);
+
+  z-index: 100;
+}
+
+.carouselHeader h1 {
+  font-size: var(--text-2xl);
+}
+
+/* =========================
+      IMAGE CAROUSEL
+========================= */
+
+/* Main Image Embla Carousel */
+
+.mainImageWrapper {
+  --slide-size: 100%;
+  --slide-spacing: 1rem;
+  position: relative;
+}
+
+.mainImageSlide {
+  aspect-ratio: 16 / 9;
+}
+
+/* Thumbnail Images Embla Carousel */
+
+.thumbWrapper {
+  --slide-spacing: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8.625rem, 1fr));
+  gap: var(--slide-spacing);
+}
+
+.thumbImageSlide {
+  width: 100%;
+  aspect-ratio: 16/ 9;
+}
+
+.selectedImage {
+  border: 1px solid red;
+}
