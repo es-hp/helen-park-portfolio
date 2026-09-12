@@ -91,6 +91,22 @@ export function Carousel(props: CarouselProps) {
     };
   }, [emblaApi, selectedIndex, onSlideSettled, onSlideChange, onSlidesInView]);
 
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    let active = true;
+
+    void document.fonts.ready.then(() => {
+      if (active) {
+        emblaApi.reInit();
+      }
+    });
+
+    return () => {
+      active = false;
+    };
+  }, [emblaApi]);
+
   return (
     <div className={clsx(styles.emblaWrapper, emblaWrapperClass)}>
       <div

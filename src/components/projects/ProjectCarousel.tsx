@@ -47,8 +47,8 @@ export function ProjectCarousel({
 
   const slides = projects.map((project, i) => (
     <ProjectSlide
-      project={project}
       key={project.id}
+      project={project}
       index={i}
       height={availableHeightPx}
     />

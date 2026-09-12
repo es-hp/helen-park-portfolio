@@ -4,25 +4,25 @@
   display: flex;
   flex: 1 1 auto;
   min-height: 0;
-  /* border: 1px dashed blue; */
+  border: 1px dashed blue;
 }
 
 .carouselViewport {
   /* embla: `overflow-x: clip` required */
   width: 100%;
   overflow-x: clip;
-  min-height: 100%;
+  border: 1px solid red;
 }
 
 .carouselContainer {
   /* embla: `display: flex` and `touch-action: pan-y pinch-zoom` required */
-  /* embla autoHeight plugin: `align-items: start` required */
+  /* embla autoHeight plugin: `align-items: flex-start` required */
   display: flex;
+  align-items: flex-start;
   touch-action: pan-y pinch-zoom;
   margin-left: calc(var(--slide-spacing, 0) * -1);
-  align-items: start;
   transition: height 0.2s;
-  /* border: 5px solid orange; */
+  border: 1px solid orange;
 }
 
 /* Slides */
@@ -31,6 +31,7 @@
   flex: 0 0 var(--slide-size, 100%);
   min-width: 0;
   padding-left: var(--slide-spacing, 0);
+  border: 1px solid rgb(234, 56, 234);
 }
 
 .carouselControls {

@@ -10,7 +10,6 @@ import { ImageCarousel } from './ImageCarousel';
 type ProjectSlideProps = {
   project: Project;
   index: number;
-  // isLoaded: boolean;
   height?: number;
 };
 
@@ -25,15 +24,15 @@ export function ProjectSlide(props: ProjectSlideProps) {
     // More styles for this slide article at Carousel.module.css
     <article
       className={clsx(
-        'proj-slide border border-red-300',
+        'proj-slide flex flex-col',
         !isLoaded && 'flex-c-centered'
       )}
-      style={{ minHeight: `${height}px` }}
+      style={{ minHeight: height }}
     >
       {!isLoaded ? (
         <Spinner />
       ) : (
-        <div className="proj-loaded-content flex flex-col md:flex-row p-(--app-layout-padding) gap-(--app-layout-padding) overflow-x-clip min-h-0 border border-purple-500">
+        <div className="proj-loaded-content flex-1 flex flex-col md:flex-row p-(--app-layout-padding) gap-(--app-layout-padding) overflow-x-clip min-h-0 border border-amber-300">
           {/* Left/Top Panel */}
           <div className={clsx('proj-img-panel', projPanelBase)}>
             <div className="img-carousel-wrapper flex flex-col gap-10 md:sticky md:top-(--height-header) overflow-x-clip">
@@ -46,7 +45,7 @@ export function ProjectSlide(props: ProjectSlideProps) {
             className={clsx(
               'proj-info-panel',
               projPanelBase,
-              'justify-between'
+              'justify-between pb-30'
             )}
           >
             <div className="text-container min-w-0 flex flex-col gap-6">
