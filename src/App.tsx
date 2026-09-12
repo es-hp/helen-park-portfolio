@@ -12,10 +12,10 @@ function App() {
         <Route
           element={
             <AppLayout
-              horizPadding={true}
-              topPadding={true}
-              botPadding={true}
-              footer={false}
+              hasHorizPadding={true}
+              hasTopPadding={true}
+              hasBotPadding={true}
+              hasFooter={false}
             />
           }
         >
@@ -24,16 +24,16 @@ function App() {
         <Route
           element={
             <AppLayout
-              horizPadding={true}
-              topPadding={true}
-              botPadding={true}
-              footer={true}
+              hasHorizPadding={true}
+              hasTopPadding={true}
+              hasBotPadding={true}
+              hasFooter={true}
             />
           }
         >
           <Route path="/projects" element={<Projects />} />
         </Route>
-        <Route element={<AppLayout />}>
+        <Route element={<AppLayout hasFooter={true} />}>
           <Route path="/projects/:projectId" element={<ProjectGallery />} />
         </Route>
       </Routes>
