@@ -1,6 +1,6 @@
 [
   {
-    "id": "a",
+    "id": "mission-trip-planner",
     "icon": "/images/square-xxl.png",
     "title": "Mission Trip Planner 222",
     "description": [
@@ -103,9 +103,9 @@
     ]
   },
   {
-    "id": "b",
+    "id": "pokedex",
     "icon": "/images/square-xxl.png",
-    "title": "Project 2",
+    "title": "Pokedex",
     "description": [
       "A mock web app for planning short-term mission trips that would be used by churches and missions organizations. Built to showcase use of just the basics: plain HTML, CSS, and JavaScript (no frameworks).",
       "It lets users organize trip details, manage participants, and track activities.",
@@ -156,9 +156,9 @@
     ]
   },
   {
-    "id": "c",
+    "id": "teach-us-to-pray",
     "icon": "/images/square-xxl.png",
-    "title": "Project 3",
+    "title": "Teach Us To Pray",
     "description": [
       "A mock web app for planning short-term mission trips that would be used by churches and missions organizations. Built to showcase use of just the basics: plain HTML, CSS, and JavaScript (no frameworks).",
       "It lets users organize trip details, manage participants, and track activities."
