@@ -1,7 +1,8 @@
-import { useCallback, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useCallback } from 'react';
 
 import { ProjectSlide } from '@/components/projects/ProjectSlide';
+import { useAppLayoutRefs } from '@/hooks/useAppLayoutRefs';
+import { useAvailableViewportHeight } from '@/hooks/useAvailableViewportHeight';
 import { type Project } from '@/types';
 
 import { Carousel } from '../carousel/Carousel';
@@ -18,8 +19,6 @@ export function ProjectCarousel({
 }: ProjectCarouselProps) {
   const index = projects.findIndex((project) => project.id === activeProject);
 
-  const [loadedSlides, setLoadedSlides] = useState<number[]>([index]);
-
   const options = {
     loop: true,
     watchDrag: () => {
@@ -29,31 +28,29 @@ export function ProjectCarousel({
     watchResize: false,
   };
 
-  const navigate = useNavigate();
-
   // When user swipes, URL updates
   const updateRoute = useCallback(
     (index: number) => {
       const project = projects[index];
       if (!project || project.id === activeProject) return;
-      void navigate(`/projects/${project.id}`, { replace: true });
+      window.history.replaceState(window.history.state, '', project.id);
     },
-    [activeProject, navigate, projects]
+    [activeProject, projects]
   );
 
-  // Lazy Loading Slides
-  const markSlidesAsLoaded = useCallback((indexes: number[]) => {
-    setLoadedSlides((loadedSlides) => [
-      ...new Set([...loadedSlides, ...indexes]),
-    ]);
-  }, []);
+  const { headerRef, footerRef } = useAppLayoutRefs();
+
+  const availableHeightPx = useAvailableViewportHeight({
+    headerRef,
+    footerRef,
+  });
 
   const slides = projects.map((project, i) => (
     <ProjectSlide
       project={project}
       key={project.id}
       index={i}
-      isLoaded={loadedSlides.includes(i)}
+      height={availableHeightPx}
     />
   ));
 
@@ -64,9 +61,7 @@ export function ProjectCarousel({
       setAutoHeight={true}
       emblaWrapperClass=""
       viewportClass="overflow-y-clip"
-      containerClass="items-start"
-      onSlideSettled={updateRoute}
-      onSlidesInView={markSlidesAsLoaded}
+      onSlideChange={updateRoute}
       controlStyles="[--controls-inset:var(--app-layout-padding)]"
       nextButton={{ el: <NextProjectBtn />, ariaLabel: 'Next project' }}
       prevButton={{ el: <PrevProjectBtn />, ariaLabel: 'Previous project' }}
