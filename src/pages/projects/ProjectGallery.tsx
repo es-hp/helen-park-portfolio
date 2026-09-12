@@ -11,7 +11,7 @@ export function ProjectGallery() {
   const { data: projects, isPending, isError } = useProjects();
 
   return (
-    <main id="project-gallery" className="flex flex-col w-full">
+    <main id="project-gallery" className="flex-1 flex flex-col min-h-0">
       <ProjectGalleryHeader />
       {isPending ? (
         <div className="flex-1 flex-c-centered bg-gray-950/5">
@@ -21,7 +21,7 @@ export function ProjectGallery() {
         <div className="flex-1 flex-c-centered">Error loading projects.</div>
       ) : (
         <section
-          className="project-gallery-section flex-1"
+          className="project-gallery-section flex flex-col flex-1 min-h-0"
           aria-label="Project carousel"
         >
           <ProjectCarousel projects={projects} activeProject={projectId} />

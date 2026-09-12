@@ -1,20 +1,33 @@
 .emblaWrapper {
   --slide-size: 100%;
+
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 0;
+  /* border: 1px dashed blue; */
 }
 
 .carouselViewport {
+  /* embla: `overflow-x: clip` required */
   width: 100%;
   overflow-x: clip;
+  min-height: 100%;
 }
 
 .carouselContainer {
+  /* embla: `display: flex` and `touch-action: pan-y pinch-zoom` required */
+  /* embla autoHeight plugin: `align-items: start` required */
   display: flex;
   touch-action: pan-y pinch-zoom;
   margin-left: calc(var(--slide-spacing, 0) * -1);
+  align-items: start;
+  transition: height 0.2s;
+  /* border: 5px solid orange; */
 }
 
 /* Slides */
 .carouselContainer > * {
+  /* embla: `flex: 0 0 100%` required */
   flex: 0 0 var(--slide-size, 100%);
   min-width: 0;
   padding-left: var(--slide-spacing, 0);

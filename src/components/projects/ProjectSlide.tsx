@@ -10,26 +10,30 @@ import { ImageCarousel } from './ImageCarousel';
 type ProjectSlideProps = {
   project: Project;
   index: number;
-  isLoaded: boolean;
+  // isLoaded: boolean;
+  height?: number;
 };
 
 export function ProjectSlide(props: ProjectSlideProps) {
-  const { project, isLoaded } = props;
+  const { project, height } = props;
 
   const projPanelBase = clsx('flex flex-col md:flex-1 gap-10 min-w-0');
+
+  const isLoaded = true;
 
   return (
     // More styles for this slide article at Carousel.module.css
     <article
       className={clsx(
-        'proj-slide border border-red-500',
-        !isLoaded && 'flex-c-centered h-full'
+        'proj-slide border border-red-300',
+        !isLoaded && 'flex-c-centered'
       )}
+      style={{ minHeight: `${height}px` }}
     >
       {!isLoaded ? (
         <Spinner />
       ) : (
-        <div className="proj-loaded-content flex flex-col md:flex-row p-(--app-layout-padding) gap-(--app-layout-padding) overflow-x-clip">
+        <div className="proj-loaded-content flex flex-col md:flex-row p-(--app-layout-padding) gap-(--app-layout-padding) overflow-x-clip min-h-0 border border-purple-500">
           {/* Left/Top Panel */}
           <div className={clsx('proj-img-panel', projPanelBase)}>
             <div className="img-carousel-wrapper flex flex-col gap-10 md:sticky md:top-(--height-header) overflow-x-clip">
