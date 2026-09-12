@@ -1,8 +1,12 @@
+import { useAppLayoutRefs } from '@/hooks/useAppLayoutRefs';
+
 export const FOOTER_HEIGHT_REM: number = 4;
 
 export function Footer({ heightRem }: { heightRem: number }) {
+  const { footerRef } = useAppLayoutRefs();
   return (
     <footer
+      ref={footerRef}
       className="footer flex items-center justify-between w-full max-w-3xl px-(--app-layout-padding)"
       style={{ height: `${heightRem}rem` }}
     >
