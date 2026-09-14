@@ -30,6 +30,11 @@
   }
 }
 
-.appLayout > :first-child {
+/* .appLayout > :first-child {
   flex: 1;
-}
+} */
+
+/* .footerHidden {
+  opacity: 0;
+  transition: opacity 200ms ease;
+} */

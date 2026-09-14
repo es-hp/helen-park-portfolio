@@ -33,7 +33,7 @@ function App() {
         >
           <Route path="/projects" element={<Projects />} />
         </Route>
-        <Route element={<AppLayout hasFooter={true} />}>
+        <Route element={<AppLayout hasFooter={false} />}>
           <Route path="/projects/:projectId" element={<ProjectGallery />} />
         </Route>
       </Routes>
