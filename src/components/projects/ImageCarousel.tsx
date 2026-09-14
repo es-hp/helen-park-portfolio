@@ -43,6 +43,7 @@ export function ImageCarousel({ projectImages }: ImageCarouselProps) {
         onSlideSettled={onSelect}
         selectedIndex={selectedIndex}
         showControls={true}
+        controlStyles="absolute"
       />
       <div className={clsx(styles.thumbWrapper)}>
         {projectImages.map((image, index) => (

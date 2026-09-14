@@ -31,7 +31,7 @@
 }
 
 .carouselControls {
-  position: absolute;
+  /* position: absolute; */
   top: var(--controls-top, 50%);
   inset-inline: var(--controls-inset, 0);
   transform: translateY(-50%);

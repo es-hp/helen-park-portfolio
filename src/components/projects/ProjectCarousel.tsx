@@ -1,8 +1,6 @@
 import { useCallback } from 'react';
 
 import { ProjectSlide } from '@/components/projects/ProjectSlide';
-import { useAppLayoutRefs } from '@/hooks/useAppLayoutRefs';
-import { useAvailableViewportHeight } from '@/hooks/useAvailableViewportHeight';
 import { type Project } from '@/types';
 
 import { Carousel } from '../carousel/Carousel';
@@ -11,11 +9,13 @@ import { NextProjectBtn, PrevProjectBtn } from './ProjectCarouselArrows';
 type ProjectCarouselProps = {
   projects: Project[];
   activeProjectId?: string;
+  maxViewportHeight?: number;
 };
 
 export function ProjectCarousel({
   projects,
   activeProjectId,
+  maxViewportHeight,
 }: ProjectCarouselProps) {
   const index = projects.findIndex((project) => project.id === activeProjectId);
 
@@ -38,19 +38,12 @@ export function ProjectCarousel({
     [projects]
   );
 
-  const { headerRef, footerRef } = useAppLayoutRefs();
-
-  const availableHeightPx = useAvailableViewportHeight({
-    headerRef,
-    footerRef,
-  });
-
   const slides = projects.map((project, i) => (
     <ProjectSlide
       key={project.id}
       project={project}
       index={i}
-      height={availableHeightPx}
+      height={maxViewportHeight}
     />
   ));
 
@@ -61,7 +54,7 @@ export function ProjectCarousel({
       setAutoHeight={true}
       viewportClass="overflow-y-clip"
       onSlideChange={updateRoute}
-      controlStyles="[--controls-inset:var(--app-layout-padding)]"
+      controlStyles="fixed"
       nextButton={{ el: <NextProjectBtn />, ariaLabel: 'Next project' }}
       prevButton={{ el: <PrevProjectBtn />, ariaLabel: 'Previous project' }}
     />

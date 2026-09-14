@@ -95,15 +95,47 @@ export function Carousel(props: CarouselProps) {
     if (!emblaApi) return;
 
     let active = true;
+    let animationFrameId: number | undefined;
 
-    void document.fonts.ready.then(() => {
-      if (active) {
-        emblaApi.reInit();
+    const scheduleReInit = () => {
+      if (!active) return;
+
+      if (animationFrameId !== undefined) {
+        cancelAnimationFrame(animationFrameId);
       }
+
+      animationFrameId = requestAnimationFrame(() => {
+        animationFrameId = undefined;
+
+        if (active) {
+          emblaApi.reInit();
+        }
+      });
+    };
+
+    void document.fonts.ready.then(scheduleReInit);
+
+    const viewport = emblaApi.rootNode();
+    let previousWidth = viewport.clientWidth;
+
+    const resizeObserver = new ResizeObserver(() => {
+      const currentWidth = viewport.clientWidth;
+
+      if (currentWidth === previousWidth) return;
+
+      previousWidth = currentWidth;
+      scheduleReInit();
     });
+
+    resizeObserver.observe(viewport);
 
     return () => {
       active = false;
+      resizeObserver.disconnect();
+
+      if (animationFrameId !== undefined) {
+        cancelAnimationFrame(animationFrameId);
+      }
     };
   }, [emblaApi]);
 
