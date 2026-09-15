@@ -1,31 +1,4 @@
 /* =========================
-      PROJECT GALLERY HEADER
-========================= */
-
-.carouselHeader {
-  position: fixed;
-  inset: 0 0 auto;
-
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  width: 100%;
-  height: var(--frame-size);
-
-  padding-inline: var(--app-layout-padding);
-
-  background-color: transparent;
-
-  z-index: 100;
-}
-
-.carouselHeader h1 {
-  font-size: var(--text-2xl);
-}
-
-/* =========================
       IMAGE CAROUSEL
 ========================= */
 
@@ -57,4 +30,53 @@
 
 .selectedImage {
   border: 1px solid red;
+}
+
+/* =========================
+      PROJECT GALLERY HEADER
+========================= */
+
+.carouselHeader {
+  position: fixed;
+  inset: 0 0 auto;
+
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  height: var(--frame-size);
+
+  padding-inline: var(--app-layout-padding);
+
+  background-color: transparent;
+
+  pointer-events: auto;
+
+  z-index: 100;
+}
+
+/* =========================
+      PROJECT CAROUSEL
+========================= */
+
+.carouselHeader h1 {
+  font-size: var(--text-2xl);
+}
+
+.projCarouselBtn {
+  width: var(--spacing-frame);
+  cursor: pointer;
+  opacity: 0.3;
+
+  transition-property: opacity;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+  pointer-events: auto;
+}
+
+.projCarouselBtn:hover {
+  opacity: 1;
 }

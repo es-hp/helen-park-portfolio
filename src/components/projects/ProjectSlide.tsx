@@ -15,15 +15,15 @@ type ProjectSlideProps = {
 export function ProjectSlide(props: ProjectSlideProps) {
   const { project, height } = props;
 
-  const projPanelBase = clsx('flex flex-col md:flex-1 gap-10 min-w-0');
+  const projPanelBase = clsx('flex flex-col md:flex-1 gap-12 min-w-0');
 
   return (
     // More styles for this slides at Carousel.module.css
     <article
-      className={clsx('proj-slide flex flex-col border border-green-500')}
+      className="proj-slide flex flex-col"
       style={{ minHeight: `${height}px` }}
     >
-      <div className="proj-loaded-content flex-1 flex flex-col md:flex-row gap-(--app-layout-padding) overflow-x-clip min-h-0 border border-blue-300">
+      <div className="proj-loaded-content flex-1 flex flex-col md:flex-row gap-(--app-layout-padding) overflow-x-clip min-h-0">
         {/* Left/Top Panel */}
         <div className={clsx('proj-img-panel', projPanelBase)}>
           <div className="img-carousel-wrapper flex flex-col gap-10 md:sticky md:top-frame overflow-x-clip">
@@ -32,9 +32,7 @@ export function ProjectSlide(props: ProjectSlideProps) {
         </div>
 
         {/* Right/Bottom Panel */}
-        <div
-          className={clsx('proj-info-panel', projPanelBase, 'justify-between')}
-        >
+        <div className={clsx('proj-info-panel', projPanelBase)}>
           <div className="text-container min-w-0 flex flex-col gap-6">
             <header className="flex gap-4 items-center">
               <img src={project.icon} className="w-14 h-14" />

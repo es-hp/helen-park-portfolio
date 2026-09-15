@@ -17,36 +17,34 @@ export function ProjectGallery() {
   const maxViewportHeight = useElementHeight(frameRef);
 
   return (
-    <div className="">
-      <main id="project-gallery" className="flex-1 flex flex-col min-h-0">
-        {isPending ? (
-          <div className="flex-1 flex-c-centered p-frame bg-gray-950/5">
-            <Spinner />
-          </div>
-        ) : isError ? (
-          <div className="flex-1 flex-c-centered p-frame">
-            Error loading projects.
-          </div>
-        ) : (
-          <section
-            className="project-gallery-section flex flex-col flex-1 min-h-0 p-frame"
-            aria-label="Project carousel"
-          >
-            <ProjectCarousel
-              projects={projects}
-              activeProjectId={projectId}
-              maxViewportHeight={maxViewportHeight}
-            />
-          </section>
-        )}
-      </main>
+    <main id="project-gallery" className="flex-1 flex flex-col min-h-0">
       <div
         ref={frameRef}
         aria-hidden="true"
-        className="fixed inset-frame z-50 bg-transparent shadow-[0_0_0_100vmax] shadow-pink-200"
+        className="frame-overlay fixed inset-frame z-50 bg-transparent shadow-[0_0_0_100vmax] shadow-background pointer-events-none"
       >
         <ProjectGalleryHeader />
       </div>
-    </div>
+      {isPending ? (
+        <div className="flex-1 flex-c-centered p-frame bg-gray-950/5">
+          <Spinner />
+        </div>
+      ) : isError ? (
+        <div className="flex-1 flex-c-centered p-frame">
+          Error loading projects.
+        </div>
+      ) : (
+        <section
+          className="project-gallery-section flex flex-col flex-1 min-h-0 p-frame"
+          aria-label="Project carousel"
+        >
+          <ProjectCarousel
+            projects={projects}
+            activeProjectId={projectId}
+            maxViewportHeight={maxViewportHeight}
+          />
+        </section>
+      )}
+    </main>
   );
 }
