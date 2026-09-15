@@ -28,14 +28,13 @@ export function AppLayout(props: AppLayoutProps) {
           styles.appLayout,
           hasHorizPadding && styles['appLayout--h-padding'],
           hasTopPadding && styles['appLayout--top-padding'],
-          hasBotPadding && !hasFooter && styles['appLayout--bot-padding'],
-          'border border-red-500'
+          hasBotPadding && !hasFooter && styles['appLayout--bot-padding']
         )}
       >
         <Outlet />
       </div>
       {hasFooter && (
-        <div className="bottom-0 inset-x-0 flex-c-centered w-full z-50 bg-pink-100 ">
+        <div className="bottom-0 inset-x-0 flex-c-centered w-full z-50 ">
           <Footer heightRem={FOOTER_HEIGHT_REM} />
         </div>
       )}
