@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 
 import clsx from 'clsx';
 
-import { Footer, FOOTER_HEIGHT_REM } from './Footer';
+import { Footer } from './Footer';
 import styles from './Layout.module.css';
 
 type AppLayoutProps = {
@@ -22,22 +22,16 @@ export function AppLayout(props: AppLayoutProps) {
   } = props;
 
   return (
-    <>
-      <div
-        className={clsx(
-          styles.appLayout,
-          hasHorizPadding && styles['appLayout--h-padding'],
-          hasTopPadding && styles['appLayout--top-padding'],
-          hasBotPadding && !hasFooter && styles['appLayout--bot-padding']
-        )}
-      >
-        <Outlet />
-      </div>
-      {hasFooter && (
-        <div className="bottom-0 inset-x-0 flex-c-centered w-full z-50 ">
-          <Footer heightRem={FOOTER_HEIGHT_REM} />
-        </div>
+    <div
+      className={clsx(
+        styles.appLayout,
+        hasHorizPadding && styles['appLayout--h-padding'],
+        hasTopPadding && styles['appLayout--top-padding'],
+        hasBotPadding && !hasFooter && styles['appLayout--bot-padding']
       )}
-    </>
+    >
+      <Outlet />
+      {hasFooter && <Footer />}
+    </div>
   );
 }
