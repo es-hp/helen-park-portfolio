@@ -23,11 +23,10 @@ export function AppLayout(props: AppLayoutProps) {
   return (
     <div
       className={clsx(
-        'flex flex-col items-center justify-between min-h-viewport overflow-x-clip',
+        'app-layout flex flex-col items-center justify-between min-h-viewport overflow-x-clip',
         hasHorizPadding && 'px-page-gutter',
         hasTopPadding && 'pt-page-gutter',
-        hasBotPadding && !hasFooter && 'pb-page-gutter',
-        'border border-green-500'
+        hasBotPadding && !hasFooter && 'pb-page-gutter'
       )}
     >
       <Outlet />
