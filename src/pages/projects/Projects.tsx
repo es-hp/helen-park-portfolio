@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 
+import { ProjectCard } from '@/components/projects/ProjectCard';
 import { Spinner } from '@/components/ui/LoadingSpinner';
 import { useProjects } from '@/hooks/useProjects';
 
@@ -21,9 +22,7 @@ export function Projects() {
             <div>Error loading projects.</div>
           ) : (
             projects?.map((project, index) => (
-              <Link to={`/projects/${project.id}`} key={index}>
-                {project.title}
-              </Link>
+              <ProjectCard project={project} index={index} />
             ))
           )}
         </div>
