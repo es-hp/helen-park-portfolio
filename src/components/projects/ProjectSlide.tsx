@@ -35,7 +35,7 @@ export function ProjectSlide(props: ProjectSlideProps) {
         <div className={clsx('proj-info-panel', projPanelBase)}>
           <div className="text-container min-w-0 flex flex-col gap-6">
             <header className="flex gap-4 items-center">
-              <img src={project.icon} className="w-14 h-14" />
+              <img src={project.icon} className="size-14 rounded-sm" />
               <h2 className="h2-project">{project.title}</h2>
             </header>
             <div className="project-text-body w-full space-y-6">
