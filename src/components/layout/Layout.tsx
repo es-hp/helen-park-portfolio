@@ -3,7 +3,6 @@ import { Outlet } from 'react-router-dom';
 import clsx from 'clsx';
 
 import { Footer } from './Footer';
-import styles from './Layout.module.css';
 
 type AppLayoutProps = {
   hasHorizPadding?: boolean;
@@ -24,7 +23,7 @@ export function AppLayout(props: AppLayoutProps) {
   return (
     <div
       className={clsx(
-        styles.appLayout,
+        'flex flex-col items-center justify-between min-h-viewport overflow-x-clip',
         hasHorizPadding && 'px-page-gutter',
         hasTopPadding && 'pt-page-gutter',
         hasBotPadding && !hasFooter && 'pb-page-gutter',

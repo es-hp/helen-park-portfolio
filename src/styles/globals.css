@@ -111,6 +111,11 @@
       UTILITIES
 ========================= */
 
+@utility min-h-viewport {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
 @utility flex-c-centered {
   display: flex;
   flex-direction: column;
