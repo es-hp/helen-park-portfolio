@@ -40,7 +40,7 @@ export function Spinner({
     <div
       role="status"
       aria-live="polite"
-      className="inline-flex items-center justify-center"
+      className="inline-flex items-center justify-center size-full  "
     >
       <span
         className={[
