@@ -1,9 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
 
-import { AppLayout } from './components/layout/Layout';
-import { Home } from './pages/home/Home';
-import { ProjectGallery } from './pages/projects/ProjectGallery';
-import { Projects } from './pages/projects/Projects';
+import { AppLayout } from '@/components/layout/Layout';
+import { Home } from '@/pages/home/Home';
+import { ProjectGallery } from '@/pages/projects/ProjectGallery';
+import { Projects } from '@/pages/projects/Projects';
 
 function App() {
   return (
