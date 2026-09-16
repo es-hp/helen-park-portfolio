@@ -83,6 +83,7 @@ export function ProjectCarousel({
         viewportClass="overflow-y-clip"
         onSlideChange={updateRoute}
         ref={carouselRef}
+        showControls={false}
       />
     </>
   );
