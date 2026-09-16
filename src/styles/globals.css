@@ -96,15 +96,9 @@
     --bp-2xl: 1536px;
 
     /* Layout Spacing */
-    --page-gutter: 4rem;
+    --page-gutter: clamp(2rem, calc(12.5vw - 2rem), 4rem);
     --page-max-width: 80rem;
     --frame-size: 5rem;
-  }
-
-  @media (min-width: 640px) {
-    :root {
-      --page-gutter: 2rem;
-    }
   }
 }
 
