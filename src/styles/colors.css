@@ -1,10 +1,8 @@
 /* =========================
-      THEME VARIABLES
+      COLOR THEME VARIABLES
 ========================= */
 
-:root {
-  /* ===== Color Palette ===== */
-
+@theme {
   /* Neutral Palette */
   --color-white: #ffffff;
   --color-black: #000000;

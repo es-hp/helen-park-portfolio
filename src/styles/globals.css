@@ -3,9 +3,9 @@
 ========================= */
 
 @import 'tailwindcss';
-@import './colors.css' layer(base);
-@import './fonts.css' layer(base);
-@import './theme.css' layer(base);
+@import './colors.css';
+@import './fonts.css';
+@import './theme.css';
 
 /* =========================
       RESET / NORMALIZE
@@ -77,22 +77,34 @@
 }
 
 /* =========================
-      DESIGN TOKENS
+      THEME / DESIGN TOKENS
 ========================= */
 
-:root {
-  /* Breakpoints */
-  --bp-sm: 640px;
-  --bp-md: 768px;
-  --bp-lg: 1024px;
-  --bp-xl: 1280px;
-  --bp-2xl: 1536px;
+@layer theme {
+  :root {
+    /* Breakpoints */
+    --bp-sm: 640px;
+    --bp-md: 768px;
+    --bp-lg: 1024px;
+    --bp-xl: 1280px;
+    --bp-2xl: 1536px;
 
-  --frame-size: 5rem;
+    /* Layout Spacing */
+    --page-gutter: 4rem;
+    --frame-size: 5rem;
+  }
+
+  @media (min-width: 640px) {
+    :root {
+      --page-gutter: 2rem;
+    }
+  }
 }
 
-@theme {
+/* Tailwind Theme API */
+@theme inline {
   --spacing-frame: var(--frame-size);
+  --spacing-page-gutter: var(--page-gutter);
 }
 
 /* =========================

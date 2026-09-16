@@ -3,53 +3,53 @@
 ========================= */
 
 @font-face {
-  font-family: "EB Garamond";
-  src: url("../assets/fonts/EBGaramond-VariableFont_wght.woff2")
-    format("woff2-variations");
+  font-family: 'EB Garamond';
+  src: url('../assets/fonts/EBGaramond-VariableFont_wght.woff2')
+    format('woff2-variations');
   font-weight: 400 800;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Victor Mono";
-  src: url("../assets/fonts/VictorMono-VariableFont_wght.woff2")
-    format("woff2-variations");
+  font-family: 'Victor Mono';
+  src: url('../assets/fonts/VictorMono-VariableFont_wght.woff2')
+    format('woff2-variations');
   font-weight: 100 700;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Work Sans";
-  src: url("../assets/fonts/WorkSans-VariableFont_wght.woff2")
-    format("woff2-variations");
+  font-family: 'Work Sans';
+  src: url('../assets/fonts/WorkSans-VariableFont_wght.woff2')
+    format('woff2-variations');
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Work Sans";
-  src: url("../assets/fonts/WorkSans-Italic-VariableFont_wght.woff2")
-    format("woff2-variations");
+  font-family: 'Work Sans';
+  src: url('../assets/fonts/WorkSans-Italic-VariableFont_wght.woff2')
+    format('woff2-variations');
   font-weight: 100 900;
   font-style: italic;
   font-display: swap;
 }
 
-:root {
+@theme {
   /* ===== Font Families ===== */
   --font-serif:
-    "Iowan Old Style", "Palatino Linotype", "URW Palladio L", P052, Georgia,
+    'Iowan Old Style', 'Palatino Linotype', 'URW Palladio L', P052, Georgia,
     serif;
   --font-sans:
-    system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
+    system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
 
-  --font-display: "EB Garamond", var(--font-serif);
-  --font-mono: "Victor Mono", monospace;
-  --font-body: "Work Sans", var(--font-sans);
+  --font-display: 'EB Garamond', var(--font-serif);
+  --font-mono: 'Victor Mono', monospace;
+  --font-body: 'Work Sans', var(--font-sans);
 
   /* ===== Typography Scale ===== */
 
@@ -75,82 +75,85 @@
 
 /* ===== Typography Styles ===== */
 
-h1 {
-  font-family: var(--font-display);
-  font-size: var(--text-7xl);
-  font-weight: 700;
-  line-height: 1.2;
-}
+@layer base {
+  h1 {
+    font-family: var(--font-display);
+    font-size: var(--text-7xl);
+    font-weight: 700;
+    line-height: 1.2;
+  }
 
-h2 {
-  font-family: var(--font-display);
-  font-size: var(--text-6xl);
-  font-weight: 700;
-}
+  h2 {
+    font-family: var(--font-display);
+    font-size: var(--text-6xl);
+    font-weight: 700;
+  }
 
-h3, .h2-project {
-  font-family: var(--font-mono);
-  font-size: var(--text-2xl);
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
+  h3,
+  .h2-project {
+    font-family: var(--font-mono);
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
 
-.h1-sub {
-  font-family: var(--font-mono);
-  font-size: var(--text-base-2xl);
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
+  .h1-sub {
+    font-family: var(--font-mono);
+    font-size: var(--text-base-2xl);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
 
-h4 {
-  font-family: var(--font-display);
-  font-size: var(--text-3xl);
-  font-weight: 700;
-  letter-spacing: 0.02em;
-}
+  h4 {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
 
-h5 {
-  font-family: var(--font-mono);
-  font-size: var(--text-lg);
-  font-weight: 100;
-  text-transform: uppercase;
-}
+  h5 {
+    font-family: var(--font-mono);
+    font-size: var(--text-lg);
+    font-weight: 100;
+    text-transform: uppercase;
+  }
 
-h6 {
-  font-family: inherit;
-  font-size: var(--text-base);
-  font-weight: inherit;
-}
+  h6 {
+    font-family: inherit;
+    font-size: var(--text-base);
+    font-weight: inherit;
+  }
 
-p {
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-  max-width: 65ch;
-}
+  p {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    max-width: 65ch;
+  }
 
-.lead-text {
-  font-family: var(--font-body);
-  font-size: var(--text-xl);
-}
+  .lead-text {
+    font-family: var(--font-body);
+    font-size: var(--text-xl);
+  }
 
-.eyebrow-text {
-  font-family: var(--font-mono);
-  font-size: var(--text-lg);
-  letter-spacing: 0.05em;
-}
+  .eyebrow-text {
+    font-family: var(--font-mono);
+    font-size: var(--text-lg);
+    letter-spacing: 0.05em;
+  }
 
-.subtext-serif {
-  font-family: var(--font-display);
-  font-size: var(--text-sm);
-  letter-spacing: 0.02em;
-}
+  .subtext-serif {
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    letter-spacing: 0.02em;
+  }
 
-.subtext-mono {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
+  .subtext-mono {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+  }
 }
