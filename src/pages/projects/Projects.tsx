@@ -6,7 +6,7 @@ export function Projects() {
   const { data: projects, isPending, isError } = useProjects();
 
   return (
-    <main className="projects">
+    <main className="projects border border-red-600">
       <div>
         <h1>Projects</h1>
         <div className="flex flex-col gap-4 justify-center">

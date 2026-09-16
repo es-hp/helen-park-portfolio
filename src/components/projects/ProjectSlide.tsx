@@ -23,7 +23,7 @@ export function ProjectSlide(props: ProjectSlideProps) {
       className="proj-slide flex flex-col"
       style={{ minHeight: `${height}px` }}
     >
-      <div className="proj-loaded-content flex-1 flex flex-col md:flex-row gap-(--app-layout-padding) overflow-x-clip min-h-0">
+      <div className="proj-loaded-content flex-1 flex flex-col md:flex-row gap-page-gutter overflow-x-clip min-h-0">
         {/* Left/Top Panel */}
         <div className={clsx('proj-img-panel', projPanelBase)}>
           <div className="img-carousel-wrapper flex flex-col gap-10 md:sticky md:top-frame overflow-x-clip">

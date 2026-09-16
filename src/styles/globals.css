@@ -74,6 +74,12 @@
   ::-webkit-scrollbar-thumb:hover {
     background-color: var(--scrollbar-thumb-hover);
   }
+
+  main {
+    flex: 1;
+    width: 100%;
+    max-width: var(--page-max-width);
+  }
 }
 
 /* =========================
@@ -91,6 +97,7 @@
 
     /* Layout Spacing */
     --page-gutter: 4rem;
+    --page-max-width: 80rem;
     --frame-size: 5rem;
   }
 
@@ -110,6 +117,10 @@
 /* =========================
       UTILITIES
 ========================= */
+
+@utility max-w-page {
+  max-width: var(--page-max-width);
+}
 
 @utility min-h-viewport {
   min-height: 100vh;
