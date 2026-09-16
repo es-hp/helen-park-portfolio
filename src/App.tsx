@@ -15,7 +15,6 @@ function App() {
               hasHorizPadding={true}
               hasTopPadding={true}
               hasBotPadding={true}
-              hasFooter={false}
             />
           }
         >
@@ -33,7 +32,7 @@ function App() {
         >
           <Route path="/projects" element={<Projects />} />
         </Route>
-        <Route element={<AppLayout hasFooter={false} />}>
+        <Route element={<AppLayout />}>
           <Route path="/projects/:projectId" element={<ProjectGallery />} />
         </Route>
       </Routes>

@@ -18,16 +18,17 @@ export function AppLayout(props: AppLayoutProps) {
     hasHorizPadding = false,
     hasTopPadding = false,
     hasBotPadding = false,
-    hasFooter = true,
+    hasFooter = false,
   } = props;
 
   return (
     <div
       className={clsx(
         styles.appLayout,
-        hasHorizPadding && styles['appLayout--h-padding'],
-        hasTopPadding && styles['appLayout--top-padding'],
-        hasBotPadding && !hasFooter && styles['appLayout--bot-padding']
+        hasHorizPadding && 'px-page-gutter',
+        hasTopPadding && 'pt-page-gutter',
+        hasBotPadding && !hasFooter && 'pb-page-gutter',
+        'border border-green-500'
       )}
     >
       <Outlet />

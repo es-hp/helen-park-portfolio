@@ -7,7 +7,7 @@ export function Footer() {
   return (
     <footer
       ref={footerRef}
-      className="footer flex items-center justify-between bottom-0 inset-x-0 w-full h-frame max-w-3xl px-(--app-layout-padding) z-50"
+      className="footer flex items-center justify-between w-full h-frame max-w-3xl z-50 border border-blue-500"
     >
       <span>(c) 2026</span>
       <span>Helen Park</span>
