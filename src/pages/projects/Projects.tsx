@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import StackIcon from 'tech-stack-icons';
 
 import { ProjectCard } from '@/components/projects/ProjectCard';
-import { BackButton } from '@/components/ui/BackButton';
 import { Spinner } from '@/components/ui/LoadingSpinner';
 import { ToggleButton } from '@/components/ui/ToggleButton';
 import { useProjects } from '@/hooks/useProjects';
@@ -35,11 +34,18 @@ export function Projects() {
   };
 
   return (
-    <main className="projects flex flex-col min-h-0 items-center justify-start overflow-clip border border-red-600">
+    <main className="projects flex flex-col min-h-0 items-center justify-start overflow-clip">
       <header className="flex items-center justify-between w-full gap-6">
-        <BackButton />
+        <Link to="/" className="hover:shadow-[inset_0_-1px_0_currentColor]">
+          Home
+        </Link>
         <h1 className="text-4xl">Projects</h1>
-        <Link to="/Resume">Resume</Link>
+        <Link
+          to="/Resume"
+          className="hover:shadow-[inset_0_-1px_0_currentColor]"
+        >
+          Resume
+        </Link>
       </header>
       <div className="flex flex-1 flex-col-reverse justify-center md:flex-row items-start w-full max-w-3xl min-h-0 gap-16 pt-16 md:py-32">
         <div className="projects-list flex-1 flex flex-col gap-6 self-stretch overflow-y-auto scrollbar-gutter-stable">
@@ -53,7 +59,7 @@ export function Projects() {
             ))
           )}
         </div>
-        <div className="projects-filter-container flex flex-col w-full items-center gap-12 md:w-48 md:min-h-82 border border-green-300">
+        <div className="projects-filter-container flex flex-col w-full items-center gap-12 md:w-48 md:min-h-82">
           <h2 className="text-2xl text-center border-b pb-5">
             Filter Projects
           </h2>
