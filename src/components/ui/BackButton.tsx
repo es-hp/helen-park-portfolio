@@ -14,6 +14,7 @@ export function BackButton(props: ComponentPropsWithoutRef<'button'>) {
           void navigate('/');
         }
       }}
+      className="cursor-pointer hover:shadow-[inset_0_-1px_0_currentColor]"
     >
       Back
     </button>
