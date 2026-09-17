@@ -323,16 +323,8 @@
     "repo": "string",
     "stack": [
       {
-        "name": "html",
-        "icon": "html5"
-      },
-      {
         "name": "css",
         "icon": "css3"
-      },
-      {
-        "name": "javascript",
-        "icon": "js"
       }
     ],
     "images": [
@@ -376,14 +368,6 @@
       {
         "name": "html",
         "icon": "html5"
-      },
-      {
-        "name": "css",
-        "icon": "css3"
-      },
-      {
-        "name": "javascript",
-        "icon": "js"
       }
     ],
     "images": [
@@ -424,10 +408,6 @@
     "link": "string",
     "repo": "string",
     "stack": [
-      {
-        "name": "html",
-        "icon": "html5"
-      },
       {
         "name": "css",
         "icon": "css3"
@@ -482,10 +462,6 @@
       {
         "name": "css",
         "icon": "css3"
-      },
-      {
-        "name": "javascript",
-        "icon": "js"
       }
     ],
     "images": [
@@ -529,10 +505,6 @@
       {
         "name": "html",
         "icon": "html5"
-      },
-      {
-        "name": "css",
-        "icon": "css3"
       },
       {
         "name": "javascript",

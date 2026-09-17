@@ -1,13 +1,36 @@
+import { useMemo, useState } from 'react';
+
 import StackIcon from 'tech-stack-icons';
 
 import { ProjectCard } from '@/components/projects/ProjectCard';
 import { Spinner } from '@/components/ui/LoadingSpinner';
+import { ToggleButton } from '@/components/ui/ToggleButton';
 import { useProjects } from '@/hooks/useProjects';
 import { useTechStacks } from '@/hooks/useTechStacks';
 
 export function Projects() {
   const { data: projects, isPending, isError } = useProjects();
   const technologies = useTechStacks();
+
+  const [selectedTechs, setSelectedTechs] = useState<string[]>([]);
+
+  const filteredProjects = useMemo(() => {
+    if (selectedTechs.length === 0) return projects;
+
+    return projects?.filter((project) =>
+      selectedTechs.every((selectedTech) =>
+        project.stack.some((tech) => tech.name === selectedTech)
+      )
+    );
+  }, [projects, selectedTechs]);
+
+  const toggleTech = (techName: string) => {
+    setSelectedTechs((current) =>
+      current.includes(techName)
+        ? current.filter((name) => name !== techName)
+        : [...current, techName]
+    );
+  };
 
   return (
     <main className="projects flex flex-col min-h-0 items-center justify-start overflow-clip border border-red-600">
@@ -21,22 +44,34 @@ export function Projects() {
           ) : isError ? (
             <div>Error loading projects.</div>
           ) : (
-            projects?.map((project, index) => (
+            filteredProjects?.map((project, index) => (
               <ProjectCard project={project} index={index} />
             ))
           )}
         </div>
-        <div className="projects-filter-container flex flex-col w-full gap-6 md:w-48 h-32 md:min-h-82 border border-green-300">
+        <div className="projects-filter-container flex flex-col w-full items-center gap-6 md:w-48 md:min-h-82 border border-green-300">
           <h2 className="text-xl text-center">Filter Projects</h2>
+          <ToggleButton handleClick={() => setSelectedTechs([])}>
+            All projects
+          </ToggleButton>
           <div className="tech-filter flex flex-wrap gap-3 items-center justify-center w-full">
-            {technologies.map((tech, index) => {
+            {technologies.map((tech) => {
+              const isSelected = selectedTechs.includes(tech.name);
+              const variant = isSelected ? 'light' : 'grayscale';
               return (
-                <StackIcon
-                  name={tech.icon}
-                  key={index}
-                  variant="grayscale"
-                  className="w-7"
-                />
+                <button
+                  key={tech.name}
+                  type="button"
+                  aria-pressed={isSelected}
+                  onClick={() => toggleTech(tech.name)}
+                  className="opacity-80 hover:opacity-100 transition-opactiy duration-100 ease-in-out cursor-pointer"
+                >
+                  <StackIcon
+                    name={tech.icon}
+                    variant={variant}
+                    className="w-7"
+                  />
+                </button>
               );
             })}
           </div>
