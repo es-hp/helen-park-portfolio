@@ -21,21 +21,21 @@ export function ProjectGallery() {
       <div
         ref={frameRef}
         aria-hidden="true"
-        className="frame-overlay fixed inset-frame z-50 bg-transparent shadow-[0_0_0_100vmax] shadow-background pointer-events-none"
+        className="frame-overlay fixed inset-x-frame bottom-frame top-header-height z-50 bg-transparent shadow-[0_0_0_100vmax] shadow-background pointer-events-none"
       >
         <ProjectGalleryHeader />
       </div>
       {isPending ? (
-        <div className="flex-1 flex-c-centered p-frame bg-gray-950/5">
+        <div className="flex-1 flex-c-centered px-frame pb-frame pt-header-height bg-gray-950/5">
           <Spinner />
         </div>
       ) : isError ? (
-        <div className="flex-1 flex-c-centered p-frame">
+        <div className="flex-1 flex-c-centered px-frame pb-frame pt-header-height">
           Error loading projects.
         </div>
       ) : (
         <section
-          className="project-gallery-section flex flex-col flex-1 min-h-0 p-frame"
+          className="project-gallery-section flex flex-col flex-1 min-h-0 px-frame pb-frame pt-header-height"
           aria-label="Project carousel"
         >
           <ProjectCarousel

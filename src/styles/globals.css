@@ -99,6 +99,7 @@
     --page-gutter: clamp(2rem, calc(12.5vw - 2rem), 4rem);
     --page-max-width: 80rem;
     --frame-size: 5rem;
+    --header-height: calc(var(--frame-size) + 2rem);
   }
 }
 
@@ -106,6 +107,7 @@
 @theme inline {
   --spacing-frame: var(--frame-size);
   --spacing-page-gutter: var(--page-gutter);
+  --spacing-header-height: var(--header-height);
 }
 
 /* =========================

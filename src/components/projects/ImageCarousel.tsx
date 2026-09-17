@@ -35,7 +35,7 @@ export function ImageCarousel({ projectImages }: ImageCarouselProps) {
   ));
 
   return (
-    <>
+    <div>
       <Carousel
         carouselContent={mainContent}
         options={mainOptions}
@@ -45,7 +45,7 @@ export function ImageCarousel({ projectImages }: ImageCarouselProps) {
         showControls={true}
         controlStyles="absolute"
       />
-      <div className={clsx(styles.thumbWrapper)}>
+      <div className={clsx(styles.thumbWrapper, 'hidden md:grid mt-8')}>
         {projectImages.map((image, index) => (
           <img
             key={index}
@@ -59,6 +59,6 @@ export function ImageCarousel({ projectImages }: ImageCarouselProps) {
           />
         ))}
       </div>
-    </>
+    </div>
   );
 }

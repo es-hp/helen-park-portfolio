@@ -17,10 +17,8 @@
 /* Thumbnail Images Embla Carousel */
 
 .thumbWrapper {
-  --slide-spacing: 1rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(8.625rem, 1fr));
-  gap: var(--slide-spacing);
+  grid-template-columns: repeat(auto-fit, minmax(6.5rem, 1fr));
+  gap: 1rem;
 }
 
 .thumbImageSlide {
@@ -46,9 +44,9 @@
   justify-content: space-between;
 
   width: 100%;
-  height: var(--frame-size);
+  height: var(--header-height);
 
-  padding-inline: var(--spacing-page-gutter);
+  padding-inline: var(--page-gutter);
 
   background-color: transparent;
 
@@ -66,7 +64,7 @@
 }
 
 .projCarouselBtn {
-  width: var(--spacing-frame);
+  width: var(--frame-size);
   cursor: pointer;
   opacity: 0.3;
 
