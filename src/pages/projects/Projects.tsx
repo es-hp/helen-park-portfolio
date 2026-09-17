@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom';
-
 import { ProjectCard } from '@/components/projects/ProjectCard';
 import { Spinner } from '@/components/ui/LoadingSpinner';
 import { useProjects } from '@/hooks/useProjects';
@@ -7,15 +5,13 @@ import { useProjects } from '@/hooks/useProjects';
 export function Projects() {
   const { data: projects, isPending, isError } = useProjects();
 
-  // const isTrue: boolean = true;
-
   return (
-    <main className="projects flex flex-col items-center justify-start border border-red-600">
+    <main className="projects flex flex-col min-h-0 items-center justify-start overflow-clip border border-red-600">
       <header>
         <h1 className="text-4xl">Projects</h1>
       </header>
-      <div className="flex-1 flex flex-col-reverse justify-center md:flex-row items-start w-full max-w-3xl gap-16 py-32 border border-blue-300">
-        <div className="projects-list flex-1 flex flex-col gap-6 self-stretch md:min-h-80 border border-amber-400">
+      <div className="flex flex-1 flex-col-reverse justify-center md:flex-row items-start w-full max-w-3xl min-h-0 gap-16 pt-16 md:py-32">
+        <div className="projects-list flex-1 flex flex-col gap-6 self-stretch overflow-y-auto scrollbar-gutter-stable">
           {isPending ? (
             <Spinner />
           ) : isError ? (
