@@ -10,8 +10,12 @@ export function ProjectGalleryHeader() {
   return (
     <header ref={headerRef} className={styles.carouselHeader}>
       <BackButton />
-      <h1>Projects</h1>
-      <Link to="/Resume">Resume</Link>
+      <Link to="/Projects">
+        <h1>Projects</h1>
+      </Link>
+      <Link to="/Resume" className="hover:shadow-[inset_0_-1px_0_currentColor]">
+        Resume
+      </Link>
     </header>
   );
 }
