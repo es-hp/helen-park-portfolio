@@ -1,8 +1,10 @@
 import { useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import StackIcon from 'tech-stack-icons';
 
 import { ProjectCard } from '@/components/projects/ProjectCard';
+import { BackButton } from '@/components/ui/BackButton';
 import { Spinner } from '@/components/ui/LoadingSpinner';
 import { ToggleButton } from '@/components/ui/ToggleButton';
 import { useProjects } from '@/hooks/useProjects';
@@ -34,8 +36,10 @@ export function Projects() {
 
   return (
     <main className="projects flex flex-col min-h-0 items-center justify-start overflow-clip border border-red-600">
-      <header>
+      <header className="flex items-center justify-between w-full gap-6">
+        <BackButton />
         <h1 className="text-4xl">Projects</h1>
+        <Link to="/Resume">Resume</Link>
       </header>
       <div className="flex flex-1 flex-col-reverse justify-center md:flex-row items-start w-full max-w-3xl min-h-0 gap-16 pt-16 md:py-32">
         <div className="projects-list flex-1 flex flex-col gap-6 self-stretch overflow-y-auto scrollbar-gutter-stable">
@@ -49,12 +53,18 @@ export function Projects() {
             ))
           )}
         </div>
-        <div className="projects-filter-container flex flex-col w-full items-center gap-6 md:w-48 md:min-h-82 border border-green-300">
-          <h2 className="text-xl text-center">Filter Projects</h2>
+        <div className="projects-filter-container flex flex-col w-full items-center gap-12 md:w-48 md:min-h-82 border border-green-300">
+          <h2 className="text-2xl text-center border-b pb-5">
+            Filter Projects
+          </h2>
           <ToggleButton handleClick={() => setSelectedTechs([])}>
             All projects
           </ToggleButton>
-          <div className="tech-filter flex flex-wrap gap-3 items-center justify-center w-full">
+          <div
+            role="group"
+            aria-label="Filter by technology"
+            className="tech-filter flex flex-wrap gap-3 items-center justify-center w-full"
+          >
             {technologies.map((tech) => {
               const isSelected = selectedTechs.includes(tech.name);
               const variant = isSelected ? 'light' : 'grayscale';
