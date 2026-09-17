@@ -27,6 +27,7 @@ function App() {
               hasTopPadding={true}
               hasBotPadding={true}
               hasFooter={true}
+              hasFixedHeight={true}
             />
           }
         >

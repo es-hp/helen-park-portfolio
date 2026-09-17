@@ -9,7 +9,7 @@ type AppLayoutProps = {
   hasTopPadding?: boolean;
   hasBotPadding?: boolean;
   hasFooter?: boolean;
-  footerIsAlwaysVisible?: boolean;
+  hasFixedHeight?: boolean;
 };
 
 export function AppLayout(props: AppLayoutProps) {
@@ -18,6 +18,7 @@ export function AppLayout(props: AppLayoutProps) {
     hasTopPadding = false,
     hasBotPadding = false,
     hasFooter = false,
+    hasFixedHeight = false,
   } = props;
 
   return (
@@ -26,7 +27,8 @@ export function AppLayout(props: AppLayoutProps) {
         'app-layout flex flex-col items-center justify-between min-h-viewport overflow-x-clip',
         hasHorizPadding && 'px-page-gutter',
         hasTopPadding && 'pt-page-gutter',
-        hasBotPadding && !hasFooter && 'pb-page-gutter'
+        hasBotPadding && !hasFooter && 'pb-page-gutter',
+        hasFixedHeight && 'h-viewport overflow-y-clip'
       )}
     >
       <Outlet />
