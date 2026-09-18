@@ -1,3 +1,5 @@
+import clsx from 'clsx';
+
 import { StackIcons } from '@/components/ui/StackIcons';
 import { TitleDivider } from '@/components/ui/TitleDivider';
 import type { Project } from '@/types';
@@ -7,11 +9,12 @@ import { ImageCarousel } from './ImageCarousel';
 type ProjectSlideProps = {
   project: Project;
   index: number;
+  isSelected: boolean;
   height?: number;
 };
 
 export function ProjectSlide(props: ProjectSlideProps) {
-  const { project, height } = props;
+  const { project, index, isSelected, height } = props;
 
   const header = (display: 'flex md:hidden' | 'hidden md:flex') => (
     <header className={`${display} gap-4 items-center`}>
@@ -23,7 +26,11 @@ export function ProjectSlide(props: ProjectSlideProps) {
   return (
     // More styles for this slides at Carousel.module.css
     <article
-      className="proj-slide flex flex-col"
+      id={`project-slide-${index}`}
+      className={clsx(
+        'proj-slide flex flex-col',
+        isSelected ? '' : 'invisible'
+      )}
       style={{ minHeight: `${height}px` }}
     >
       <div className="proj-loaded-content flex-1 flex flex-col w-full md:flex-row gap-page-gutter overflow-x-clip min-h-0">

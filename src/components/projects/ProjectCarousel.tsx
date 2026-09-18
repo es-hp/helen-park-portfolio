@@ -22,7 +22,11 @@ export function ProjectCarousel({
   activeProjectId,
   maxViewportHeight,
 }: ProjectCarouselProps) {
-  const index = projects.findIndex((project) => project.id === activeProjectId);
+  const matchedIndex: number = projects.findIndex(
+    (project) => project.id === activeProjectId
+  );
+
+  const startIndex = matchedIndex >= 0 ? matchedIndex : 0;
 
   const carouselRef = useRef<CarouselHandle>(null);
 
@@ -31,28 +35,45 @@ export function ProjectCarousel({
     watchDrag: () => {
       return window.matchMedia('(any-pointer: coarse)').matches;
     },
-    startIndex: index,
+    startIndex,
     watchResize: false,
   };
 
-  // When user swipes, URL updates
-  const updateRoute = useCallback(
+  const slides = projects.map((project, i) => {
+    const isSelected = project.id === activeProjectId;
+    return (
+      <ProjectSlide
+        key={project.id}
+        project={project}
+        index={i}
+        isSelected={isSelected}
+        height={maxViewportHeight}
+      />
+    );
+  });
+
+  const handleSelect = useCallback(
     (index: number) => {
+      // Change slide visibility
+      const selectedSlide = document.getElementById(`project-slide-${index}`);
+
+      const unselectedSlides: HTMLElement[] = Array.from(
+        document.querySelectorAll<HTMLElement>('.proj-slide')
+      ).filter((slide) => slide !== selectedSlide);
+
+      selectedSlide?.classList.remove('invisible');
+
+      for (const slide of unselectedSlides) {
+        slide?.classList.add('invisible');
+      }
+
+      // Update route
       const project = projects[index];
       if (!project) return;
       window.history.replaceState(window.history.state, '', project.id);
     },
     [projects]
   );
-
-  const slides = projects.map((project, i) => (
-    <ProjectSlide
-      key={project.id}
-      project={project}
-      index={i}
-      height={maxViewportHeight}
-    />
-  ));
 
   return (
     <>
@@ -81,7 +102,7 @@ export function ProjectCarousel({
         options={options}
         setAutoHeight={true}
         viewportClass="overflow-y-clip"
-        onSlideChange={updateRoute}
+        onSlideChange={handleSelect}
         ref={carouselRef}
         showControls={false}
       />
