@@ -1,7 +1,7 @@
 [
   {
     "id": "mission-trip-planner",
-    "icon": "/images/square-xxl.png",
+    "icon": "/projects/test-project-icons-01.png",
     "title": "Mission Trip Planner",
     "description": [
       "A mock web app for planning short-term mission trips that would be used by churches and missions organizations. Built to showcase use of just the basics: plain HTML, CSS, and JavaScript (no frameworks).",
@@ -104,7 +104,7 @@
   },
   {
     "id": "pokedex",
-    "icon": "/images/square-xxl.png",
+    "icon": "/projects/test-project-icons-02.png",
     "title": "Pokedex",
     "description": [
       "A mock web app for planning short-term mission trips that would be used by churches and missions organizations. Built to showcase use of just the basics: plain HTML, CSS, and JavaScript (no frameworks).",
@@ -157,7 +157,7 @@
   },
   {
     "id": "teach-us-to-pray",
-    "icon": "/images/square-xxl.png",
+    "icon": "/projects/test-project-icons-03.png",
     "title": "Teach Us To Pray",
     "description": [
       "A mock web app for planning short-term mission trips that would be used by churches and missions organizations. Built to showcase use of just the basics: plain HTML, CSS, and JavaScript (no frameworks).",
@@ -208,7 +208,7 @@
   },
   {
     "id": "project-4",
-    "icon": "/images/square-xxl.png",
+    "icon": "/projects/test-project-icons-04.png",
     "title": "project-4",
     "description": [
       "A mock web app for planning short-term mission trips that would be used by churches and missions organizations. Built to showcase use of just the basics: plain HTML, CSS, and JavaScript (no frameworks).",
@@ -311,7 +311,7 @@
   },
   {
     "id": "project-5",
-    "icon": "/images/square-xxl.png",
+    "icon": "/projects/test-project-icons-05.png",
     "title": "project-5",
     "description": [
       "A mock web app for planning short-term mission trips that would be used by churches and missions organizations. Built to showcase use of just the basics: plain HTML, CSS, and JavaScript (no frameworks).",
@@ -356,7 +356,7 @@
   },
   {
     "id": "project-6",
-    "icon": "/images/square-xxl.png",
+    "icon": "/projects/test-project-icons-06.png",
     "title": "Project 6",
     "description": [
       "A mock web app for planning short-term mission trips that would be used by churches and missions organizations. Built to showcase use of just the basics: plain HTML, CSS, and JavaScript (no frameworks).",
@@ -399,7 +399,7 @@
   },
   {
     "id": "project-7",
-    "icon": "/images/square-xxl.png",
+    "icon": "/projects/test-project-icons-07.png",
     "title": "Project 7",
     "description": [
       "A mock web app for planning short-term mission trips that would be used by churches and missions organizations. Built to showcase use of just the basics: plain HTML, CSS, and JavaScript (no frameworks).",
@@ -446,7 +446,7 @@
   },
   {
     "id": "project-8",
-    "icon": "/images/square-xxl.png",
+    "icon": "/projects/test-project-icons-08.png",
     "title": "Project 8",
     "description": [
       "A mock web app for planning short-term mission trips that would be used by churches and missions organizations. Built to showcase use of just the basics: plain HTML, CSS, and JavaScript (no frameworks).",
@@ -493,7 +493,7 @@
   },
   {
     "id": "project-9",
-    "icon": "/images/square-xxl.png",
+    "icon": "/projects/test-project-icons-09.png",
     "title": "Project 9",
     "description": [
       "A mock web app for planning short-term mission trips that would be used by churches and missions organizations. Built to showcase use of just the basics: plain HTML, CSS, and JavaScript (no frameworks).",
