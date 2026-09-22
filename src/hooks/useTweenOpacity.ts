@@ -60,6 +60,7 @@ export function useTweenOpacity(emblaApi: EmblaCarouselType | undefined) {
     emblaApi
       .on('reInit', setTweenFactor)
       .on('reInit', tweenOpacity)
+      .on('select', tweenOpacity)
       .on('scroll', tweenOpacity)
       .on('slideFocus', tweenOpacity);
 
@@ -67,6 +68,7 @@ export function useTweenOpacity(emblaApi: EmblaCarouselType | undefined) {
       emblaApi
         .off('reInit', setTweenFactor)
         .off('reInit', tweenOpacity)
+        .off('select', tweenOpacity)
         .off('scroll', tweenOpacity)
         .off('slideFocus', tweenOpacity);
     };
