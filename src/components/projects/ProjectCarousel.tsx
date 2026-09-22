@@ -1,4 +1,6 @@
-import { useCallback, useRef } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
+
+import type { EmblaOptionsType } from 'embla-carousel';
 
 import {
   NextButton,
@@ -22,88 +24,83 @@ export function ProjectCarousel({
   activeProjectId,
   maxViewportHeight,
 }: ProjectCarouselProps) {
-  const matchedIndex: number = projects.findIndex(
+  const matchedIndex = projects.findIndex(
     (project) => project.id === activeProjectId
   );
-
   const startIndex = matchedIndex >= 0 ? matchedIndex : 0;
+  const [selectedIndex, setSelectedIndex] = useState(startIndex);
 
   const carouselRef = useRef<CarouselHandle>(null);
 
-  const options = {
-    loop: true,
-    watchDrag: () => {
-      return window.matchMedia('(any-pointer: coarse)').matches;
-    },
-    startIndex,
-    watchResize: false,
-  };
-
-  const slides = projects.map((project, i) => {
-    const isSelected = project.id === activeProjectId;
-    return (
-      <ProjectSlide
-        key={project.id}
-        project={project}
-        index={i}
-        isSelected={isSelected}
-        height={maxViewportHeight}
-      />
-    );
-  });
+  const options = useMemo<EmblaOptionsType>(
+    () => ({
+      loop: true,
+      startIndex,
+      watchResize: false,
+      watchDrag: () => window.matchMedia('(any-pointer: coarse)').matches,
+    }),
+    [startIndex]
+  );
 
   const handleSelect = useCallback(
     (index: number) => {
-      // Change slide visibility
-      const selectedSlide = document.getElementById(`project-slide-${index}`);
+      setSelectedIndex(index);
 
-      const unselectedSlides: HTMLElement[] = Array.from(
-        document.querySelectorAll<HTMLElement>('.proj-slide')
-      ).filter((slide) => slide !== selectedSlide);
+      const project = projects[index];
 
-      selectedSlide?.classList.remove('invisible');
-
-      for (const slide of unselectedSlides) {
-        slide?.classList.add('invisible');
-      }
+      if (!project) return;
 
       // Update route
-      const project = projects[index];
-      if (!project) return;
       window.history.replaceState(window.history.state, '', project.id);
     },
     [projects]
   );
+
+  const slides = projects.map((project, i) => (
+    <ProjectSlide
+      key={project.id}
+      project={project}
+      index={i}
+      isSelected={i === selectedIndex}
+      height={maxViewportHeight}
+    />
+  ));
+
+  const controlsStyle =
+    maxViewportHeight === undefined
+      ? undefined
+      : { height: `${maxViewportHeight}px` };
 
   return (
     <>
       <div
         className="project-carousel-controls fixed inset-x-0 flex justify-between pointer-events-none z-60"
         aria-hidden="true"
-        style={{ height: `${maxViewportHeight}px` }}
+        style={controlsStyle}
       >
         <PrevButton
           onClick={() => carouselRef.current?.scrollPrev()}
-          aria-label="Previous"
+          aria-label="Previous project"
           className={styles.projCarouselBtn}
         >
           {'<'}
         </PrevButton>
         <NextButton
           onClick={() => carouselRef.current?.scrollNext()}
-          aria-label="Next"
+          aria-label="Next project"
           className={styles.projCarouselBtn}
         >
           {'>'}
         </NextButton>
       </div>
+
       <Carousel
+        ref={carouselRef}
         carouselContent={slides}
         options={options}
         setAutoHeight={true}
         viewportClass="overflow-y-clip"
         onSlideChange={handleSelect}
-        ref={carouselRef}
         showControls={false}
       />
     </>

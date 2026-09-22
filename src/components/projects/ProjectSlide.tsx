@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 import clsx from 'clsx';
 
 import { StackIcons } from '@/components/ui/StackIcons';
@@ -13,9 +15,12 @@ type ProjectSlideProps = {
   height?: number;
 };
 
-export function ProjectSlide(props: ProjectSlideProps) {
-  const { project, index, isSelected, height } = props;
-
+export const ProjectSlide = memo(function ProjectSlide({
+  project,
+  index,
+  isSelected,
+  height,
+}: ProjectSlideProps) {
   const header = (display: 'flex md:hidden' | 'hidden md:flex') => (
     <header className={`${display} gap-4 items-center`}>
       <img src={project.icon} className="size-14 rounded-sm" />
@@ -27,11 +32,9 @@ export function ProjectSlide(props: ProjectSlideProps) {
     // More styles for this slides at Carousel.module.css
     <article
       id={`project-slide-${index}`}
-      className={clsx(
-        'proj-slide flex flex-col',
-        isSelected ? '' : 'invisible'
-      )}
-      style={{ minHeight: `${height}px` }}
+      aria-hidden={!isSelected}
+      className={clsx('proj-slide flex flex-col', !isSelected && 'invisible')}
+      style={{ minHeight: height }}
     >
       <div className="proj-loaded-content flex-1 flex flex-col w-full md:flex-row gap-page-gutter overflow-x-clip min-h-0">
         {/* Left/Top Panel */}
@@ -68,4 +71,4 @@ export function ProjectSlide(props: ProjectSlideProps) {
       </div>
     </article>
   );
-}
+});
