@@ -6,13 +6,15 @@ import { type EmblaOptionsType } from 'embla-carousel';
 import AutoHeight from 'embla-carousel-auto-height';
 import useEmblaCarousel from 'embla-carousel-react';
 
+import { useTweenOpacity } from '@/hooks/useTweenOpacity';
+
 import styles from './Carousel.module.css';
 import { NextButton, PrevButton } from './CarouselArrowButtons';
 
 export type CarouselHandle = {
   scrollPrev: () => void;
   scrollNext: () => void;
-  scrollTo: (index: number) => void;
+  scrollTo: (index: number, jump?: boolean) => void;
 };
 
 type CarouselButtonProps = {
@@ -154,7 +156,7 @@ export const Carousel = forwardRef<CarouselHandle, CarouselProps>(
 
     useImperativeHandle(
       ref,
-      function createCarouselHandle() {
+      function createCarouselHandle(): CarouselHandle {
         return {
           scrollPrev() {
             emblaApi?.scrollPrev();
@@ -162,13 +164,15 @@ export const Carousel = forwardRef<CarouselHandle, CarouselProps>(
           scrollNext() {
             emblaApi?.scrollNext();
           },
-          scrollTo(index: number) {
-            emblaApi?.scrollTo(index);
+          scrollTo(index, jump = false) {
+            emblaApi?.scrollTo(index, jump);
           },
         };
       },
       [emblaApi]
     );
+
+    useTweenOpacity(emblaApi);
 
     return (
       <div className={clsx(styles.emblaWrapper, emblaWrapperClass)}>

@@ -79,3 +79,7 @@
 .projCarouselBtn:hover {
   opacity: 1;
 }
+
+.projCarouselWrapper {
+  --slide-spacing: 2rem;
+}

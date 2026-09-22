@@ -30,6 +30,9 @@ export function ProjectCarousel({
   );
   const startIndex = matchedIndex >= 0 ? matchedIndex : 0;
   const [selectedIndex, setSelectedIndex] = useState(startIndex);
+  const [visibleIndices, setVisibleIndices] = useState<Set<number>>(
+    () => new Set([startIndex])
+  );
 
   const carouselRef = useRef<CarouselHandle | null>(null);
 
@@ -39,6 +42,12 @@ export function ProjectCarousel({
       startIndex,
       watchResize: false,
       watchDrag: () => window.matchMedia('(any-pointer: coarse)').matches,
+      duration: 30,
+      breakpoints: {
+        '(prefers-reduced-motion: reduce)': {
+          duration: 0,
+        },
+      },
     }),
     [startIndex]
   );
@@ -46,6 +55,11 @@ export function ProjectCarousel({
   const handleSelect = useCallback(
     (index: number) => {
       setSelectedIndex(index);
+
+      setVisibleIndices((prev) => {
+        if (prev.has(index)) return prev;
+        return new Set(prev).add(index);
+      });
 
       const project = projects[index];
 
@@ -57,12 +71,17 @@ export function ProjectCarousel({
     [projects]
   );
 
+  const handleSettle = useCallback(
+    (index: number) => setVisibleIndices(new Set([index])),
+    []
+  );
+
   const slides = projects.map((project, i) => (
     <ProjectSlide
       key={project.id}
       project={project}
       index={i}
-      isSelected={i === selectedIndex}
+      isSelected={visibleIndices.has(i)}
       height={maxViewportHeight}
     />
   ));
@@ -100,13 +119,15 @@ export function ProjectCarousel({
         setAutoHeight={true}
         viewportClass="overflow-y-clip"
         onSlideChange={handleSelect}
+        onSlideSettled={handleSettle}
         showControls={false}
+        emblaWrapperClass={styles.projCarouselWrapper}
       />
 
       <ProjectGalleryFooter
         projects={projects}
         selectedIndex={selectedIndex}
-        handleScrollTo={(index) => carouselRef.current?.scrollTo(index)}
+        handleScrollTo={(index) => carouselRef.current?.scrollTo(index, true)}
       />
     </>
   );
