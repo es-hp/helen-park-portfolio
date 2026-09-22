@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import { motion } from 'framer-motion';
 import StackIcon from 'tech-stack-icons';
 
 import { ProjectCard } from '@/components/projects/ProjectCard';
@@ -8,6 +9,7 @@ import { Spinner } from '@/components/ui/LoadingSpinner';
 import { ToggleButton } from '@/components/ui/ToggleButton';
 import { useProjects } from '@/hooks/useProjects';
 import { useTechStacks } from '@/hooks/useTechStacks';
+import { fadeVariants } from '@/motion/motion';
 
 export function Projects() {
   const { data: projects, isPending, isError } = useProjects();
@@ -34,7 +36,13 @@ export function Projects() {
   };
 
   return (
-    <main className="projects flex flex-col min-h-0 items-center justify-start overflow-clip">
+    <motion.main
+      variants={fadeVariants}
+      initial="hidden"
+      animate="visible"
+      exit="hidden"
+      className="projects flex flex-col min-h-0 items-center justify-start overflow-clip"
+    >
       <header className="flex items-center justify-between w-full gap-6">
         <Link to="/" className="hover:shadow-[inset_0_-1px_0_currentColor]">
           Home
@@ -93,6 +101,6 @@ export function Projects() {
           </div>
         </div>
       </div>
-    </main>
+    </motion.main>
   );
 }

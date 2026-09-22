@@ -1,11 +1,14 @@
 import { useRef } from 'react';
 import { useParams } from 'react-router-dom';
 
+import { motion } from 'framer-motion';
+
 import { ProjectCarousel } from '@/components/projects/ProjectCarousel';
 import { ProjectGalleryHeader } from '@/components/projects/ProjectGalleryHeader';
 import { Spinner } from '@/components/ui/LoadingSpinner';
 import { useElementHeight } from '@/hooks/useElementHeight';
 import { useProjects } from '@/hooks/useProjects';
+import { fadeVariants } from '@/motion/motion';
 
 export function ProjectGallery() {
   const { projectId } = useParams();
@@ -17,7 +20,14 @@ export function ProjectGallery() {
   const maxViewportHeight = useElementHeight(frameRef);
 
   return (
-    <main id="project-gallery" className="flex-1 flex flex-col min-h-0">
+    <motion.main
+      id="project-gallery"
+      variants={fadeVariants}
+      initial="hidden"
+      animate="visible"
+      exit="hidden"
+      className="flex-1 flex flex-col min-h-0"
+    >
       <div
         ref={frameRef}
         aria-hidden="true"
@@ -45,6 +55,6 @@ export function ProjectGallery() {
           />
         </section>
       )}
-    </main>
+    </motion.main>
   );
 }

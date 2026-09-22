@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom';
 
 import clsx from 'clsx';
+import { AnimatePresence } from 'framer-motion';
 
 import { Footer } from './Footer';
 
@@ -31,7 +32,9 @@ export function AppLayout(props: AppLayoutProps) {
         hasFixedHeight && 'h-viewport overflow-y-clip'
       )}
     >
-      <Outlet />
+      <AnimatePresence>
+        <Outlet />
+      </AnimatePresence>
       {hasFooter && <Footer />}
     </div>
   );
