@@ -12,6 +12,7 @@ import { NextButton, PrevButton } from './CarouselArrowButtons';
 export type CarouselHandle = {
   scrollPrev: () => void;
   scrollNext: () => void;
+  scrollTo: (index: number) => void;
 };
 
 type CarouselButtonProps = {
@@ -160,6 +161,9 @@ export const Carousel = forwardRef<CarouselHandle, CarouselProps>(
           },
           scrollNext() {
             emblaApi?.scrollNext();
+          },
+          scrollTo(index: number) {
+            emblaApi?.scrollTo(index);
           },
         };
       },

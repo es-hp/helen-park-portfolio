@@ -6,6 +6,7 @@ import {
   NextButton,
   PrevButton,
 } from '@/components/carousel/CarouselArrowButtons';
+import { ProjectGalleryFooter } from '@/components/projects/ProjectGalleryFooter';
 import { ProjectSlide } from '@/components/projects/ProjectSlide';
 import { type Project } from '@/types';
 
@@ -30,7 +31,7 @@ export function ProjectCarousel({
   const startIndex = matchedIndex >= 0 ? matchedIndex : 0;
   const [selectedIndex, setSelectedIndex] = useState(startIndex);
 
-  const carouselRef = useRef<CarouselHandle>(null);
+  const carouselRef = useRef<CarouselHandle | null>(null);
 
   const options = useMemo<EmblaOptionsType>(
     () => ({
@@ -67,9 +68,7 @@ export function ProjectCarousel({
   ));
 
   const controlsStyle =
-    maxViewportHeight === undefined
-      ? undefined
-      : { height: `${maxViewportHeight}px` };
+    maxViewportHeight === undefined ? undefined : { height: maxViewportHeight };
 
   return (
     <>
@@ -102,6 +101,12 @@ export function ProjectCarousel({
         viewportClass="overflow-y-clip"
         onSlideChange={handleSelect}
         showControls={false}
+      />
+
+      <ProjectGalleryFooter
+        projects={projects}
+        selectedIndex={selectedIndex}
+        handleScrollTo={(index) => carouselRef.current?.scrollTo(index)}
       />
     </>
   );
