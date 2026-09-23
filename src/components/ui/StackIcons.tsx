@@ -3,8 +3,8 @@ import { Fragment } from 'react';
 import { Dot } from 'lucide-react';
 import StackIcon from 'tech-stack-icons';
 
+import { useElementWidth } from '@/hooks/useElementWidth';
 import { type TechStack } from '@/types';
-import { useElementWidth } from '@/utils';
 
 interface StackIconsProps {
   techStackItems: TechStack[];
