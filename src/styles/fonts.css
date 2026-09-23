@@ -4,29 +4,28 @@
 
 @font-face {
   font-family: 'EB Garamond';
-  src: url('../assets/fonts/EBGaramond-VariableFont_wght.woff2')
+  src: url('/fonts/EBGaramond-VariableFont_wght.woff2')
     format('woff2-variations');
   font-weight: 400 800;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
   font-family: 'Victor Mono';
-  src: url('../assets/fonts/VictorMono-VariableFont_wght.woff2')
+  src: url('/fonts/VictorMono-VariableFont_wght.woff2')
     format('woff2-variations');
   font-weight: 100 700;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
   font-family: 'Work Sans';
-  src: url('../assets/fonts/WorkSans-VariableFont_wght.woff2')
-    format('woff2-variations');
+  src: url('/fonts/WorkSans-VariableFont_wght.woff2') format('woff2-variations');
   font-weight: 100 900;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -35,7 +34,7 @@
     format('woff2-variations');
   font-weight: 100 900;
   font-style: italic;
-  font-display: swap;
+  font-display: optional;
 }
 
 @theme {
