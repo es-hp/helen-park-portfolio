@@ -6,7 +6,7 @@ import { AboutPhoto } from '@/components/about/AboutPhoto';
 import { Nav } from '@/components/home/navigation/Nav';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { about } from '@/content/about';
-import { EASE } from '@/motion/motion';
+import { EASE } from '@/motion';
 import { clamp } from '@/utils';
 
 import styles from './Home.module.css';

@@ -1,6 +1,6 @@
 import { type Variants } from 'framer-motion';
 
-import { EASE } from '@/motion/motion';
+import { EASE } from '@/motion';
 
 export const aboutVariants: Variants = {
   onHome: {

@@ -1,6 +1,6 @@
 import { type Variants } from 'framer-motion';
 
-import { EASE } from '@/motion/motion';
+import { EASE } from '@/motion';
 
 export const NAV_BOT_MARGIN_REM = '1rem';
 
