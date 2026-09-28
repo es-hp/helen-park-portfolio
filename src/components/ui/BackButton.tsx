@@ -1,25 +1,20 @@
 import { type ComponentPropsWithoutRef, forwardRef } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import clsx from 'clsx';
+
+import { useGoBack } from '@/hooks/useGoBack';
 
 export const BackButton = forwardRef<
   HTMLButtonElement,
   ComponentPropsWithoutRef<'button'>
 >(function BackButton({ className, ...props }, ref) {
-  const navigate = useNavigate();
+  const goBack = useGoBack();
 
   return (
     <button
       {...props}
       ref={ref}
-      onClick={() => {
-        if (window.history.length > 1) {
-          void navigate(-1);
-        } else {
-          void navigate('/');
-        }
-      }}
+      onClick={goBack}
       className={clsx(
         'cursor-pointer hover:shadow-[inset_0_-1px_0_currentColor]',
         className
