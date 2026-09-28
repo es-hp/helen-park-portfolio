@@ -1,12 +1,18 @@
-import type { ComponentPropsWithoutRef } from 'react';
+import { type ComponentPropsWithoutRef, forwardRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export function BackButton(props: ComponentPropsWithoutRef<'button'>) {
+import clsx from 'clsx';
+
+export const BackButton = forwardRef<
+  HTMLButtonElement,
+  ComponentPropsWithoutRef<'button'>
+>(function BackButton({ className, ...props }, ref) {
   const navigate = useNavigate();
 
   return (
     <button
       {...props}
+      ref={ref}
       onClick={() => {
         if (window.history.length > 1) {
           void navigate(-1);
@@ -14,9 +20,12 @@ export function BackButton(props: ComponentPropsWithoutRef<'button'>) {
           void navigate('/');
         }
       }}
-      className="cursor-pointer hover:shadow-[inset_0_-1px_0_currentColor]"
+      className={clsx(
+        'cursor-pointer hover:shadow-[inset_0_-1px_0_currentColor]',
+        className
+      )}
     >
       Back
     </button>
   );
-}
+});

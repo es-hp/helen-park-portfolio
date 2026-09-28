@@ -1,5 +1,4 @@
 import { useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
 
 import { motion } from 'framer-motion';
 import StackIcon from 'tech-stack-icons';
@@ -9,7 +8,16 @@ import { Spinner } from '@/components/ui/LoadingSpinner';
 import { ToggleButton } from '@/components/ui/ToggleButton';
 import { useProjects } from '@/hooks/useProjects';
 import { useTechStacks } from '@/hooks/useTechStacks';
-import { fadeVariants } from '@/motion/motion';
+import {
+  containerVariants,
+  fadeInXVariants,
+  listVariants,
+  makeFadeTransition,
+  MotionLink,
+  staticVariants,
+} from '@/motion';
+
+const slowFadeTransition = makeFadeTransition();
 
 export function Projects() {
   const { data: projects, isPending, isError } = useProjects();
@@ -37,44 +45,66 @@ export function Projects() {
 
   return (
     <motion.main
-      variants={fadeVariants}
+      variants={containerVariants}
       initial="hidden"
       animate="visible"
-      exit="hidden"
-      className="projects flex flex-col min-h-0 items-center justify-start overflow-clip"
+      exit="exit"
+      className="projects flex flex-col min-h-0 items-center justify-start"
     >
-      <header className="flex items-center justify-between w-full gap-6">
-        <Link to="/" className="hover:shadow-[inset_0_-1px_0_currentColor]">
+      <motion.header
+        variants={staticVariants}
+        className="flex items-center justify-between w-full gap-6"
+      >
+        <MotionLink
+          layoutId="projects-left-link"
+          transition={slowFadeTransition}
+          to="/"
+          className="hover:shadow-[inset_0_-1px_0_currentColor]"
+        >
           Home
-        </Link>
-        <h1 className="text-4xl">Projects</h1>
-        <Link
+        </MotionLink>
+        <motion.h1
+          layoutId="projects-h1"
+          transition={slowFadeTransition}
+          className="text-4xl"
+        >
+          Projects
+        </motion.h1>
+        <MotionLink
+          layoutId="projects-right-link"
+          transition={slowFadeTransition}
           to="/Resume"
           className="hover:shadow-[inset_0_-1px_0_currentColor]"
         >
           Resume
-        </Link>
-      </header>
-      <div className="flex flex-1 flex-col-reverse justify-center md:flex-row items-start w-full max-w-3xl min-h-0 gap-16 pt-16 md:py-32">
-        <div className="projects-list flex-1 flex flex-col gap-6 self-stretch overflow-y-auto scrollbar-gutter-stable">
+        </MotionLink>
+      </motion.header>
+      <motion.div
+        variants={fadeInXVariants}
+        className="flex flex-1 flex-col-reverse justify-center md:flex-row items-start w-full max-w-3xl min-h-0 gap-16 pt-16 md:py-32"
+      >
+        <motion.div
+          variants={listVariants}
+          className="projects-list flex-1 flex flex-col gap-6 self-stretch overflow-y-auto scrollbar-gutter-stable"
+        >
           {isPending ? (
             <Spinner />
           ) : isError ? (
-            <div>Error loading projects.</div>
+            <motion.div>Error loading projects.</motion.div>
           ) : (
             filteredProjects?.map((project, index) => (
               <ProjectCard project={project} index={index} />
             ))
           )}
-        </div>
-        <div className="projects-filter-container flex flex-col w-full items-center gap-12 md:w-48 md:min-h-82">
+        </motion.div>
+        <motion.div className="projects-filter-container flex flex-col w-full items-center gap-12 md:w-48 md:min-h-82">
           <h2 className="text-2xl text-center border-b pb-5">
             Filter Projects
           </h2>
           <ToggleButton handleClick={() => setSelectedTechs([])}>
             All projects
           </ToggleButton>
-          <div
+          <motion.div
             role="group"
             aria-label="Filter by technology"
             className="tech-filter flex flex-wrap gap-3 items-center justify-center w-full"
@@ -98,9 +128,9 @@ export function Projects() {
                 </button>
               );
             })}
-          </div>
-        </div>
-      </div>
+          </motion.div>
+        </motion.div>
+      </motion.div>
     </motion.main>
   );
 }

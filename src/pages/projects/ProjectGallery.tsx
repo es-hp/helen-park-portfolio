@@ -8,7 +8,7 @@ import { ProjectGalleryHeader } from '@/components/projects/ProjectGalleryHeader
 import { Spinner } from '@/components/ui/LoadingSpinner';
 import { useElementHeight } from '@/hooks/useElementHeight';
 import { useProjects } from '@/hooks/useProjects';
-import { fadeVariants } from '@/motion/motion';
+import { fadeVariants } from '@/motion';
 
 export function ProjectGallery() {
   const { projectId } = useParams();
@@ -25,13 +25,13 @@ export function ProjectGallery() {
       variants={fadeVariants}
       initial="hidden"
       animate="visible"
-      exit="hidden"
+      exit="exit"
       className="flex-1 flex flex-col min-h-0"
     >
       <div
         ref={frameRef}
         aria-hidden="true"
-        className="frame-overlay fixed inset-x-frame bottom-frame top-header-height z-50 bg-transparent shadow-[0_0_0_100vmax] shadow-background pointer-events-none"
+        className="frame-overlay fixed inset-x-frame bottom-frame top-header-height z-50 bg-transparent shadow-[0_0_0_100vmax] shadow-bg pointer-events-none"
       >
         <ProjectGalleryHeader />
       </div>

@@ -1,21 +1,42 @@
-import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
-import { BackButton } from '@/components/ui/BackButton';
 import { useAppLayoutRefs } from '@/hooks/useAppLayoutRefs';
+import {
+  makeFadeTransition,
+  MotionBackButton,
+  MotionLink,
+  staticVariants,
+} from '@/motion';
 
 import styles from './ProjectComponents.module.css';
+
+const slowFadeTransition = makeFadeTransition();
 
 export function ProjectGalleryHeader() {
   const { headerRef } = useAppLayoutRefs();
   return (
-    <header ref={headerRef} className={styles.carouselHeader}>
-      <BackButton />
-      <Link to="/Projects">
-        <h1>Projects</h1>
-      </Link>
-      <Link to="/Resume" className="hover:shadow-[inset_0_-1px_0_currentColor]">
+    <motion.header
+      variants={staticVariants}
+      ref={headerRef}
+      className={styles.carouselHeader}
+    >
+      <MotionBackButton
+        layoutId="projects-left-link"
+        transition={slowFadeTransition}
+      />
+      <MotionLink to="/Projects">
+        <motion.h1 layoutId="projects-h1" transition={slowFadeTransition}>
+          Projects
+        </motion.h1>
+      </MotionLink>
+      <MotionLink
+        layoutId="projects-right-link"
+        transition={slowFadeTransition}
+        to="/Resume"
+        className="hover:shadow-[inset_0_-1px_0_currentColor]"
+      >
         Resume
-      </Link>
-    </header>
+      </MotionLink>
+    </motion.header>
   );
 }

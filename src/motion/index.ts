@@ -1,20 +1,27 @@
 import type { Transition, Variants } from 'framer-motion';
 
+export * from './motion-components';
+
 export const EASE = [0.4, 0, 0.2, 1] as const;
 
 /* Global page's <main> & footer mount/unmount animations */
 const pageEnterTransition: Transition = {
-  duration: 0.15,
+  duration: 0.3,
   ease: [0.16, 1, 0.3, 1],
 };
 
 const pageExitTransition: Transition = {
-  duration: 0.1,
+  duration: 0.2,
   ease: [0.4, 0, 1, 1],
 };
 
+export const makeFadeTransition = (duration = 1): Transition => ({
+  duration,
+  ease: [0.05, 0.7, 0.1, 1],
+});
+
 export const fadeVariants: Variants = {
-  hidden: { opacity: 0, scale: 0.99 },
+  hidden: { opacity: 0, scale: 1 },
   visible: {
     opacity: 1,
     scale: 1,
@@ -22,15 +29,42 @@ export const fadeVariants: Variants = {
   },
   exit: {
     opacity: 0,
-    scale: 1.005,
+    scale: 1,
     transition: pageExitTransition,
   },
 };
 
-export const footerVariants: Variants = {
-  ...fadeVariants,
-  exit: {
-    ...fadeVariants.exit,
-    position: 'absolute',
+export const containerVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.15, delayChildren: 0.05 },
   },
+};
+
+export const fadeInYVariants: Variants = {
+  hidden: { opacity: 0, y: -8 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { opacity: makeFadeTransition(1.6), y: makeFadeTransition() },
+  },
+};
+
+export const fadeInXVariants: Variants = {
+  hidden: { opacity: 0, x: -8 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { opacity: makeFadeTransition(1.6), y: makeFadeTransition() },
+  },
+};
+
+export const listVariants: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.15, delayChildren: 0.05 } },
+};
+
+export const staticVariants: Variants = {
+  hidden: { opacity: 1, y: 0 },
+  visible: { opacity: 1, y: 0 },
 };

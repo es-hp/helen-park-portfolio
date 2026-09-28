@@ -1,7 +1,6 @@
-import { Link } from 'react-router-dom';
-
 import StackIcon from 'tech-stack-icons';
 
+import { fadeInXVariants, MotionLink } from '@/motion';
 import type { Project } from '@/types';
 
 type ProjectCardProps = {
@@ -11,10 +10,11 @@ type ProjectCardProps = {
 
 export function ProjectCard({ project, index }: ProjectCardProps) {
   return (
-    <Link
+    <MotionLink
+      variants={fadeInXVariants}
       to={`/projects/${project.id}`}
       key={index}
-      className="bg-gray-300 hover:bg-gray-400 transition-colors"
+      className="bg-card-bg border border-card-border hover:bg-card-bg-hover transition-colors"
     >
       <div className="flex items-start gap-4 w-full p-4">
         <img src={project.icon} className="size-14 rounded-sm" />
@@ -38,6 +38,6 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           </div>
         </div>
       </div>
-    </Link>
+    </MotionLink>
   );
 }

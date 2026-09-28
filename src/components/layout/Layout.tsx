@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 
 import clsx from 'clsx';
 import { AnimatePresence } from 'framer-motion';
@@ -22,6 +22,8 @@ export function AppLayout(props: AppLayoutProps) {
     hasFixedHeight = false,
   } = props;
 
+  const location = useLocation();
+
   return (
     <div
       className={clsx(
@@ -32,10 +34,10 @@ export function AppLayout(props: AppLayoutProps) {
         hasFixedHeight && 'h-viewport overflow-y-clip'
       )}
     >
-      <AnimatePresence>
-        <Outlet />
+      <AnimatePresence mode="popLayout">
+        <Outlet key={location.pathname} />
       </AnimatePresence>
-      {hasFooter && <Footer />}
+      <AnimatePresence>{hasFooter && <Footer key="footer" />}</AnimatePresence>
     </div>
   );
 }
