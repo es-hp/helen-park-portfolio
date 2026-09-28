@@ -103,9 +103,9 @@
   --color-fg-muted: var(--foreground-muted);
   --color-fg-emphasize: var(--foreground-emphasize);
   --color-accent-moss: var(--accent-moss);
-  --color-accent-vermilition: var(--color-accent-vermilion);
+  --color-accent-vermilion: var(--accent-vermilion);
   --color-card-bg: var(--card-bg);
   --color-card-bg-hover: var(--card-bg-hover);
-  --color-card-border: var(--color-card-border);
-  --color-divider: var(--color-divider);
+  --color-card-border: var(--card-border);
+  --color-divider: var(--divider);
 }

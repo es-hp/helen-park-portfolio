@@ -39,8 +39,8 @@
     font-style: normal;
     line-height: 1.5;
 
-    color: var(--color-fg-soft);
-    background-color: var(--color-bg);
+    color: var(--foreground-soft);
+    background-color: var(--background);
 
     font-synthesis: none;
     -webkit-font-smoothing: antialiased;
