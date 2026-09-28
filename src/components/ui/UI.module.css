@@ -14,8 +14,8 @@
   text-align: center;
   text-transform: capitalize;
   white-space: nowrap;
-  color: var(--color-white);
+  color: var(--badge-fg);
 
-  background-color: grey;
+  background-color: var(--badge-bg);
   border-radius: 0.5em;
 }

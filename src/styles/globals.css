@@ -39,7 +39,7 @@
     font-style: normal;
     line-height: 1.5;
 
-    color: var(--color-text);
+    color: var(--color-fg-soft);
     background-color: var(--color-bg);
 
     font-synthesis: none;
@@ -111,6 +111,21 @@
 }
 
 /* =========================
+      COMPONENTS
+========================= */
+
+@layer components {
+  .btn-primary {
+    background-color: var(--btn-primary-bg);
+    color: var(--btn-primary-fg);
+  }
+
+  .btn-primary:hover {
+    background-color: var(--btn-primary-bg-hover);
+  }
+}
+
+/* =========================
       UTILITIES
 ========================= */
 
@@ -149,7 +164,7 @@
 @layer base {
   /* Keyboard focus only */
   :focus-visible {
-    outline: 2px solid var(--color-accent);
+    outline: 2px solid var(--color-accent-moss);
     outline-offset: 2px;
   }
 }

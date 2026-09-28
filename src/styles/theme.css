@@ -7,11 +7,30 @@
   [data-theme='light'] {
     color-scheme: light;
 
-    --background: var(--color-white);
-    --foreground: var(--color-black);
+    --background: var(--color-parchment-50);
+    --foreground: var(--color-parchment-900);
+    --foreground-soft: var(--color-parchment-700);
+    --foreground-muted: var(--color-parchment-500);
+    --foreground-emphasize: var(--color-parchment-950);
+
+    --accent-moss: var(--color-moss-dark);
+    --accent-vermilion: var(--color-vermilion-dark);
+
+    --card-bg: transparent;
+    --card-bg-hover: var(--color-parchment-200);
+    --card-border: var(--color-parchment-900);
+
+    --divider: var(--color-parchment-400);
+
+    --badge-bg: var(--color-parchment-400);
+    --badge-fg: var(--color-parchment-50);
 
     --scrollbar-thumb: rgba(0, 0, 0, 0.3);
     --scrollbar-thumb-hover: rgba(0, 0, 0, 0.5);
+
+    --btn-primary-bg: var(--color-moss-light);
+    --btn-primary-bg-hover: var(--color-moss-dark);
+    --btn-primary-fg: var(--color-parchment-50);
   }
 
   /* =========================
@@ -22,15 +41,54 @@
     :root:not([data-theme='light']) {
       color-scheme: dark;
 
-      --background: var(--color-black);
-      --foreground: var(--color-white);
+      --background: var(--color-night-900);
+      --foreground: var(--color-parchment-100);
+      --foreground-soft: var(--color-parchment-300);
+      --foreground-muted: var(--color-night-400);
+      --foreground-emphasize: var(--color-parchment-50);
+
+      --accent-moss: var(--color-moss-light);
+      --accent-vermilion: var(--color-vermilion-light);
+
+      --card-bg: var(--color-night-800);
+      --card-bg-hover: var(--color-night-700);
+      --card-border: var(--color-night-600);
+
+      --divider: var(--color-night-700);
+
+      --badge-bg: var(--color-night-700);
+      --badge-fg: var(--color-parchment-100);
+
+      --btn-primary-bg: var(--color-moss-dark);
+      --btn-primary-bg-hover: var(--color-moss-light);
+      --btn-primary-fg: var(--color-parchment-50);
     }
   }
 
   [data-theme='dark'] {
     color-scheme: dark;
-    --background: var(--color-black);
-    --foreground: var(--color-white);
+
+    --background: var(--color-night-900);
+    --foreground: var(--color-parchment-100);
+    --foreground-soft: var(--color-parchment-300);
+    --foreground-muted: var(--color-night-400);
+    --foreground-emphasize: var(--color-parchment-50);
+
+    --accent-moss: var(--color-moss-light);
+    --accent-vermilion: var(--color-vermilion-light);
+
+    --card-bg: var(--color-night-800);
+    --card-bg-hover: var(--color-night-700);
+    --card-border: var(--color-night-600);
+
+    --divider: var(--color-night-700);
+
+    --badge-bg: var(--color-night-700);
+    --badge-fg: var(--color-parchment-100);
+
+    --btn-primary-bg: var(--color-moss-dark);
+    --btn-primary-bg-hover: var(--color-moss-light);
+    --btn-primary-fg: var(--color-parchment-50);
   }
 }
 
@@ -39,6 +97,15 @@
 ========================= */
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-bg: var(--background);
+  --color-fg: var(--foreground);
+  --color-fg-soft: var(--foreground-soft);
+  --color-fg-muted: var(--foreground-muted);
+  --color-fg-emphasize: var(--foreground-emphasize);
+  --color-accent-moss: var(--accent-moss);
+  --color-accent-vermilition: var(--color-accent-vermilion);
+  --color-card-bg: var(--card-bg);
+  --color-card-bg-hover: var(--card-bg-hover);
+  --color-card-border: var(--color-card-border);
+  --color-divider: var(--color-divider);
 }

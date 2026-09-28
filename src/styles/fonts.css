@@ -80,6 +80,7 @@
     font-size: var(--text-7xl);
     font-weight: 700;
     line-height: 1.2;
+    color: var(--foreground-emphasize);
   }
 
   h2 {

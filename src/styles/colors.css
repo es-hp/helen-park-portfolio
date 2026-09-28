@@ -3,13 +3,27 @@
 ========================= */
 
 @theme {
-  /* Neutral Palette */
-  --color-white: #ffffff;
-  --color-black: #000000;
+  /* Warm neutral: paper to ink */
+  --color-parchment-50: #f2ebdd;
+  --color-parchment-100: #e8e2d2;
+  --color-parchment-200: #d1ccbf;
+  --color-parchment-300: #b9b6ab;
+  --color-parchment-400: #8f8b82;
+  --color-parchment-500: #6b6759;
+  --color-parchment-700: #4a483f;
+  --color-parchment-900: #2b2a26;
+  --color-parchment-950: #1c1b18;
 
-  /* Primary Palette */
-  --color-primary: #ffe0cc;
+  /* Cool neutral: stone to night */
+  --color-night-400: #8d9095;
+  --color-night-600: #4a4e57;
+  --color-night-700: #3a3d44;
+  --color-night-800: #202328;
+  --color-night-900: #1b1d21;
 
-  /* Secondary Palette */
-  /* Functional Color Palette */
+  /* Accents */
+  --color-moss-light: #9dbf86;
+  --color-moss-dark: #5f7a55;
+  --color-vermilion-light: #e56f3e;
+  --color-vermilion-dark: #b5533c;
 }
