@@ -79,7 +79,7 @@ export function Nav({ currentPage, className, ...motionProps }: NavProps) {
 
   return (
     <motion.nav {...motionProps} className={className}>
-      <motion.ul>
+      <ul>
         <AnimatePresence>
           {entries.map(([key, item]) => {
             if (item.showLink !== 'always' && item.showLink !== currentPage) {
@@ -115,7 +115,7 @@ export function Nav({ currentPage, className, ...motionProps }: NavProps) {
             );
           })}
         </AnimatePresence>
-      </motion.ul>
+      </ul>
     </motion.nav>
   );
 }
