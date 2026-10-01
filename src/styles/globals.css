@@ -109,7 +109,7 @@
   --spacing-frame: var(--frame-size);
   --spacing-page-gutter: var(--page-gutter);
   --spacing-header-height: var(--header-height);
-  --spacing-section: var(--spacing-section);
+  --spacing-section-gap: var(--spacing-section);
 }
 
 /* =========================
