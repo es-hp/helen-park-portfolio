@@ -11,6 +11,7 @@ type AppLayoutProps = {
   hasBotPadding?: boolean;
   hasFooter?: boolean;
   hasFixedHeight?: boolean;
+  animatePresence?: boolean;
 };
 
 export function AppLayout(props: AppLayoutProps) {
@@ -20,9 +21,15 @@ export function AppLayout(props: AppLayoutProps) {
     hasBotPadding = false,
     hasFooter = false,
     hasFixedHeight = false,
+    animatePresence = false,
   } = props;
 
   const location = useLocation();
+
+  const outletKey =
+    location.pathname === '/' || location.pathname === '/about'
+      ? 'landing'
+      : location.pathname;
 
   return (
     <div
@@ -34,9 +41,13 @@ export function AppLayout(props: AppLayoutProps) {
         hasFixedHeight && 'h-viewport overflow-y-clip'
       )}
     >
-      <AnimatePresence mode="popLayout">
-        <Outlet key={location.pathname} />
-      </AnimatePresence>
+      {animatePresence ? (
+        <AnimatePresence mode="sync">
+          <Outlet key={outletKey} />
+        </AnimatePresence>
+      ) : (
+        <Outlet key={outletKey} />
+      )}
       <AnimatePresence>{hasFooter && <Footer key="footer" />}</AnimatePresence>
     </div>
   );
