@@ -18,12 +18,10 @@ export const remToPx = (value: string): string | null => {
   return `${rem * rootFontSize}px`;
 };
 
-type CSSVariableValue =
-  | string
-  | {
-      value: number;
-      unit: string;
-    };
+type CSSVariableValue = {
+  value: number | string;
+  unit: string | null;
+};
 
 /**
  * Gets the computed value of a CSS custom property.
@@ -41,12 +39,11 @@ export const getCSSVariableValue = (
   const match = value.match(/^([+-]?(?:\d+(?:\.\d*)?|\.\d+))([a-zA-Z]+|%)$/);
 
   if (!match) {
-    return value;
+    return { value, unit: null };
   }
 
-  const [, numericValue, unit] = match;
   return {
-    value: Number(numericValue),
-    unit,
+    value: Number(match[1]),
+    unit: match[2],
   };
 };
