@@ -20,3 +20,5 @@ export interface Project {
   stack: TechStack[];
   images: ProjectImage[];
 }
+
+export type SiteContent = Record<string, string[]>;
