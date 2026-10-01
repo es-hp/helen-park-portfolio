@@ -1,17 +1,11 @@
-import { useState } from 'react';
-
 import clsx from 'clsx';
+import { type HTMLMotionProps, motion } from 'framer-motion';
 
 import styles from './UI.module.css';
 
 type Status = 'available' | 'networking' | 'freelance' | 'employed';
 
-type StatusMap = {
-  label: string;
-  color: string;
-};
-
-const statusMap: Record<Status, StatusMap> = {
+const statusMap: Record<Status, { label: string; color: string }> = {
   available: {
     label: 'Available for Work',
     color: 'bg-green-500',
@@ -30,17 +24,28 @@ const statusMap: Record<Status, StatusMap> = {
   },
 };
 
-export function StatusBadge() {
-  const [status] = useState<Status>('available');
+type StatusBadgeProps = HTMLMotionProps<'div'> & {
+  /**
+   * Career Status Options: "available", "networking", "freelance", "employed".
+   */
+  currentStatus: Status;
+  className?: string;
+};
 
-  const currentStatus = statusMap[status];
+export function StatusBadge({
+  currentStatus,
+  className,
+  ...motionProps
+}: StatusBadgeProps) {
+  const { label, color } = statusMap[currentStatus];
 
   return (
-    <div className={clsx(styles.statusBadge, 'subtext-mono')}>
-      <span
-        className={clsx('w-3', 'h-3', 'rounded-full', currentStatus.color)}
-      ></span>
-      <span>{currentStatus.label}</span>
-    </div>
+    <motion.div
+      {...motionProps}
+      className={clsx(styles.statusBadge, 'subtext-mono', className)}
+    >
+      <span className={clsx('size-3 rounded-full', color)} />
+      <span>{label}</span>
+    </motion.div>
   );
 }
