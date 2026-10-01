@@ -1,8 +1,8 @@
-import type { Transition, Variants } from 'framer-motion';
+import { type Transition, type Variants } from 'framer-motion';
 
+export * from './home.motion';
 export * from './motion-components';
-
-export const EASE = [0.4, 0, 0.2, 1] as const;
+export * from './tokens.motion';
 
 /* Global page's <main> & footer mount/unmount animations */
 const pageEnterTransition: Transition = {
