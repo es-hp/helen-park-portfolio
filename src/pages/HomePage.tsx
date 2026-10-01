@@ -5,14 +5,24 @@ import { Nav } from '@/components/home/navigation/Nav';
 import { Spinner } from '@/components/ui/LoadingSpinner';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { useSiteContent } from '@/hooks/useSiteContent';
+import { wispyFadeVariants, wispyStaggerVariants } from '@/motion';
+import { getCSSVariableValue } from '@/utils';
 
-const MARGIN_PX: number = 3 * 16;
+const MARGIN_PX: number = (() => {
+  const { value, unit } = getCSSVariableValue('--spacing-section');
+  if (typeof value !== 'number' || (unit !== 'rem' && unit !== 'px')) {
+    console.warn('--spacing-section must be a numeric rem or px value.');
+    return 0;
+  }
 
-import {
-  staggerYVariants,
-  wispyFadeVariants,
-  wispyStaggerVariants,
-} from '@/motion';
+  const rootFontSize = parseFloat(
+    getComputedStyle(document.documentElement).fontSize
+  );
+
+  return unit === 'rem' ? value * rootFontSize : value;
+})();
+
+console.log(MARGIN_PX);
 
 export function Home({ path }: { path: '/' | '/about' }) {
   const isAboutOpen = path === '/about';
@@ -22,13 +32,7 @@ export function Home({ path }: { path: '/' | '/about' }) {
 
   return (
     <motion.main className="flex-c-centered">
-      <motion.div
-        variants={staggerYVariants}
-        initial={false}
-        animate="visible"
-        exit="hidden"
-        className="flex flex-col items-center justify-start"
-      >
+      <motion.div className="flex flex-col items-center justify-start">
         <motion.header
           id="landing-header"
           className="flex flex-col items-center justify-start"
@@ -50,7 +54,7 @@ export function Home({ path }: { path: '/' | '/about' }) {
             <motion.div
               id="about-photo"
               variants={wispyFadeVariants}
-              custom={{ hasNoTopMargin: false, marginPx: MARGIN_PX }}
+              custom={{ topMarginPx: MARGIN_PX }}
               initial="hidden"
               animate="visible"
               exit="exit"
@@ -60,14 +64,8 @@ export function Home({ path }: { path: '/' | '/about' }) {
             </motion.div>
           )}
         </AnimatePresence>
-        <motion.div
-          style={{
-            marginTop: `${MARGIN_PX}px`,
-            marginBottom: `${MARGIN_PX}px`,
-          }}
-        >
-          <StatusBadge currentStatus="available" />
-        </motion.div>
+
+        <StatusBadge currentStatus="available" className="my-section-gap" />
       </motion.div>
 
       <AnimatePresence>
@@ -88,7 +86,7 @@ export function Home({ path }: { path: '/' | '/about' }) {
                 <motion.p
                   key={i}
                   variants={wispyFadeVariants}
-                  custom={{ hasNoTopMargin: i === 0 }}
+                  custom={i === 0 && { topMarginPx: 0 }}
                   className="overflow-hidden"
                 >
                   {paragraph}
@@ -100,10 +98,11 @@ export function Home({ path }: { path: '/' | '/about' }) {
       </AnimatePresence>
       <Nav
         currentPage={currentPage}
-        variants={staggerYVariants}
-        initial={false}
-        animate={isAboutOpen ? 'visible' : 'hidden'}
-        custom={isAboutOpen ? { staggerDelay: 0, topMarginPx: MARGIN_PX } : {}}
+        className={
+          isAboutOpen
+            ? 'mt-section-gap transition-[margin-top] duration-500 ease-out'
+            : 'transition-[margin-top] duration-100 ease-in'
+        }
       />
     </motion.main>
   );
