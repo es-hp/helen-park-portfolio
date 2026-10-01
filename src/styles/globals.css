@@ -125,6 +125,17 @@
   .btn-primary:hover {
     background-color: var(--btn-primary-bg-hover);
   }
+
+  .navLink,
+  .bracket {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.05em;
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--foreground);
+  }
 }
 
 /* =========================

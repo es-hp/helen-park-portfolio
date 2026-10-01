@@ -107,7 +107,7 @@ export function Nav({ currentPage, className, ...motionProps }: NavProps) {
                 custom={custom}
                 initial={isAlways ? false : 'hidden'}
                 animate="visible"
-                exit="hidden"
+                // exit="hidden"
                 className="self-center text-center overflow-hidden"
               >
                 <NavLink navItem={item} />

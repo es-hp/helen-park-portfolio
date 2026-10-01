@@ -8,7 +8,7 @@ import { listVariants } from '@/motion';
 
 import { LinkHoverBrackets } from './LinkHoverBrackets';
 import type { NavItem } from './Nav';
-import styles from './NavLink.module.css';
+// import styles from './NavLink.module.css';
 
 export type NavLinkSize = 'lg' | 'xl' | '2xl';
 
@@ -27,7 +27,7 @@ export function NavLink({ navItem, size = '2xl' }: NavLinkProps) {
     navItem.type === 'link' ? (
       <Link
         to={navItem.to}
-        className={clsx(styles.navLink, textSize)}
+        className={clsx('navLink', textSize)}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
@@ -36,7 +36,7 @@ export function NavLink({ navItem, size = '2xl' }: NavLinkProps) {
     ) : navItem.type === 'action' ? (
       <button
         onClick={() => navItem.onClick()}
-        className={clsx(styles.navLink, textSize)}
+        className={clsx('navLink', textSize)}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >

@@ -9,7 +9,6 @@ import {
 } from 'framer-motion';
 
 import type { NavLinkSize } from './NavLink';
-import styles from './NavLink.module.css';
 
 type LinkHoverBracketsProps = {
   children: ReactNode;
@@ -38,10 +37,10 @@ export function LinkHoverBrackets({
 }: LinkHoverBracketsProps) {
   const bracket = (side: 'left' | 'right') => (
     <AnimatePresence initial={false}>
-      {hovered && ( //hovered
+      {hovered && (
         <motion.div
           key={side}
-          className={clsx(styles.bracket, styles[side], textSize)}
+          className={clsx('bracket', textSize)}
           variants={bracketVariants}
           initial="hidden"
           animate="visible"
