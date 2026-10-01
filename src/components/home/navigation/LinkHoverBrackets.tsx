@@ -8,8 +8,8 @@ import {
   type Variants,
 } from 'framer-motion';
 
-import styles from './Nav.module.css';
 import type { NavLinkSize } from './NavLink';
+import styles from './NavLink.module.css';
 
 type LinkHoverBracketsProps = {
   children: ReactNode;

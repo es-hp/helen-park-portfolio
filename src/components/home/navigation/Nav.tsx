@@ -1,104 +1,120 @@
-import { motion, type Variants } from 'framer-motion';
+import { AnimatePresence, type HTMLMotionProps, motion } from 'framer-motion';
 
-import {
-  backLinkVariants,
-  linksVariants,
-  navContainerVariants,
-  resumeLinksVariants,
-} from '@/components/home/navigation/motionNav';
+import { useGoBack } from '@/hooks/useGoBack';
+import { type ItemCustom, revealItemVariants } from '@/motion/nav.motion';
 
-import styles from './Nav.module.css';
 import { NavLink } from './NavLink';
 
-type NavRoute = {
-  type: 'route';
+type PageContext = 'onHome' | 'onAbout';
+
+export type NavItem = {
   label: string;
-  to: string;
-  showLink: 'onHome' | 'always' | 'onAbout';
+  showLink: PageContext | 'always';
+} & ({ type: 'link'; to: string } | { type: 'action'; onClick: () => void });
+
+type NavProps = HTMLMotionProps<'nav'> & {
+  currentPage: PageContext;
+  className?: string;
 };
 
-type NavAction = {
-  type: 'action';
-  label: string;
-  onClick: () => void;
-  showLink: 'onHome' | 'always' | 'onAbout';
-};
+const STAGGER = 0.1;
 
-export type NavItem = NavRoute | NavAction;
-
-type NavProps = {
-  animateState: 'onHome' | 'onAbout';
-  showAbout: () => void;
-  hideAbout: () => void;
-};
-
-export function Nav({ animateState, showAbout, hideAbout }: NavProps) {
-  const variantsMap: Record<string, Variants | undefined> = {
-    onHome: linksVariants,
-    always: resumeLinksVariants,
-    onAbout: backLinkVariants,
-  };
+export function Nav({ currentPage, className, ...motionProps }: NavProps) {
+  const goBack = useGoBack();
 
   const links: Record<string, NavItem> = {
     about: {
-      type: 'action',
       label: 'about',
-      onClick: () => showAbout(),
+      type: 'link',
+      to: '/about',
       showLink: 'onHome',
     },
     skills: {
-      type: 'route',
       label: 'skills',
+      type: 'link',
       to: '/skills',
       showLink: 'onHome',
     },
     projects: {
-      type: 'route',
       label: 'projects',
+      type: 'link',
       to: '/projects',
       showLink: 'onHome',
     },
     contact: {
-      type: 'route',
       label: 'contact',
+      type: 'link',
       to: '/contact',
       showLink: 'onHome',
     },
     resume: {
-      type: 'route',
       label: 'resume',
+      type: 'link',
       to: '/resume',
       showLink: 'always',
     },
     back: {
-      type: 'action',
       label: 'back',
-      onClick: () => hideAbout(),
+      type: 'action',
+      onClick: goBack,
       showLink: 'onAbout',
     },
   };
 
+  const getDelay = (
+    entries: [string, NavItem][],
+    key: string,
+    destination: PageContext
+  ) => {
+    const sequence = entries
+      .filter(([, item]) => item.showLink !== 'always')
+      .map(([k]) => k);
+
+    if (destination === 'onHome') sequence.reverse();
+
+    return sequence.indexOf(key) * STAGGER;
+  };
+
+  const entries = Object.entries(links);
+
   return (
-    <motion.nav
-      variants={{
-        onHome: {},
-        onAbout: {},
-      }}
-      className={styles.mainNav}
-    >
-      <motion.ul
-        variants={navContainerVariants}
-        animate={animateState}
-        initial="onHome"
-        className="flex flex-col justify-start"
-      >
-        {Object.entries(links).map(([key, item]) => {
-          return (
-            <motion.li key={key} variants={variantsMap[item.showLink]}>
-              <NavLink navItem={item} />
-            </motion.li>
-          );
-        })}
+    <motion.nav {...motionProps} className={className}>
+      <motion.ul>
+        <AnimatePresence>
+          {entries.map(([key, item]) => {
+            if (item.showLink !== 'always' && item.showLink !== currentPage) {
+              return null;
+            }
+            const isAlways = item.showLink === 'always';
+            const otherPage: PageContext =
+              item.showLink === 'onHome' ? 'onAbout' : 'onHome';
+
+            const custom: ItemCustom = isAlways
+              ? { entryDelay: 0, exitDelay: 0 }
+              : {
+                  entryDelay: getDelay(
+                    entries,
+                    key,
+                    item.showLink as PageContext
+                  ),
+                  exitDelay: getDelay(entries, key, otherPage),
+                };
+
+            return (
+              <motion.li
+                key={key}
+                variants={revealItemVariants}
+                custom={custom}
+                initial={isAlways ? false : 'hidden'}
+                animate="visible"
+                exit="hidden"
+                className="self-center text-center overflow-hidden"
+              >
+                <NavLink navItem={item} />
+              </motion.li>
+            );
+          })}
+        </AnimatePresence>
       </motion.ul>
     </motion.nav>
   );
